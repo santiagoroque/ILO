@@ -33,7 +33,7 @@ import {
 
 const SPEED = 240; // Pixels per second.
 const BUBBLE_SECONDS = 4;
-const GEM_REWARD = 5; // PLAN.md, A18
+const GEM_REWARD = 5; // docs/PLAN.md, A18
 const DAILY_REWARD = 20;
 const SNOW_GRAVITY = 900; // Pixels per second², for the snowball's arc.
 const $ = (id) => document.getElementById(id);
@@ -188,7 +188,7 @@ function changeRoom(id, point) {
   }, 260);
 }
 
-// ---- Saying things (PLAN.md, D10) ----
+// ---- Saying things (docs/PLAN.md, D10) ----
 // Everything the avatar says goes through here. When multiplayer arrives,
 // this is the one place that also sends it to other players.
 function say(message) {
@@ -549,7 +549,7 @@ $('map-button').addEventListener('click', () => {
   });
 });
 
-// ---- Decorating the house (PLAN.md, D12) ----
+// ---- Decorating the house (docs/PLAN.md, D12) ----
 let decorating = false;
 let dragging = null; // { id, x, y, from } where `from` is the placed index, or -1 if from the box
 
@@ -727,7 +727,7 @@ function checkGems() {
   }
 }
 
-// ---- Stamps (PLAN.md, D15) ----
+// ---- Stamps (docs/PLAN.md, D15) ----
 function stampFacts() {
   const stats = getStats();
   const play = getPlayStats();

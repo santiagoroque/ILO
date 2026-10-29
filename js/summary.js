@@ -1,5 +1,5 @@
 // Teacher summary: what this computer has saved for each lesson and changed
-// case (PLAN.md, Phase 11). No accounts: one computer, one kid at a time
+// case (docs/PLAN.md, Phase 11). No accounts: one computer, one kid at a time
 // (erase between kids from the lesson list). Exports a CSV spreadsheet file.
 import { loadStrings, mountLanguageSwitch, pick, t, translatePage } from './i18n.js';
 import { loadCatalog, loadLesson, withChallenge } from './lesson-loader.js';

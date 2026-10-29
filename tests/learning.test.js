@@ -182,7 +182,7 @@ test('coins earned once (no daily gifts) buy most, but not all, of the everyday 
   const stamps = readJson('../world/stamps.json').stamps;
   const world = readJson('../world/world.json');
   const gems = world.rooms.flatMap(({ id }) => readJson(`../world/rooms/${id}.json`).collectibles ?? []).length;
-  const GEM_REWARD = 5; // world.js, PLAN.md A18
+  const GEM_REWARD = 5; // world.js, docs/PLAN.md A18
   const animals = 17; // js/critters.js: each kind spotted once pays progress.SPOT_REWARD
   const lessonCoins = Object.values(lessons).reduce((sum, l) => sum + (l.reward ?? 50) + l.challenges.reduce((s, c) => s + (c.reward ?? 0), 0), 0);
   const once = progress.WELCOME_GIFT + lessonCoins + gems * GEM_REWARD + stamps.reduce((sum, s) => sum + s.reward, 0) + animals * progress.SPOT_REWARD;

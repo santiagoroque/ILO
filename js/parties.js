@@ -1,4 +1,4 @@
-// Seasonal parties (Phase 13, DESIGN_PROMPT_2.md Part 10): for a few weeks a
+// Seasonal parties (Phase 13, docs/DESIGN_PROMPT_2.md Part 10): for a few weeks a
 // year the Plaza and the Market street get decorations, falling petals and a
 // free gift. The dates and decorations are in world/parties.json. A teacher
 // (or a test) can show one any day with ?party=<id>, or none with ?party=none.

@@ -175,7 +175,7 @@ function scaledAt(ctx, x, y, s, draw) {
   ctx.restore();
 }
 
-// ---- Layered rooms (DESIGN_PROMPT_3.md): the designers' pictures ----
+// ---- Layered rooms (docs/DESIGN_PROMPT_3.md): the designers' pictures ----
 // A scenery object: its loop if it has one (the dance floor's tiles only
 // while Ilo dances on it), a wobble when a snowball hits a target.
 function drawObject(ctx, o, scene) {
@@ -690,7 +690,7 @@ function blob(ctx, x, y, r, fill) {
 }
 
 // Shape drawings for the Coast and Market street pieces (Phase 13), used
-// until the designers' pictures arrive (DESIGN_PROMPT_2.md, Parts 3 and 8). Each draws around its ground
+// until the designers' pictures arrive (docs/DESIGN_PROMPT_2.md, Parts 3 and 8). Each draws around its ground
 // point (0, 0); `time` is 0 when the computer asks for less motion.
 function leaf(ctx, x, y, length, width, angle, fill) {
   ctx.save();
@@ -1273,7 +1273,7 @@ const DECORATION_VARIANTS = { shell: ['cream', 'ochre', 'pink'], towel: ['coral'
 // Decorations that animate: [frames, frames per second].
 const DECORATION_LOOPS = {
   fountain: [3, 4], palm: [3, 3], 'palm-short': [3, 3], waterfall: [4, 8], canoe: [2, 2], 'glass-deck': [3, 4],
-  // Gentle sways (DESIGN_PROMPT_2.md, Part 4.2): frame 1 matches the still picture.
+  // Gentle sways (docs/DESIGN_PROMPT_2.md, Part 4.2): frame 1 matches the still picture.
   tree: [3, 2], pine: [3, 2], acacia: [3, 2], bush: [3, 2], grass: [3, 3], flowers: [3, 3],
 };
 

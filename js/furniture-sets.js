@@ -1,4 +1,4 @@
-// The furniture sets from delivery 2 (Phase 13, DESIGN_PROMPT_2.md Part 7):
+// The furniture sets from delivery 2 (Phase 13, docs/DESIGN_PROMPT_2.md Part 7):
 // Coast, Science lab, Crafts, Cozy, Play and Garden. Sizes, how each piece
 // is placed and what it does when Ilo uses it, plus shape drawings until the
 // designers' pictures arrive (furniture/<id>.svg). js/furniture.js merges

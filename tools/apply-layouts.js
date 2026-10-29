@@ -1,4 +1,4 @@
-// Puts the designers' layered rooms (DESIGN_PROMPT_3.md, revision 3) into the
+// Puts the designers' layered rooms (docs/DESIGN_PROMPT_3.md, revision 3) into the
 // room files. Run it after importing their art:
 //
 //   npm run import-art -- "/path/to/delivery/assets" --add

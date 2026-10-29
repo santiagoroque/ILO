@@ -1,4 +1,4 @@
-// Physics toys in the world (Phase 13, DESIGN_PROMPT_2.md Part 5). Small
+// Physics toys in the world (Phase 13, docs/DESIGN_PROMPT_2.md Part 5). Small
 // things to play with that quietly show the lessons' ideas: a ball that
 // rolls farther on ice than on sand (friction), a seesaw (lever), a swing
 // (pendulum), a sled hill, a water wheel, a magnet rock and more. A room

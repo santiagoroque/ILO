@@ -15,7 +15,7 @@ const worldData = readJson('../world/world.json');
 const rooms = worldData.rooms.map(({ id }) => readJson(`../world/rooms/${id}.json`));
 const missing = (files) => files.filter((file) => !art[file]);
 // What the first delivery (Direction 06) drew. Everything added for delivery 2
-// (DESIGN_PROMPT_2.md) is drawn as shapes until its pictures arrive, so only
+// (docs/DESIGN_PROMPT_2.md) is drawn as shapes until its pictures arrive, so only
 // the first delivery's pieces must have art here.
 const FIRST = {
   clothing: ['cap', 'flower', 'beanie', 'explorer', 'crown', 'glasses', 'sunglasses', 'goggles', 'scarf', 'bowtie', 'medal', 'hoodie',

@@ -412,7 +412,7 @@ const CLOTHING = {
     ctx.stroke();
   },
 
-  // ---- Delivery 2 (Phase 13, DESIGN_PROMPT_2.md Part 9) ----
+  // ---- Delivery 2 (Phase 13, docs/DESIGN_PROMPT_2.md Part 9) ----
   'sun-hat'(ctx) {
     ellipse(ctx, 0, -37, 24, 5, '#e9c46a');
     ctx.fillStyle = '#e9c46a';

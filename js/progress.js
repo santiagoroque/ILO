@@ -1,12 +1,12 @@
 // The ONLY file that saves or reads anything on the device.
 // Today it uses the browser's localStorage, so progress stays on this
 // computer. When ILO gets accounts, this file is replaced and nothing else
-// has to change (see PLAN.md, assumptions A3 and D8).
+// has to change (see docs/PLAN.md, assumptions A3 and D8).
 
 const KEY = 'ilo.v1';
 const VERSION = 4;
 export const DEFAULT_REWARD = 50;
-export const WELCOME_GIFT = 100; // PLAN.md, A15
+export const WELCOME_GIFT = 100; // docs/PLAN.md, A15
 export const SLOTS = ['head', 'face', 'neck', 'body', 'feet', 'hand'];
 const DAY = 24 * 60 * 60 * 1000;
 const HAPPINESS_MIN = 10;
@@ -84,7 +84,7 @@ export function setLanguage(language) {
 }
 
 // ---- Lessons ----
-// Three progress states (PLAN.md, Phase 10): explored (ran it at least
+// Three progress states (docs/PLAN.md, Phase 10): explored (ran it at least
 // once), completed (solved the main task) and applied (solved the changed
 // case). They are records of what happened, not a grade.
 
@@ -187,7 +187,7 @@ export function getWarmups(lessonId, warmupId) {
 }
 
 // Lessons whose main task was first solved in the last 7 days. Shown at the
-// end of a lesson instead of a daily streak (PLAN.md, D19).
+// end of a lesson instead of a daily streak (docs/PLAN.md, D19).
 export function solvedThisWeek(now = Date.now()) {
   return Object.values(read().solvedAt ?? {}).filter((at) => now - at < 7 * DAY).length;
 }

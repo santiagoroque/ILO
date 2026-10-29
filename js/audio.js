@@ -1,7 +1,7 @@
 // Sound effects and music. The recorded sound effects from the design
 // delivery (assets/audio, CC0) play when they have loaded; until then, or if
 // a file is missing, the same sound is made in the browser with the Web
-// Audio API (PLAN.md, D16). The area music is composed for ILO and played
+// Audio API (docs/PLAN.md, D16). The area music is composed for ILO and played
 // live in the browser: calm and warm, in the style of peaceful game music
 // (requested 2026-10-28), with original melodies. Browsers only allow sound
 // after the kid clicks or presses a key, so nothing plays until unlock().

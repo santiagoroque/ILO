@@ -1,4 +1,4 @@
-// Rules for placing furniture in the kid's house (PLAN.md, D12). No drawing
+// Rules for placing furniture in the kid's house (docs/PLAN.md, D12). No drawing
 // or page code here, so the tests can check the rules directly.
 import { FURNITURE } from './furniture.js';
 import { AVATAR_RADIUS, furnitureRect } from './world-data.js';

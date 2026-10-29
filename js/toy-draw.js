@@ -1,5 +1,5 @@
 // Draws the physics toys from js/toys.js. Pictures are world/toys/<file>.svg
-// (names below and in DESIGN_PROMPT_2.md, Part 12.6); shapes until then.
+// (names below and in docs/DESIGN_PROMPT_2.md, Part 12.6); shapes until then.
 import { drawSprite, frameAt, reducedMotion } from './sprites.js';
 import { goalBox, marimbaStones } from './toys.js';
 

@@ -1,4 +1,4 @@
-// Wild animals that make the rooms feel alive (Phase 13, DESIGN_PROMPT_2.md
+// Wild animals that make the rooms feel alive (Phase 13, docs/DESIGN_PROMPT_2.md
 // Part 4.1). They are scenery, not pets: they wander, pop out of holes, swim
 // or cross the room, and most of them run, hide or fly away when Ilo comes
 // close. A room lists its animals under "critters". No drawing code here,

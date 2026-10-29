@@ -1,4 +1,4 @@
-// The kid's pet: three original baby animals (PLAN.md, A16), how to draw
+// The kid's pet: three original baby animals (docs/PLAN.md, A16), how to draw
 // them, and how they follow the avatar around. (x, y) is where the pet's
 // feet touch the ground.
 

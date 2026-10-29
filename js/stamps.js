@@ -1,4 +1,4 @@
-// Stamps (PLAN.md, D15): which ones are earned, and how to draw them.
+// Stamps (docs/PLAN.md, D15): which ones are earned, and how to draw them.
 // The stamp list, rewards and conditions are in world/stamps.json.
 import { drawSprite } from './sprites.js';
 

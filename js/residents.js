@@ -1,4 +1,4 @@
-// Residents (Phase 13, DESIGN_PROMPT_2.md Part 4.3): friendly animals who
+// Residents (Phase 13, docs/DESIGN_PROMPT_2.md Part 4.3): friendly animals who
 // live in the world. Each stands in one place; when Ilo walks up they wave
 // and say a short tip. Every visit brings their next line. Names and lines
 // are in world/residents.json; rooms say who stands where ("residents").

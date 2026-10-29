@@ -24,7 +24,7 @@ $('reset-all').addEventListener('click', () => {
 const params = new URLSearchParams(location.search);
 const grade = Number(params.get('grade')) || null;
 
-// Grade buttons: All, 4th, 5th (the pilot grades, PLAN.md Phase 11).
+// Grade buttons: All, 4th, 5th (the pilot grades, docs/PLAN.md Phase 11).
 for (const option of [null, 4, 5]) {
   const a = document.createElement('a');
   a.className = 'button small';

@@ -730,7 +730,7 @@
       }
     },
     "layout": {
-      "description": "The designers' layered room (DESIGN_PROMPT_3.md), written by tools/apply-layouts.js: pictures, where Ilo walks, and every object.",
+      "description": "The designers' layered room (docs/DESIGN_PROMPT_3.md), written by tools/apply-layouts.js: pictures, where Ilo walks, and every object.",
       "type": "object",
       "required": [
         "ground",

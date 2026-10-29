@@ -1,6 +1,6 @@
 // The physics of a lesson. It has no drawing code, so the same simulation
 // runs in the browser and in the Node tests. The model is chosen by the
-// lesson's world.model (PLAN.md, D13):
+// lesson's world.model (docs/PLAN.md, D13):
 //   matter  falling and landing, using Matter.js (the gravity lesson)
 //   slide   an object braking on a surface with a = -μg (the friction lesson)
 //   lever   a plank turning about a fulcrum from torques (the lever lesson)
@@ -29,7 +29,7 @@ export const SURFACES = {
 };
 
 // Materials for the magnet lessons: does a magnet pull on them? "magnet" is
-// itself a magnet, with a pole facing up (game model, PLAN.md Phase 11).
+// itself a magnet, with a pole facing up (game model, docs/PLAN.md Phase 11).
 export const MATERIALS = {
   iron: 'magnetic',
   steel: 'magnetic',

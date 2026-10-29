@@ -108,7 +108,7 @@ function blockRadius(decoration) {
 const inRect = (r, x, y, margin = 0) => x > r.x - margin && x < r.x + r.width + margin
   && y > r.y - margin && y < r.y + r.height + margin;
 
-// ---- Layered rooms (DESIGN_PROMPT_3.md): pictures in layers and polygons ----
+// ---- Layered rooms (docs/DESIGN_PROMPT_3.md): pictures in layers and polygons ----
 // The room's "layout" says where Ilo can walk ("walk", a list of polygons),
 // what is in the way ("blocked" polygons, and each object's footprint: a
 // rectangle [left, top, right, bottom] or an ellipse [x, y, rx, ry]) and

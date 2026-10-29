@@ -368,7 +368,7 @@ function drawRope(ctx, x, y) {
 
 // ---- Magnet lessons: a crane with a magnet over a row of objects ----
 // Drawn in code in the ILO style until the designers deliver pictures
-// (ASSETS.md, "Needed from the designers").
+// (docs/ASSETS.md, "Needed from the designers").
 const OUTLINE = '#2b2d42';
 const MATERIAL_LOOK = {
   iron: { fill: '#5d5f6b', shine: '#8a8d99' },
@@ -390,7 +390,7 @@ function rounded(ctx, x, y, w, h, r) {
 const ROOM_FLOOR = 350; // Where the game's floor line sits in the designers' room picture.
 
 // A room for the newer games. Its picture is minigames/<folder>/background.svg
-// (DESIGN_PROMPT_2.md, Part 12) when it exists.
+// (docs/DESIGN_PROMPT_2.md, Part 12) when it exists.
 function drawRoom(ctx, canvas, floorY, folder = null) {
   // The designers' room (800 x 450) at its own size, placed so the game's
   // floor line falls on its wooden floor (350 px down); the rest of the

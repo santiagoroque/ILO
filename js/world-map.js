@@ -11,11 +11,11 @@ const AREA_COLORS = {
 };
 // Rooms drawn on today's map picture. Newer rooms (the Coast, the Market
 // street) get a round marker on top until the new map arrives
-// (DESIGN_PROMPT_2.md, Part 11).
+// (docs/DESIGN_PROMPT_2.md, Part 11).
 const ON_PICTURE = ['plaza', 'forest-trail', 'lever-glade', 'mushroom-hollow', 'savannah-trail', 'drone-post', 'waterhole',
   'snowy-ridge', 'ice-slide', 'frozen-lake', 'house'];
 const NODE_RADIUS = 26;
-// The new map with every area (DESIGN_PROMPT_3.md) is 1000 x 625 and uses
+// The new map with every area (docs/DESIGN_PROMPT_3.md) is 1000 x 625 and uses
 // each room's "map2" spot. Without it, the old 800 x 500 picture (or the
 // shapes) and "mapX", "mapY" are used.
 const NEW_MAP = 'map/world-map-v3.svg';

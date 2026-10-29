@@ -125,7 +125,7 @@ Every text a kid sees has a Spanish and an English version, and both are require
 
 ### Step 3b: Prediction, changed case and teacher notes
 
-These three parts help kids *understand*, not just win (PLAN.md, Phase 10). Copy them from `gravity.json` and change the texts.
+These three parts help kids *understand*, not just win (docs/PLAN.md, Phase 10). Copy them from `gravity.json` and change the texts.
 
 - **`prediction`** (optional): a question asked once before building, with 2 or 3 answers. Each answer lists the results it matches: `"won"`, or one of the `winCondition.feedback` names (`"tooShort"`, `"tooFar"`, `"tooHeavy"`). After the run ILO says whether the guess was right. It is never graded and pays no coins.
 - **`challenges`** (optional, but every lesson should have one): the **changed case**. Same idea, new conditions, and a **different** right answer. It has its own `id`, `title`, `intro`, `success`, `reward` and `startingBlocks`. Under `world` and `winCondition`, write only the parts that change: they replace the same parts of the main lesson. For example, a new `zones` list moves the target, and a new `objects` list moves or changes the objects. It comes right after the main task in the lesson's path.
@@ -249,7 +249,7 @@ ILO saves progress **only in this browser, on this computer** (`localStorage`, u
 
 - To erase everything on a shared computer: **All lessons > Erase all my progress**.
 - In private browsing, or if the browser blocks storage, ILO shows a warning: you can play, but nothing is kept.
-- Before adding accounts, online hosting for real classes, or any sharing between kids, see the legal and safety notes in PLAN.md (Phase 10, "Not in this phase").
+- Before adding accounts, online hosting for real classes, or any sharing between kids, see the legal and safety notes in docs/PLAN.md (Phase 10, "Not in this phase").
 
 ### For teachers
 
@@ -257,7 +257,7 @@ ILO saves progress **only in this browser, on this computer** (`localStorage`, u
 
 **Start of class:** open `lessons.html?grade=4` or `lessons.html?grade=5` to show that grade's lessons first, without walking through the world. After class, **Teacher summary for this computer** shows each lesson's runs, when the kid first won, hints used, warm-up answers, predictions, "why?" answers and fair comparisons, and downloads them as a spreadsheet. Erase progress between kids.
 
-**All lessons** shows the lessons as a path per grade. Each round node fills as the kid moves through that lesson's steps; the next lesson to do glows. Nothing is locked. Each lesson has a **Teacher notes** link: the goal, what kids need to know first, what the model simplifies, key words in both languages, common wrong ideas, questions to open and close, a transfer task on paper, and what "Solved" and "Applied" mean. It prints cleanly. A lesson's progress shows as **Explored** (tried it), **Solved** (won the mission) or **Applied** (also won the changed case). To try ILO with a group of kids, follow [PILOT.md](PILOT.md).
+**All lessons** shows the lessons as a path per grade. Each round node fills as the kid moves through that lesson's steps; the next lesson to do glows. Nothing is locked. Each lesson has a **Teacher notes** link: the goal, what kids need to know first, what the model simplifies, key words in both languages, common wrong ideas, questions to open and close, a transfer task on paper, and what "Solved" and "Applied" mean. It prints cleanly. A lesson's progress shows as **Explored** (tried it), **Solved** (won the mission) or **Applied** (also won the changed case). To try ILO with a group of kids, follow [docs/PILOT.md](docs/PILOT.md).
 
 ### Publishing ILO
 
@@ -280,7 +280,7 @@ All pictures, sounds and the font come from the design team's delivery and live 
    npm run import-art -- "/path/to/round/assets" --add
    ```
 
-3. If the delivery has room layouts (`world/redesign-layouts-v3.json`, from the world redesign in `DESIGN_PROMPT_3.md`), put them into the room files:
+3. If the delivery has room layouts (`world/redesign-layouts-v3.json`, from the world redesign in `docs/DESIGN_PROMPT_3.md`), put them into the room files:
 
    ```
    npm run apply-layouts -- "/path/to/delivery/assets/world/redesign-layouts-v3.json"
@@ -288,7 +288,7 @@ All pictures, sounds and the font come from the design team's delivery and live 
 
    It moves doors, exits, residents, toys, animals, gems and furniture to the designers' spots and stops on any room that does not match the game's data.
 
-4. Run `npm run check` and `npm test`. The check proves every door, exit and gem can be reached on foot; the tests list any picture the game needs that the new delivery is missing. `DESIGN_PROMPT_2.md`, Part 16, lists every file name the game looks for.
+4. Run `npm run check` and `npm test`. The check proves every door, exit and gem can be reached on foot; the tests list any picture the game needs that the new delivery is missing. `docs/DESIGN_PROMPT_2.md`, Part 16, lists every file name the game looks for.
 
 File names matter: the game finds a picture by its name (for example `world/decorations/tree.svg` for a `"tree"` decoration). A new decoration, building style, clothing item, pet, furniture piece or stamp icon works as soon as a picture with the matching name exists. If a picture is missing, the game draws a simple shape instead, so nothing breaks.
 
@@ -366,11 +366,14 @@ lessons/                  Lesson files + catalog.json
 assets/                   Art, sounds and font from the design delivery (npm run import-art)
 world/                    world.json (room list), rooms/*.json, items.json (shop), phrases.json, stamps.json
 schema/                   JSON Schemas for lessons, rooms, the world, items and phrases
-tools/                    Local server, lesson checker, vendor copy step, art import
+tools/                    Local server, lesson checker, vendor copy step, art import, room layouts
 tests/                    Tests
 vendor/                   Copied libraries (do not edit)
+docs/                     PLAN.md (decisions, roadmap), TASKS.md (task status), PILOT.md (trying it with kids),
+                          ASSETS.md (where the art comes from), DESIGN_PROMPT*.md (briefs for the design team)
+sources/                  SEP textbooks, only on this computer (not in git, not in the site)
 ```
 
-Design decisions and the roadmap are in [PLAN.md](PLAN.md). Task status is in [TASKS.md](TASKS.md).
+Design decisions and the roadmap are in [docs/PLAN.md](docs/PLAN.md). Task status is in [docs/TASKS.md](docs/TASKS.md).
 
 Libraries: [Blockly](https://github.com/RaspberryPiFoundation/blockly) 13.4.0 (Apache-2.0) and [Matter.js](https://github.com/liabru/matter-js) 0.20.0 (MIT). Their licenses are copied into `vendor/`.

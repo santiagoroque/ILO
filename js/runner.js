@@ -1,7 +1,7 @@
 // Converts between the kid's blocks and a simple list of steps such as
 // [{ "block": "set_gravity", "planet": "mars" }, { "block": "drop", "object": "package" }].
 // Lesson files use the same step format for "startingBlocks".
-// Blocks are read one by one; no JavaScript is generated or eval'd (PLAN.md, D2).
+// Blocks are read one by one; no JavaScript is generated or eval'd (docs/PLAN.md, D2).
 import { START_BLOCK } from './blocks.js';
 
 // Reads the blocks connected under "when Run is pressed", top to bottom.

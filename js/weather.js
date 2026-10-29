@@ -1,4 +1,4 @@
-// The time of day and the weather (Phase 13, DESIGN_PROMPT_2.md Part 4.4).
+// The time of day and the weather (Phase 13, docs/DESIGN_PROMPT_2.md Part 4.4).
 // ILO follows the computer's clock: from 6 pm the world turns to dusk, lamps
 // and windows glow, and the Arctic shows northern lights. Weather is small
 // falling things: snow in the Arctic, leaves in the Forest, a tropical

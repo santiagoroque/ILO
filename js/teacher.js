@@ -1,5 +1,5 @@
 // Teacher notes page: teacher.html?id=<lesson id>. Shows the "teacher"
-// section of a lesson file (PLAN.md, Phase 10), ready to print.
+// section of a lesson file (docs/PLAN.md, Phase 10), ready to print.
 import { loadStrings, mountLanguageSwitch, pick, t, translatePage } from './i18n.js';
 import { loadLesson } from './lesson-loader.js';
 import { showError } from './show-error.js';

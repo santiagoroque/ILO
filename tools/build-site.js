@@ -5,7 +5,7 @@
 //
 // It leaves out everything that is only for building or checking ILO
 // (node_modules, tests, tools, schema, plans) and, on purpose, sources/:
-// the SEP textbook PDFs stay on this computer (PLAN.md, Phase 11).
+// the SEP textbook PDFs stay on this computer (docs/PLAN.md, Phase 11).
 // A copy of the small local server is included, because browsers do not
 // run ILO from a double-clicked file.
 import { cpSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';

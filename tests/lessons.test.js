@@ -1,5 +1,5 @@
 // Tests for the friction and lever lessons. Run with: npm test
-// They check the physics models against the textbook formulas (PLAN.md, D13).
+// They check the physics models against the textbook formulas (docs/PLAN.md, D13).
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
