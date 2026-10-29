@@ -1,0 +1,429 @@
+{
+  "$schema": "../schema/stamps.schema.json",
+  "schemaVersion": 1,
+  "stamps": [
+    {
+      "id": "first-delivery",
+      "icon": "package",
+      "reward": 10,
+      "name": {
+        "es": "Primera entrega",
+        "en": "First delivery"
+      },
+      "description": {
+        "es": "Gana el minijuego de gravedad.",
+        "en": "Win the gravity minigame."
+      },
+      "condition": {
+        "type": "lesson",
+        "lesson": "gravity"
+      }
+    },
+    {
+      "id": "smooth-stopper",
+      "icon": "sled",
+      "reward": 10,
+      "name": {
+        "es": "Frenado perfecto",
+        "en": "Perfect stop"
+      },
+      "description": {
+        "es": "Gana el minijuego de fricción.",
+        "en": "Win the friction minigame."
+      },
+      "condition": {
+        "type": "lesson",
+        "lesson": "friction"
+      }
+    },
+    {
+      "id": "lever-pro",
+      "icon": "lever",
+      "reward": 10,
+      "name": {
+        "es": "Maestro de palancas",
+        "en": "Lever pro"
+      },
+      "description": {
+        "es": "Gana el minijuego de palancas.",
+        "en": "Win the lever minigame."
+      },
+      "condition": {
+        "type": "lesson",
+        "lesson": "lever"
+      }
+    },
+    {
+      "id": "young-scientist",
+      "icon": "flask",
+      "reward": 30,
+      "name": {
+        "es": "Joven científico",
+        "en": "Young scientist"
+      },
+      "description": {
+        "es": "Gana todos los minijuegos.",
+        "en": "Win every minigame."
+      },
+      "condition": {
+        "type": "all_lessons"
+      }
+    },
+    {
+      "id": "applied-scientist",
+      "icon": "flask",
+      "reward": 20,
+      "name": {
+        "es": "Científica o científico aplicado",
+        "en": "Applied scientist"
+      },
+      "description": {
+        "es": "Resuelve el caso nuevo de todos los minijuegos.",
+        "en": "Solve the changed case of every minigame."
+      },
+      "condition": {
+        "type": "all_applied"
+      }
+    },
+    {
+      "id": "explorer",
+      "icon": "map",
+      "reward": 10,
+      "name": {
+        "es": "Exploración",
+        "en": "Explorer"
+      },
+      "description": {
+        "es": "Visita 8 lugares distintos.",
+        "en": "Visit 8 different places."
+      },
+      "condition": {
+        "type": "rooms",
+        "count": 8
+      }
+    },
+    {
+      "id": "world-traveler",
+      "icon": "globe",
+      "reward": 20,
+      "name": {
+        "es": "Viajero del mundo",
+        "en": "World traveler"
+      },
+      "description": {
+        "es": "Visita todos los lugares de ILO.",
+        "en": "Visit every place in ILO."
+      },
+      "condition": {
+        "type": "all_rooms"
+      }
+    },
+    {
+      "id": "pet-friend",
+      "icon": "paw",
+      "reward": 10,
+      "name": {
+        "es": "Amigo de las mascotas",
+        "en": "Pet friend"
+      },
+      "description": {
+        "es": "Adopta una mascota.",
+        "en": "Adopt a pet."
+      },
+      "condition": {
+        "type": "pet"
+      }
+    },
+    {
+      "id": "decorator",
+      "icon": "house",
+      "reward": 10,
+      "name": {
+        "es": "Decoración",
+        "en": "Decorator"
+      },
+      "description": {
+        "es": "Pon 5 muebles en tu casa.",
+        "en": "Place 5 pieces of furniture in your house."
+      },
+      "condition": {
+        "type": "furniture",
+        "count": 5
+      }
+    },
+    {
+      "id": "chatterbox",
+      "icon": "bubble",
+      "reward": 10,
+      "name": {
+        "es": "Conversador",
+        "en": "Chatterbox"
+      },
+      "description": {
+        "es": "Di 10 frases o emociones.",
+        "en": "Say 10 phrases or emotes."
+      },
+      "condition": {
+        "type": "said",
+        "count": 10
+      }
+    },
+    {
+      "id": "dancer",
+      "icon": "music",
+      "reward": 10,
+      "name": {
+        "es": "A bailar",
+        "en": "Dancer"
+      },
+      "description": {
+        "es": "Baila por primera vez.",
+        "en": "Dance for the first time."
+      },
+      "condition": {
+        "type": "danced"
+      }
+    },
+    {
+      "id": "snow-champion",
+      "icon": "snowball",
+      "reward": 10,
+      "name": {
+        "es": "Campeón de nieve",
+        "en": "Snow champion"
+      },
+      "description": {
+        "es": "Atina 5 bolas de nieve a los blancos del Ártico.",
+        "en": "Hit Arctic targets with 5 snowballs."
+      },
+      "condition": {
+        "type": "snowball_hits",
+        "count": 5
+      }
+    },
+    {
+      "id": "gem-finder",
+      "icon": "gem",
+      "reward": 10,
+      "name": {
+        "es": "Buscagemas",
+        "en": "Gem finder"
+      },
+      "description": {
+        "es": "Encuentra 5 gemas escondidas.",
+        "en": "Find 5 hidden gems."
+      },
+      "condition": {
+        "type": "gems",
+        "count": 5
+      }
+    },
+    {
+      "id": "gem-master",
+      "icon": "crown",
+      "reward": 30,
+      "name": {
+        "es": "Maestro de gemas",
+        "en": "Gem master"
+      },
+      "description": {
+        "es": "Encuentra todas las gemas escondidas.",
+        "en": "Find every hidden gem."
+      },
+      "condition": {
+        "type": "all_gems"
+      }
+    },
+    {
+      "id": "stylish",
+      "icon": "shirt",
+      "reward": 10,
+      "name": {
+        "es": "Con estilo",
+        "en": "Stylish"
+      },
+      "description": {
+        "es": "Ten 3 prendas de ropa.",
+        "en": "Own 3 pieces of clothing."
+      },
+      "condition": {
+        "type": "clothing",
+        "count": 3
+      }
+    },
+    {
+      "id": "beachcomber",
+      "icon": "shell",
+      "name": {
+        "es": "Explorador de playa",
+        "en": "Beachcomber"
+      },
+      "description": {
+        "es": "Visita los cuatro lugares de la Costa.",
+        "en": "Visit all four places on the Coast."
+      },
+      "reward": 15,
+      "condition": {
+        "type": "visit",
+        "rooms": [
+          "palm-beach",
+          "mangrove-boardwalk",
+          "coral-lookout",
+          "waterfall-cove"
+        ]
+      }
+    },
+    {
+      "id": "half-guide",
+      "icon": "leaf",
+      "name": {
+        "es": "Observador",
+        "en": "Watcher"
+      },
+      "description": {
+        "es": "Anota 9 animales en tu bitácora.",
+        "en": "Spot 9 animals for your field guide."
+      },
+      "reward": 10,
+      "condition": {
+        "type": "spotted",
+        "count": 9
+      }
+    },
+    {
+      "id": "naturalist",
+      "icon": "book",
+      "name": {
+        "es": "Naturalista",
+        "en": "Naturalist"
+      },
+      "description": {
+        "es": "Anota todos los animales en tu bitácora.",
+        "en": "Spot every animal for your field guide."
+      },
+      "reward": 30,
+      "condition": {
+        "type": "all_spotted"
+      }
+    },
+    {
+      "id": "homeowner",
+      "icon": "key",
+      "name": {
+        "es": "Casa nueva",
+        "en": "New home"
+      },
+      "description": {
+        "es": "Compra otro estilo de casa.",
+        "en": "Buy another house style."
+      },
+      "reward": 15,
+      "condition": {
+        "type": "houses",
+        "count": 1
+      }
+    },
+    {
+      "id": "interior-designer",
+      "icon": "sofa",
+      "name": {
+        "es": "Gran decorador",
+        "en": "Interior designer"
+      },
+      "description": {
+        "es": "Pon 20 muebles en tu casa.",
+        "en": "Place 20 pieces of furniture in your house."
+      },
+      "reward": 20,
+      "condition": {
+        "type": "furniture",
+        "count": 20
+      }
+    },
+    {
+      "id": "party-goer",
+      "icon": "party",
+      "name": {
+        "es": "Fiestero",
+        "en": "Party-goer"
+      },
+      "description": {
+        "es": "Ven a una fiesta del mundo de ILO.",
+        "en": "Come to a party in ILO's world."
+      },
+      "reward": 15,
+      "condition": {
+        "type": "party"
+      }
+    },
+    {
+      "id": "toy-tester",
+      "icon": "ball",
+      "name": {
+        "es": "Probador de juguetes",
+        "en": "Toy tester"
+      },
+      "description": {
+        "es": "Juega con 5 juguetes distintos del mundo.",
+        "en": "Play with 5 different toys around the world."
+      },
+      "reward": 15,
+      "condition": {
+        "type": "toys",
+        "count": 5
+      }
+    },
+    {
+      "id": "goal-kicker",
+      "icon": "goal",
+      "name": {
+        "es": "¡Gol!",
+        "en": "Goal!"
+      },
+      "description": {
+        "es": "Mete la pelota en una portería.",
+        "en": "Kick the ball into a goal."
+      },
+      "reward": 10,
+      "condition": {
+        "type": "goals",
+        "count": 1
+      }
+    },
+    {
+      "id": "night-owl",
+      "icon": "moon",
+      "name": {
+        "es": "Búho nocturno",
+        "en": "Night owl"
+      },
+      "description": {
+        "es": "Pasea por el mundo en la tarde o la noche.",
+        "en": "Walk around the world in the evening or at night."
+      },
+      "reward": 10,
+      "condition": {
+        "type": "evening"
+      }
+    },
+    {
+      "id": "museum-friend",
+      "icon": "column",
+      "name": {
+        "es": "Amigo del museo",
+        "en": "Museum friend"
+      },
+      "description": {
+        "es": "Visita el museo de ciencias.",
+        "en": "Visit the science museum."
+      },
+      "reward": 10,
+      "condition": {
+        "type": "visit",
+        "rooms": [
+          "museum-inside"
+        ]
+      }
+    }
+  ]
+}

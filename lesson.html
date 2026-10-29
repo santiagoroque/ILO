@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ILO</title>
+  <link rel="icon" href="assets/logo/favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Libraries, copied into vendor/ by `npm install`. -->
+  <script src="vendor/blockly/blockly_compressed.js"></script>
+  <script src="vendor/matter-js/matter.min.js"></script>
+</head>
+<body class="path-page">
+  <!-- Shown only if the page was opened by double-clicking the file. -->
+  <div id="file-warning" class="panel error" hidden>
+    <h2>ILO necesita un servidor local / ILO needs a local server</h2>
+    <p>Abre una terminal en la carpeta de ILO, escribe <code>npm start</code> y luego abre <code>http://localhost:8080</code>.</p>
+    <p>Open a terminal in the ILO folder, type <code>npm start</code>, then open <code>http://localhost:8080</code>.</p>
+  </div>
+  <script>
+    if (location.protocol === 'file:') document.getElementById('file-warning').hidden = false;
+  </script>
+
+  <!-- Lesson path (Phase 12, D19): one short step at a time. -->
+  <header class="path-bar">
+    <a id="close" class="path-close" href="index.html"></a>
+    <ol id="progress" class="path-progress"></ol>
+    <div id="lang-switch" class="lang-switch"></div>
+  </header>
+
+  <div id="save-warning" class="save-warning" role="alert" data-i18n="save.unavailable" hidden></div>
+  <div id="error" class="panel error" hidden></div>
+  <p id="loading" class="muted center" data-i18n="lesson.loading"></p>
+
+  <main id="lesson" class="path" hidden>
+    <!-- Every step except building the program. -->
+    <section id="card" class="step-card" aria-labelledby="card-title" hidden>
+      <div class="card-head">
+        <p id="card-kicker" class="concept"></p>
+        <button id="read-aloud" type="button" class="button small" data-icon data-i18n="path.listen" hidden></button>
+      </div>
+      <img id="card-picture" class="card-picture" alt="" hidden>
+      <h1 id="card-title" tabindex="-1"></h1>
+      <p id="card-text" class="card-text"></p>
+      <canvas id="card-canvas" class="card-canvas" hidden></canvas>
+      <div id="choices" class="choices"></div>
+      <p id="card-note" class="muted small card-note"></p>
+      <details id="card-more" class="card-more" hidden>
+        <summary data-i18n="lesson.story"></summary>
+        <p id="card-more-text"></p>
+      </details>
+    </section>
+
+    <!-- Build and run: the blocks on the left, the simulator on the right. -->
+    <section id="build" class="build" aria-labelledby="mission-goal" hidden>
+      <div class="build-goal">
+        <span id="challenge-tag" class="badge challenge" data-i18n="lesson.challengeTag" hidden></span>
+        <p id="mission-goal" class="goal-line" tabindex="-1"></p>
+        <button id="build-read" type="button" class="button small" data-icon data-i18n="path.listen" hidden></button>
+      </div>
+      <div class="build-grid">
+        <div class="program">
+          <div class="section-head">
+            <h2 data-i18n="lesson.program"></h2>
+            <button id="start-over" type="button" class="link-button" data-i18n="lesson.startOver"></button>
+          </div>
+          <p class="muted small" data-i18n="lesson.programHelp"></p>
+          <div id="blockly" class="blockly"></div>
+        </div>
+        <div class="stage">
+          <canvas id="canvas" class="canvas"></canvas>
+          <div id="message" class="message" role="status" aria-live="polite"></div>
+          <div id="hint-box" class="hint-box" hidden></div>
+          <details id="journal" class="journal">
+            <summary data-i18n="lesson.journal"></summary>
+            <p id="journal-empty" class="muted small" data-i18n="lesson.journalEmpty"></p>
+            <ol id="journal-list" class="journal-list"></ol>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- The bottom bar: Check / Continue, or Run / Reset / Hint while building. -->
+  <footer id="action-bar" class="action-bar" hidden>
+    <div class="action-left">
+      <button id="hint" type="button" data-icon class="button secondary" data-i18n="lesson.hint"></button>
+      <button id="reset" type="button" data-icon class="button" data-i18n="lesson.reset"></button>
+      <button id="back-to-build" type="button" class="button" data-i18n="path.backToExperiment"></button>
+      <a id="to-map" class="button" href="index.html" data-i18n="lesson.back"></a>
+    </div>
+    <div class="action-right">
+      <button id="run" type="button" data-icon class="button primary" data-i18n="lesson.run"></button>
+      <button id="check" type="button" class="button primary" data-i18n="path.check"></button>
+      <button id="continue" type="button" class="button primary" data-i18n="path.continue"></button>
+    </div>
+  </footer>
+
+  <!-- The feedback sheet that slides up after Check or a run. -->
+  <div id="sheet" class="sheet" hidden>
+    <div class="sheet-inner" role="status" aria-live="polite">
+      <div class="sheet-text">
+        <p id="sheet-title" class="sheet-title"></p>
+        <p id="sheet-body" class="sheet-body"></p>
+      </div>
+      <div class="sheet-actions">
+        <button id="sheet-retry" type="button" class="button"></button>
+        <button id="sheet-continue" type="button" class="button primary" data-i18n="path.continue"></button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/lesson.js"></script>
+</body>
+</html>

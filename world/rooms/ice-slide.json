@@ -1,0 +1,233 @@
+{
+  "$schema": "../../schema/room.schema.json",
+  "schemaVersion": 1,
+  "id": "ice-slide",
+  "kind": "outdoor",
+  "name": {
+    "es": "Tobogán de hielo",
+    "en": "Ice slide"
+  },
+  "spawn": {
+    "x": 380,
+    "y": 560
+  },
+  "areas": [
+    {
+      "id": "ground",
+      "type": "arctic",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1280,
+          0
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ]
+    }
+  ],
+  "paths": [],
+  "stations": [
+    {
+      "id": "ice-slide",
+      "kind": "room",
+      "room": "ice-slide-inside",
+      "style": "slide",
+      "x": 950,
+      "y": 550,
+      "name": {
+        "es": "Tobogán de hielo",
+        "en": "Ice slide"
+      },
+      "description": {
+        "es": "Minijuego de fricción: frena un trineo.",
+        "en": "Friction minigame: stop a sled."
+      },
+      "door": {
+        "x": 950,
+        "y": 542.7
+      },
+      "art": {
+        "asset": "world/buildings/slide.svg",
+        "scale": 1.2,
+        "bounds": [
+          818,
+          238,
+          1082,
+          550
+        ],
+        "footprint": {
+          "rect": [
+            848.2,
+            470,
+            1051.8,
+            531.8
+          ]
+        },
+        "states": {
+          "highlight": "world/buildings/slide-highlight.svg",
+          "night": "world/buildings/slide-night.svg",
+          "soon": "world/buildings/slide-soon.svg"
+        }
+      }
+    }
+  ],
+  "exits": [
+    {
+      "id": "west",
+      "x": 0,
+      "y": 470,
+      "width": 40,
+      "height": 160,
+      "spawn": {
+        "x": 110,
+        "y": 510
+      },
+      "to": "snowy-ridge",
+      "toExit": "east",
+      "sign": {
+        "x": 125,
+        "y": 465
+      }
+    }
+  ],
+  "decorations": [],
+  "scatter": [],
+  "collectibles": [
+    {
+      "id": "gem-ice-slide-1",
+      "x": 180,
+      "y": 630
+    },
+    {
+      "id": "gem-ice-slide-2",
+      "x": 1150,
+      "y": 630
+    }
+  ],
+  "critters": [
+    {
+      "type": "snow-hare",
+      "count": 1,
+      "regions": [
+        [
+          390,
+          460,
+          660,
+          620
+        ]
+      ]
+    }
+  ],
+  "layout": {
+    "revision": "room-redesign-3-wide",
+    "ground": "world/rooms-v3/ice-slide/ground.svg",
+    "foreground": "world/rooms-v3/ice-slide/foreground.svg",
+    "scale": 1.5,
+    "surface": "arctic",
+    "walk": [
+      [
+        [
+          40,
+          250
+        ],
+        [
+          1240,
+          250
+        ],
+        [
+          1240,
+          700
+        ],
+        [
+          40,
+          700
+        ]
+      ],
+      [
+        [
+          0,
+          450
+        ],
+        [
+          180,
+          450
+        ],
+        [
+          180,
+          650
+        ],
+        [
+          0,
+          650
+        ]
+      ]
+    ],
+    "blocked": [
+      [
+        [
+          0,
+          535
+        ],
+        [
+          75,
+          535
+        ],
+        [
+          75,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ],
+      [
+        [
+          1205,
+          535
+        ],
+        [
+          1280,
+          535
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          1205,
+          720
+        ]
+      ]
+    ],
+    "water": {},
+    "objects": [
+      {
+        "type": "target",
+        "asset": "world/decorations/target.svg",
+        "x": 280,
+        "y": 420,
+        "scale": 1.52,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            280,
+            416.8,
+            36.5,
+            13.1
+          ]
+        }
+      }
+    ]
+  }
+}

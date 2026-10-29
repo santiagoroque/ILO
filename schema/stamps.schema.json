@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ilo/stamps.schema.json",
+  "title": "ILO stamps",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "stamps"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "stamps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "icon",
+          "reward",
+          "name",
+          "description",
+          "condition"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "icon": {
+            "enum": [
+              "package",
+              "sled",
+              "lever",
+              "flask",
+              "map",
+              "globe",
+              "paw",
+              "house",
+              "bubble",
+              "music",
+              "snowball",
+              "gem",
+              "crown",
+              "shirt",
+              "shell",
+              "leaf",
+              "book",
+              "key",
+              "sofa",
+              "party",
+              "ball",
+              "goal",
+              "moon",
+              "column"
+            ]
+          },
+          "reward": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "name": {
+            "$ref": "#/$defs/text"
+          },
+          "description": {
+            "$ref": "#/$defs/text"
+          },
+          "condition": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "enum": [
+                  "lesson",
+                  "all_lessons",
+                  "all_applied",
+                  "rooms",
+                  "all_rooms",
+                  "pet",
+                  "furniture",
+                  "said",
+                  "danced",
+                  "snowball_hits",
+                  "gems",
+                  "all_gems",
+                  "clothing",
+                  "visit",
+                  "spotted",
+                  "all_spotted",
+                  "houses",
+                  "toys",
+                  "goals",
+                  "evening",
+                  "party"
+                ]
+              },
+              "lesson": {
+                "type": "string"
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "rooms": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "text": {
+      "type": "object",
+      "required": [
+        "es",
+        "en"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "es": {
+          "type": "string",
+          "minLength": 1
+        },
+        "en": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

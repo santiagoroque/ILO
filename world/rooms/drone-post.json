@@ -1,0 +1,270 @@
+{
+  "$schema": "../../schema/room.schema.json",
+  "schemaVersion": 1,
+  "id": "drone-post",
+  "kind": "outdoor",
+  "name": {
+    "es": "Puesto de drones",
+    "en": "Drone post"
+  },
+  "spawn": {
+    "x": 640,
+    "y": 560
+  },
+  "areas": [
+    {
+      "id": "ground",
+      "type": "savannah",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1280,
+          0
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ]
+    }
+  ],
+  "paths": [],
+  "stations": [
+    {
+      "id": "drone-post",
+      "kind": "room",
+      "room": "drone-post-inside",
+      "style": "tower",
+      "x": 980,
+      "y": 390,
+      "name": {
+        "es": "Puesto de drones",
+        "en": "Drone delivery post"
+      },
+      "description": {
+        "es": "Minijuego de gravedad: entrega paquetes en otros planetas.",
+        "en": "Gravity minigame: deliver packages on other planets."
+      },
+      "door": {
+        "x": 980,
+        "y": 411.8
+      },
+      "art": {
+        "asset": "world/buildings/tower.svg",
+        "scale": 1.2,
+        "bounds": [
+          848,
+          78,
+          1112,
+          390
+        ],
+        "footprint": {
+          "rect": [
+            878.2,
+            310,
+            1081.8,
+            390
+          ]
+        },
+        "states": {
+          "highlight": "world/buildings/tower-highlight.svg",
+          "night": "world/buildings/tower-night.svg",
+          "soon": "world/buildings/tower-soon.svg"
+        },
+        "animation": [
+          "world/buildings/tower-1.svg",
+          "world/buildings/tower-2.svg",
+          "world/buildings/tower-3.svg"
+        ]
+      }
+    }
+  ],
+  "exits": [
+    {
+      "id": "west",
+      "x": 0,
+      "y": 470,
+      "width": 40,
+      "height": 160,
+      "spawn": {
+        "x": 110,
+        "y": 510
+      },
+      "to": "savannah-trail",
+      "toExit": "east",
+      "sign": {
+        "x": 125,
+        "y": 465
+      }
+    }
+  ],
+  "decorations": [],
+  "scatter": [],
+  "collectibles": [
+    {
+      "id": "gem-drone-post-1",
+      "x": 130,
+      "y": 620
+    },
+    {
+      "id": "gem-drone-post-2",
+      "x": 1140,
+      "y": 640
+    }
+  ],
+  "critters": [
+    {
+      "type": "meerkat",
+      "x": 320,
+      "y": 350
+    },
+    {
+      "type": "bird-flock",
+      "count": 1,
+      "y": 128
+    }
+  ],
+  "residents": [
+    {
+      "id": "profe",
+      "x": 780,
+      "y": 460,
+      "scale": 1.5
+    }
+  ],
+  "layout": {
+    "revision": "room-redesign-3-wide",
+    "ground": "world/rooms-v3/drone-post/ground.svg",
+    "foreground": "world/rooms-v3/drone-post/foreground.svg",
+    "scale": 1.5,
+    "surface": "savannah",
+    "walk": [
+      [
+        [
+          40,
+          280
+        ],
+        [
+          1240,
+          280
+        ],
+        [
+          1240,
+          700
+        ],
+        [
+          40,
+          700
+        ]
+      ],
+      [
+        [
+          0,
+          450
+        ],
+        [
+          180,
+          450
+        ],
+        [
+          180,
+          650
+        ],
+        [
+          0,
+          650
+        ]
+      ]
+    ],
+    "blocked": [
+      [
+        [
+          0,
+          535
+        ],
+        [
+          75,
+          535
+        ],
+        [
+          75,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ],
+      [
+        [
+          1205,
+          535
+        ],
+        [
+          1280,
+          535
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          1205,
+          720
+        ]
+      ]
+    ],
+    "water": {},
+    "objects": [
+      {
+        "type": "acacia",
+        "asset": "world/decorations/acacia.svg",
+        "x": 65,
+        "y": 310,
+        "scale": 2.16,
+        "layer": "stand",
+        "animation": [
+          "world/decorations/acacia-1.svg",
+          "world/decorations/acacia-2.svg",
+          "world/decorations/acacia-3.svg"
+        ],
+        "footprint": {
+          "ellipse": [
+            65,
+            306.8,
+            38.9,
+            14
+          ]
+        }
+      },
+      {
+        "type": "acacia",
+        "asset": "world/decorations/acacia.svg",
+        "x": 1230,
+        "y": 320,
+        "scale": 2.08,
+        "layer": "stand",
+        "animation": [
+          "world/decorations/acacia-1.svg",
+          "world/decorations/acacia-2.svg",
+          "world/decorations/acacia-3.svg"
+        ],
+        "footprint": {
+          "ellipse": [
+            1230,
+            316.8,
+            37.4,
+            13.5
+          ]
+        }
+      }
+    ]
+  }
+}

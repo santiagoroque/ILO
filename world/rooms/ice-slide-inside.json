@@ -1,0 +1,195 @@
+{
+  "$schema": "../../schema/room.schema.json",
+  "schemaVersion": 1,
+  "id": "ice-slide-inside",
+  "kind": "indoor",
+  "interior": "icecabin",
+  "name": {
+    "es": "Dentro del tobogán de hielo",
+    "en": "Inside the ice slide"
+  },
+  "spawn": {
+    "x": 640,
+    "y": 620
+  },
+  "minY": 280,
+  "areas": [
+    {
+      "id": "ground",
+      "type": "indoor",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1280,
+          0
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ]
+    }
+  ],
+  "paths": [],
+  "stations": [
+    {
+      "id": "friction-machine",
+      "kind": "lesson",
+      "lesson": "friction",
+      "style": "arcade",
+      "x": 960,
+      "y": 450,
+      "name": {
+        "es": "El trineo que frena",
+        "en": "The braking sled"
+      },
+      "description": {
+        "es": "Minijuego de fricción: frena el trineo en la estación.",
+        "en": "Friction minigame: stop the sled at the station."
+      },
+      "door": {
+        "x": 960,
+        "y": 477.4
+      },
+      "art": {
+        "asset": "world/stations/arcade-friction.svg",
+        "scale": 1.8,
+        "bounds": [
+          870,
+          162,
+          1050,
+          450
+        ],
+        "footprint": {
+          "rect": [
+            899,
+            407,
+            1021,
+            450
+          ]
+        },
+        "animation": [
+          "world/stations/arcade-friction-1.svg",
+          "world/stations/arcade-friction-2.svg",
+          "world/stations/arcade-friction-3.svg"
+        ]
+      }
+    }
+  ],
+  "exits": [
+    {
+      "id": "south",
+      "x": 560,
+      "y": 680,
+      "width": 160,
+      "height": 40,
+      "spawn": {
+        "x": 640,
+        "y": 610
+      },
+      "to": "ice-slide",
+      "toStation": "ice-slide",
+      "sign": {
+        "x": 640,
+        "y": 650
+      }
+    }
+  ],
+  "decorations": [],
+  "scatter": [],
+  "furniture": [
+    {
+      "id": "rug",
+      "x": 620,
+      "y": 550,
+      "scale": 2
+    },
+    {
+      "id": "beanbag",
+      "x": 190,
+      "y": 470,
+      "scale": 1.6
+    },
+    {
+      "id": "beanbag",
+      "x": 1080,
+      "y": 620,
+      "scale": 1.6
+    },
+    {
+      "id": "lamp",
+      "x": 350,
+      "y": 410,
+      "scale": 1.6
+    },
+    {
+      "id": "plant",
+      "x": 110,
+      "y": 610,
+      "scale": 1.6
+    }
+  ],
+  "layout": {
+    "revision": "room-redesign-3-wide",
+    "ground": "world/rooms-v3/ice-slide-inside/ground.svg",
+    "scale": 1.5,
+    "surface": "indoor",
+    "walk": [
+      [
+        [
+          40,
+          270
+        ],
+        [
+          1240,
+          270
+        ],
+        [
+          1240,
+          700
+        ],
+        [
+          40,
+          700
+        ]
+      ],
+      [
+        [
+          540,
+          570
+        ],
+        [
+          740,
+          570
+        ],
+        [
+          740,
+          720
+        ],
+        [
+          540,
+          720
+        ]
+      ]
+    ],
+    "blocked": [],
+    "water": {},
+    "objects": [
+      {
+        "type": "icecabin-window",
+        "asset": "world/walls/icecabin-window.svg",
+        "x": 640,
+        "y": 175,
+        "scale": 1,
+        "layer": "wall"
+      }
+    ]
+  }
+}

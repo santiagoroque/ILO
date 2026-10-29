@@ -1,0 +1,368 @@
+{
+  "$schema": "../../schema/room.schema.json",
+  "schemaVersion": 1,
+  "id": "museum-inside",
+  "kind": "indoor",
+  "interior": "museum",
+  "name": {
+    "es": "Dentro del museo",
+    "en": "Inside the museum"
+  },
+  "spawn": {
+    "x": 640,
+    "y": 620
+  },
+  "minY": 280,
+  "areas": [
+    {
+      "id": "ground",
+      "type": "indoor",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1280,
+          0
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ]
+    }
+  ],
+  "paths": [],
+  "stations": [],
+  "exits": [
+    {
+      "id": "south",
+      "x": 560,
+      "y": 680,
+      "width": 160,
+      "height": 40,
+      "spawn": {
+        "x": 640,
+        "y": 610
+      },
+      "to": "market-street",
+      "toStation": "museum",
+      "sign": {
+        "x": 640,
+        "y": 650
+      }
+    }
+  ],
+  "decorations": [],
+  "scatter": [],
+  "furniture": [
+    {
+      "id": "trophy-wall",
+      "x": 640,
+      "y": 210,
+      "scale": 0.8,
+      "art": "world/stations/trophy-wall-v3.svg",
+      "frames": [
+        [
+          478.4,
+          99.6,
+          513.6,
+          141.2
+        ],
+        [
+          519.2,
+          99.6,
+          554.4,
+          141.2
+        ],
+        [
+          560,
+          99.6,
+          595.2,
+          141.2
+        ],
+        [
+          600.8,
+          99.6,
+          636,
+          141.2
+        ],
+        [
+          641.6,
+          99.6,
+          676.8,
+          141.2
+        ],
+        [
+          682.4,
+          99.6,
+          717.6,
+          141.2
+        ],
+        [
+          723.2,
+          99.6,
+          758.4,
+          141.2
+        ],
+        [
+          764,
+          99.6,
+          799.2,
+          141.2
+        ],
+        [
+          478.4,
+          151.6,
+          513.6,
+          193.2
+        ],
+        [
+          519.2,
+          151.6,
+          554.4,
+          193.2
+        ],
+        [
+          560,
+          151.6,
+          595.2,
+          193.2
+        ],
+        [
+          600.8,
+          151.6,
+          636,
+          193.2
+        ],
+        [
+          641.6,
+          151.6,
+          676.8,
+          193.2
+        ],
+        [
+          682.4,
+          151.6,
+          717.6,
+          193.2
+        ],
+        [
+          723.2,
+          151.6,
+          758.4,
+          193.2
+        ],
+        [
+          764,
+          151.6,
+          799.2,
+          193.2
+        ]
+      ]
+    },
+    {
+      "id": "giant-magnet",
+      "x": 230,
+      "y": 440,
+      "scale": 0.8,
+      "art": "world/stations/giant-magnet.svg",
+      "sortY": 461
+    },
+    {
+      "id": "museum-pendulum",
+      "x": 1030,
+      "y": 450,
+      "scale": 0.8,
+      "art": "world/stations/pendulum-display.svg",
+      "animation": [
+        "world/stations/pendulum-display-1.svg",
+        "world/stations/pendulum-display-2.svg",
+        "world/stations/pendulum-display-3.svg"
+      ],
+      "sortY": 471
+    },
+    {
+      "id": "planet-models",
+      "x": 250,
+      "y": 600,
+      "scale": 0.8,
+      "art": "world/stations/planet-models.svg",
+      "animation": [
+        "world/stations/planet-models-1.svg",
+        "world/stations/planet-models-2.svg",
+        "world/stations/planet-models-3.svg"
+      ],
+      "sortY": 621
+    },
+    {
+      "id": "lever-display",
+      "x": 1010,
+      "y": 600,
+      "scale": 0.8,
+      "art": "world/stations/lever-display.svg",
+      "sortY": 621
+    },
+    {
+      "id": "sled-exhibit",
+      "x": 640,
+      "y": 380,
+      "scale": 0.8,
+      "art": "world/stations/sled-exhibit.svg",
+      "sortY": 401
+    },
+    {
+      "id": "plant",
+      "x": 100,
+      "y": 600,
+      "scale": 1.44
+    },
+    {
+      "id": "plant",
+      "x": 1180,
+      "y": 600,
+      "scale": 1.44
+    }
+  ],
+  "layout": {
+    "revision": "room-redesign-3-wide",
+    "ground": "world/rooms-v3/museum-inside/ground.svg",
+    "scale": 1.5,
+    "surface": "indoor",
+    "walk": [
+      [
+        [
+          40,
+          270
+        ],
+        [
+          1240,
+          270
+        ],
+        [
+          1240,
+          700
+        ],
+        [
+          40,
+          700
+        ]
+      ],
+      [
+        [
+          540,
+          570
+        ],
+        [
+          740,
+          570
+        ],
+        [
+          740,
+          720
+        ],
+        [
+          540,
+          720
+        ]
+      ]
+    ],
+    "blocked": [],
+    "water": {},
+    "objects": [
+      {
+        "type": "cabin-window",
+        "asset": "world/walls/cabin-window.svg",
+        "x": 640,
+        "y": 175,
+        "scale": 1,
+        "layer": "wall"
+      },
+      {
+        "type": "exhibit-plinth",
+        "asset": "world/stations/exhibit-plinth-v3.svg",
+        "x": 230,
+        "y": 460,
+        "scale": 0.8,
+        "layer": "stand",
+        "footprint": {
+          "rect": [
+            162,
+            444,
+            298,
+            460
+          ]
+        }
+      },
+      {
+        "type": "exhibit-plinth",
+        "asset": "world/stations/exhibit-plinth-v3.svg",
+        "x": 1030,
+        "y": 470,
+        "scale": 0.8,
+        "layer": "stand",
+        "footprint": {
+          "rect": [
+            962,
+            454,
+            1098,
+            470
+          ]
+        }
+      },
+      {
+        "type": "exhibit-plinth",
+        "asset": "world/stations/exhibit-plinth-v3.svg",
+        "x": 250,
+        "y": 620,
+        "scale": 0.8,
+        "layer": "stand",
+        "footprint": {
+          "rect": [
+            182,
+            604,
+            318,
+            620
+          ]
+        }
+      },
+      {
+        "type": "exhibit-plinth",
+        "asset": "world/stations/exhibit-plinth-v3.svg",
+        "x": 1010,
+        "y": 620,
+        "scale": 0.8,
+        "layer": "stand",
+        "footprint": {
+          "rect": [
+            942,
+            604,
+            1078,
+            620
+          ]
+        }
+      },
+      {
+        "type": "exhibit-plinth",
+        "asset": "world/stations/exhibit-plinth-v3.svg",
+        "x": 640,
+        "y": 400,
+        "scale": 0.8,
+        "layer": "stand",
+        "footprint": {
+          "rect": [
+            572,
+            384,
+            708,
+            400
+          ]
+        }
+      }
+    ]
+  }
+}

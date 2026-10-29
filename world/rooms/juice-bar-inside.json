@@ -1,0 +1,226 @@
+{
+  "$schema": "../../schema/room.schema.json",
+  "schemaVersion": 1,
+  "id": "juice-bar-inside",
+  "kind": "indoor",
+  "interior": "juice",
+  "name": {
+    "es": "Dentro de la juguería",
+    "en": "Inside the juice bar"
+  },
+  "spawn": {
+    "x": 640,
+    "y": 620
+  },
+  "minY": 280,
+  "areas": [
+    {
+      "id": "ground",
+      "type": "indoor",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1280,
+          0
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ]
+    }
+  ],
+  "paths": [],
+  "stations": [],
+  "exits": [
+    {
+      "id": "south",
+      "x": 560,
+      "y": 680,
+      "width": 160,
+      "height": 40,
+      "spawn": {
+        "x": 640,
+        "y": 610
+      },
+      "to": "market-street",
+      "toStation": "juice-bar",
+      "sign": {
+        "x": 640,
+        "y": 650
+      }
+    }
+  ],
+  "decorations": [],
+  "scatter": [],
+  "furniture": [
+    {
+      "id": "juice-counter",
+      "x": 650,
+      "y": 390,
+      "scale": 0.8,
+      "art": "world/stations/juice-counter.svg",
+      "animation": [
+        "world/stations/juice-counter-1.svg",
+        "world/stations/juice-counter-2.svg",
+        "world/stations/juice-counter-3.svg"
+      ]
+    },
+    {
+      "id": "stool",
+      "x": 540,
+      "y": 480,
+      "scale": 0.8,
+      "art": "world/stations/stool.svg"
+    },
+    {
+      "id": "stool",
+      "x": 650,
+      "y": 480,
+      "scale": 0.8,
+      "art": "world/stations/stool.svg"
+    },
+    {
+      "id": "stool",
+      "x": 760,
+      "y": 480,
+      "scale": 0.8,
+      "art": "world/stations/stool.svg"
+    },
+    {
+      "id": "fruit-crate",
+      "x": 180,
+      "y": 420,
+      "scale": 0.8,
+      "art": "world/stations/fruit-crate.svg"
+    },
+    {
+      "id": "fruit-crate",
+      "x": 1090,
+      "y": 420,
+      "scale": 0.8,
+      "art": "world/stations/fruit-crate.svg"
+    },
+    {
+      "id": "fruit-board",
+      "x": 250,
+      "y": 205,
+      "scale": 0.8,
+      "art": "world/stations/fruit-board.svg"
+    },
+    {
+      "id": "table",
+      "x": 240,
+      "y": 600,
+      "scale": 1.2
+    },
+    {
+      "id": "chair",
+      "x": 330,
+      "y": 610,
+      "scale": 1.2
+    },
+    {
+      "id": "table",
+      "x": 1040,
+      "y": 600,
+      "scale": 1.2
+    },
+    {
+      "id": "chair",
+      "x": 1130,
+      "y": 610,
+      "scale": 1.2
+    },
+    {
+      "id": "papel-picado",
+      "x": 360,
+      "y": 170,
+      "scale": 1.36
+    },
+    {
+      "id": "papel-picado",
+      "x": 900,
+      "y": 170,
+      "scale": 1.36
+    },
+    {
+      "id": "hanging-plants",
+      "x": 360,
+      "y": 210,
+      "scale": 0.8,
+      "layer": "ceiling"
+    }
+  ],
+  "layout": {
+    "revision": "room-redesign-3-wide",
+    "ground": "world/rooms-v3/juice-bar-inside/ground.svg",
+    "scale": 1.5,
+    "surface": "indoor",
+    "walk": [
+      [
+        [
+          40,
+          270
+        ],
+        [
+          1240,
+          270
+        ],
+        [
+          1240,
+          700
+        ],
+        [
+          40,
+          700
+        ]
+      ],
+      [
+        [
+          540,
+          570
+        ],
+        [
+          740,
+          570
+        ],
+        [
+          740,
+          720
+        ],
+        [
+          540,
+          720
+        ]
+      ]
+    ],
+    "blocked": [],
+    "water": {},
+    "objects": [
+      {
+        "type": "cabin-window",
+        "asset": "world/walls/cabin-window.svg",
+        "x": 640,
+        "y": 175,
+        "scale": 1,
+        "layer": "wall"
+      },
+      {
+        "type": "hanging-plants",
+        "asset": "furniture/hanging-plants.svg",
+        "x": 900,
+        "y": 210,
+        "scale": 0.8,
+        "layer": "ceiling"
+      }
+    ]
+  }
+}

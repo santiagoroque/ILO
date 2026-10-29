@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ilo/phrases.schema.json",
+  "title": "ILO phrases and emotes",
+  "type": "object",
+  "required": ["schemaVersion", "phrases", "emotes"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "phrases": { "type": "array", "minItems": 1, "maxItems": 30, "items": { "$ref": "#/$defs/text" } },
+    "emotes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 9,
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "enum": ["happy", "laugh", "heart", "star", "idea", "question", "coin", "wave"] },
+          "name": { "$ref": "#/$defs/text" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "text": {
+      "type": "object",
+      "required": ["es", "en"],
+      "additionalProperties": false,
+      "properties": {
+        "es": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "en": { "type": "string", "minLength": 1, "maxLength": 40 }
+      }
+    }
+  }
+}

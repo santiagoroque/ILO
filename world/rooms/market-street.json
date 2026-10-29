@@ -1,0 +1,514 @@
+{
+  "$schema": "../../schema/room.schema.json",
+  "schemaVersion": 1,
+  "id": "market-street",
+  "kind": "outdoor",
+  "name": {
+    "es": "Calle del mercado",
+    "en": "Market street"
+  },
+  "spawn": {
+    "x": 580,
+    "y": 630
+  },
+  "areas": [
+    {
+      "id": "ground",
+      "type": "forest",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1280,
+          0
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ]
+    },
+    {
+      "id": "street",
+      "type": "plaza",
+      "points": [
+        [
+          0,
+          290
+        ],
+        [
+          1280,
+          290
+        ],
+        [
+          1280,
+          580
+        ],
+        [
+          0,
+          580
+        ]
+      ]
+    }
+  ],
+  "paths": [],
+  "stations": [
+    {
+      "id": "juice-bar",
+      "kind": "room",
+      "room": "juice-bar-inside",
+      "style": "juice-bar",
+      "x": 230,
+      "y": 390,
+      "name": {
+        "es": "Juguería",
+        "en": "Juice bar"
+      },
+      "description": {
+        "es": "Jugos de fruta y un lugar para platicar.",
+        "en": "Fruit juices and a place to hang out."
+      },
+      "door": {
+        "x": 230,
+        "y": 411.8
+      },
+      "art": {
+        "asset": "world/buildings/juice-bar.svg",
+        "scale": 1.2,
+        "bounds": [
+          98,
+          78,
+          362,
+          390
+        ],
+        "footprint": {
+          "rect": [
+            128.2,
+            310,
+            331.8,
+            390
+          ]
+        },
+        "states": {
+          "highlight": "world/buildings/juice-bar-highlight.svg",
+          "night": "world/buildings/juice-bar-night.svg",
+          "soon": "world/buildings/juice-bar-soon.svg"
+        }
+      }
+    },
+    {
+      "id": "stage",
+      "kind": "room",
+      "room": "stage-inside",
+      "style": "stage",
+      "x": 640,
+      "y": 390,
+      "name": {
+        "es": "Salón de fiestas",
+        "en": "Fiesta hall"
+      },
+      "description": {
+        "es": "Música, una pista que se ilumina y una marimba.",
+        "en": "Music, a dance floor that lights up and a marimba."
+      },
+      "door": {
+        "x": 640,
+        "y": 411.8
+      },
+      "art": {
+        "asset": "world/buildings/stage.svg",
+        "scale": 1.2,
+        "bounds": [
+          508,
+          78,
+          772,
+          390
+        ],
+        "footprint": {
+          "rect": [
+            538.2,
+            310,
+            741.8,
+            390
+          ]
+        },
+        "states": {
+          "highlight": "world/buildings/stage-highlight.svg",
+          "night": "world/buildings/stage-night.svg",
+          "soon": "world/buildings/stage-soon.svg"
+        }
+      }
+    },
+    {
+      "id": "museum",
+      "kind": "room",
+      "room": "museum-inside",
+      "style": "museum",
+      "x": 1050,
+      "y": 390,
+      "name": {
+        "es": "Museo de ciencias",
+        "en": "Science museum"
+      },
+      "description": {
+        "es": "Imanes gigantes, péndulos, planetas y tus estampas.",
+        "en": "Giant magnets, pendulums, planets and your stamps."
+      },
+      "door": {
+        "x": 1050,
+        "y": 411.8
+      },
+      "art": {
+        "asset": "world/buildings/museum.svg",
+        "scale": 1.2,
+        "bounds": [
+          918,
+          78,
+          1182,
+          390
+        ],
+        "footprint": {
+          "rect": [
+            948.2,
+            310,
+            1151.8,
+            390
+          ]
+        },
+        "states": {
+          "highlight": "world/buildings/museum-highlight.svg",
+          "night": "world/buildings/museum-night.svg",
+          "soon": "world/buildings/museum-soon.svg"
+        }
+      }
+    }
+  ],
+  "exits": [
+    {
+      "id": "south",
+      "x": 560,
+      "y": 680,
+      "width": 160,
+      "height": 40,
+      "spawn": {
+        "x": 580,
+        "y": 610
+      },
+      "to": "plaza",
+      "toExit": "north-west",
+      "sign": {
+        "x": 640,
+        "y": 650
+      }
+    }
+  ],
+  "decorations": [],
+  "scatter": [],
+  "collectibles": [
+    {
+      "id": "gem-market-1",
+      "x": 110,
+      "y": 640
+    }
+  ],
+  "critters": [
+    {
+      "type": "pigeon",
+      "count": 3,
+      "regions": [
+        [
+          420,
+          470,
+          930,
+          650
+        ]
+      ]
+    },
+    {
+      "type": "butterfly",
+      "count": 2,
+      "regions": [
+        [
+          400,
+          260,
+          900,
+          400
+        ]
+      ]
+    }
+  ],
+  "residents": [
+    {
+      "id": "musician",
+      "x": 640,
+      "y": 595,
+      "scale": 1.5
+    }
+  ],
+  "layout": {
+    "revision": "room-redesign-3-wide",
+    "ground": "world/rooms-v3/market-street/ground.svg",
+    "foreground": "world/rooms-v3/market-street/foreground.svg",
+    "scale": 1.5,
+    "surface": "plaza",
+    "walk": [
+      [
+        [
+          40,
+          280
+        ],
+        [
+          1240,
+          280
+        ],
+        [
+          1240,
+          700
+        ],
+        [
+          40,
+          700
+        ]
+      ],
+      [
+        [
+          540,
+          570
+        ],
+        [
+          740,
+          570
+        ],
+        [
+          740,
+          720
+        ],
+        [
+          540,
+          720
+        ]
+      ]
+    ],
+    "blocked": [
+      [
+        [
+          0,
+          535
+        ],
+        [
+          75,
+          535
+        ],
+        [
+          75,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ],
+      [
+        [
+          1205,
+          535
+        ],
+        [
+          1280,
+          535
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          1205,
+          720
+        ]
+      ]
+    ],
+    "water": {},
+    "objects": [
+      {
+        "type": "kiosco",
+        "asset": "world/decorations/kiosco.svg",
+        "x": 640,
+        "y": 600,
+        "scale": 1,
+        "layer": "stand"
+      },
+      {
+        "type": "market-stall-fruit",
+        "asset": "world/decorations/market-stall-fruit.svg",
+        "x": 150,
+        "y": 600,
+        "scale": 0.8,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            150,
+            596.8,
+            12,
+            4.3
+          ]
+        }
+      },
+      {
+        "type": "market-stall-toys",
+        "asset": "world/decorations/market-stall-toys.svg",
+        "x": 350,
+        "y": 620,
+        "scale": 0.8,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            350,
+            616.8,
+            12,
+            4.3
+          ]
+        }
+      },
+      {
+        "type": "market-stall-crafts",
+        "asset": "world/decorations/market-stall-crafts.svg",
+        "x": 1120,
+        "y": 620,
+        "scale": 0.8,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            1120,
+            616.8,
+            12,
+            4.3
+          ]
+        }
+      },
+      {
+        "type": "paleta-cart",
+        "asset": "world/decorations/paleta-cart.svg",
+        "x": 950,
+        "y": 590,
+        "scale": 0.8,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            950,
+            586.8,
+            12,
+            4.3
+          ]
+        }
+      },
+      {
+        "type": "balloon-seller",
+        "asset": "world/decorations/balloon-seller.svg",
+        "x": 1170,
+        "y": 460,
+        "scale": 0.8,
+        "layer": "stand",
+        "animation": [
+          "world/decorations/balloon-seller-1.svg",
+          "world/decorations/balloon-seller-2.svg",
+          "world/decorations/balloon-seller-3.svg"
+        ],
+        "footprint": {
+          "ellipse": [
+            1170,
+            456.8,
+            12,
+            4.3
+          ]
+        }
+      },
+      {
+        "type": "bench",
+        "asset": "world/decorations/bench.svg",
+        "x": 840,
+        "y": 630,
+        "scale": 1.12,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            840,
+            626.8,
+            24.6,
+            8.9
+          ]
+        }
+      },
+      {
+        "type": "lamp",
+        "asset": "world/decorations/lamp.svg",
+        "x": 430,
+        "y": 530,
+        "scale": 1.2,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            430,
+            526.8,
+            9.6,
+            4
+          ]
+        }
+      },
+      {
+        "type": "lamp",
+        "asset": "world/decorations/lamp.svg",
+        "x": 850,
+        "y": 530,
+        "scale": 1.2,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            850,
+            526.8,
+            9.6,
+            4
+          ]
+        }
+      }
+    ],
+    "party": {
+      "overhead": [
+        [
+          290,
+          310,
+          990,
+          345
+        ]
+      ],
+      "ground": [
+        [
+          440,
+          610
+        ],
+        [
+          520,
+          620
+        ],
+        [
+          780,
+          610
+        ],
+        [
+          860,
+          620
+        ]
+      ],
+      "arch": [
+        640,
+        665
+      ],
+      "tree": null
+    }
+  }
+}

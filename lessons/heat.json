@@ -1,0 +1,459 @@
+{
+  "$schema": "../schema/lesson.schema.json",
+  "schemaVersion": 1,
+  "id": "heat",
+  "concept": {
+    "es": "La fricción produce calor",
+    "en": "Friction makes heat"
+  },
+  "title": {
+    "es": "Frota y calienta",
+    "en": "Rub it warm"
+  },
+  "goal": {
+    "es": "Elige la superficie para que el bloque llegue a la temperatura meta.",
+    "en": "Choose the surface so the block reaches the goal temperature."
+  },
+  "learningGoal": {
+    "es": "Cuando frotas dos cosas, la fricción produce calor. Una superficie más áspera produce más calor, y frotar más veces también.",
+    "en": "When you rub two things together, friction makes heat. A rougher surface makes more heat, and so does rubbing more times."
+  },
+  "intro": {
+    "es": "En el taller del bosque, un bloque de madera está a 20 °C. Lo vas a frotar 10 veces sobre una superficie. Elige la superficie para que el bloque termine entre 29 y 33 °C.",
+    "en": "In the forest workshop, a wooden block is at 20 °C. You will rub it 10 times on a surface. Choose the surface so the block ends between 29 and 33 °C."
+  },
+  "world": {
+    "model": "rub",
+    "width": 16,
+    "height": 6,
+    "gravity": 9.81,
+    "objects": [],
+    "zones": [],
+    "rub": {
+      "surface": "glass",
+      "surfaces": [
+        "glass",
+        "wood",
+        "carpet",
+        "sandpaper"
+      ],
+      "startTemperature": 20,
+      "timesOptions": [
+        10
+      ]
+    }
+  },
+  "reward": 50,
+  "toolbox": [
+    "set_rub_surface",
+    "rub"
+  ],
+  "startingBlocks": [
+    {
+      "block": "set_rub_surface",
+      "surface": "glass"
+    },
+    {
+      "block": "rub",
+      "times": 10
+    }
+  ],
+  "winCondition": {
+    "type": "temperature_in_band",
+    "min": 29,
+    "max": 33,
+    "timeLimit": 8,
+    "feedback": {
+      "tooCold": {
+        "es": "El bloque quedó más frío que la meta. Esta superficie produjo poco calor. ¿Cuál es más áspera?",
+        "en": "The block stayed colder than the goal. This surface made little heat. Which one is rougher?"
+      },
+      "tooHot": {
+        "es": "El bloque se calentó de más. Esta superficie produjo mucho calor. ¿Cuál es un poco menos áspera?",
+        "en": "The block got too hot. This surface made a lot of heat. Which one is a little less rough?"
+      },
+      "notRubbed": {
+        "es": "El bloque nunca se frotó. Conecta el bloque \"frotar\" debajo de \"cuando se presione Ejecutar\".",
+        "en": "The block was never rubbed. Connect the \"rub\" block under \"when Run is pressed\"."
+      }
+    }
+  },
+  "warmups": [
+    {
+      "id": "cold-hands",
+      "question": {
+        "es": "En un día frío te frotas las manos rápido. ¿Qué sientes?",
+        "en": "On a cold day you rub your hands together fast. What do you feel?"
+      },
+      "answer": "warmer",
+      "options": [
+        {
+          "id": "warmer",
+          "label": {
+            "es": "Se calientan",
+            "en": "They get warmer"
+          },
+          "feedback": {
+            "es": "¡Sí! Al frotar, la fricción produce calor.",
+            "en": "Yes! When you rub, friction makes heat."
+          }
+        },
+        {
+          "id": "colder",
+          "label": {
+            "es": "Se enfrían",
+            "en": "They get colder"
+          },
+          "feedback": {
+            "es": "Al revés: frotar produce calor, no frío.",
+            "en": "The other way around: rubbing makes heat, not cold."
+          }
+        },
+        {
+          "id": "nothing",
+          "label": {
+            "es": "Nada cambia",
+            "en": "Nothing changes"
+          },
+          "feedback": {
+            "es": "Pruébalo con tus manos: al frotarlas se calientan. Eso es calor por fricción.",
+            "en": "Try it with your hands: rubbing warms them. That is heat from friction."
+          }
+        }
+      ]
+    },
+    {
+      "id": "rough-smooth",
+      "question": {
+        "es": "Frotas un bloque 10 veces sobre lija y otro 10 veces sobre vidrio. ¿Cuál se calienta más?",
+        "en": "You rub one block 10 times on sandpaper and another 10 times on glass. Which gets warmer?"
+      },
+      "answer": "sandpaper",
+      "options": [
+        {
+          "id": "sandpaper",
+          "label": {
+            "es": "El de la lija",
+            "en": "The one on sandpaper"
+          },
+          "feedback": {
+            "es": "¡Correcto! La lija es más áspera: más fricción, más calor.",
+            "en": "Right! Sandpaper is rougher: more friction, more heat."
+          }
+        },
+        {
+          "id": "glass",
+          "label": {
+            "es": "El del vidrio",
+            "en": "The one on glass"
+          },
+          "feedback": {
+            "es": "El vidrio es liso y tiene poca fricción, así que se calienta poco.",
+            "en": "Glass is smooth and has little friction, so it warms only a little."
+          }
+        },
+        {
+          "id": "same",
+          "label": {
+            "es": "Los dos igual",
+            "en": "Both the same"
+          },
+          "feedback": {
+            "es": "Frotaste las mismas veces, pero las superficies son distintas. La más áspera calienta más.",
+            "en": "You rubbed the same number of times, but the surfaces are different. The rougher one warms more."
+          }
+        }
+      ]
+    }
+  ],
+  "prediction": {
+    "question": {
+      "es": "Antes de ejecutar: ¿qué temperatura crees que tendrá el bloque?",
+      "en": "Before you run: what temperature do you think the block will reach?"
+    },
+    "options": [
+      {
+        "id": "cold",
+        "label": {
+          "es": "Menos que la meta",
+          "en": "Below the goal"
+        },
+        "outcomes": [
+          "tooCold"
+        ]
+      },
+      {
+        "id": "in",
+        "label": {
+          "es": "Dentro de la meta",
+          "en": "Inside the goal"
+        },
+        "outcomes": [
+          "won"
+        ]
+      },
+      {
+        "id": "hot",
+        "label": {
+          "es": "Más que la meta",
+          "en": "Above the goal"
+        },
+        "outcomes": [
+          "tooHot"
+        ]
+      }
+    ]
+  },
+  "hints": [
+    {
+      "es": "Mira el termómetro mientras se frota el bloque. ¿Cuánto sube cada vez?",
+      "en": "Watch the thermometer while the block is rubbed. How much does it go up each time?"
+    },
+    {
+      "es": "Compara dos superficies frotando las mismas 10 veces. La marca gris muestra la temperatura de la vez anterior.",
+      "en": "Compare two surfaces with the same 10 rubs. The grey mark shows last time's temperature."
+    },
+    {
+      "es": "Una superficie más áspera tiene más fricción, y la fricción convierte el movimiento en calor. Más áspera, más calor.",
+      "en": "A rougher surface has more friction, and friction turns movement into heat. Rougher means more heat."
+    },
+    {
+      "es": "Ejemplo: con madera llegó a 27 °C, un poco frío. Con lija llegó a 37 °C, demasiado. Prueba la superficie que está entre las dos.",
+      "en": "Example: on wood it reached 27 °C, a bit cold. On sandpaper it reached 37 °C, too much. Try the surface in between."
+    }
+  ],
+  "success": {
+    "es": "¡Justo en la meta! La alfombra es más áspera que la madera pero menos que la lija, así que su fricción dio el calor justo.",
+    "en": "Right on the goal! Carpet is rougher than wood but less rough than sandpaper, so its friction made just the right heat."
+  },
+  "explain": {
+    "question": {
+      "es": "¿Por qué se calentó el bloque?",
+      "en": "Why did the block get warm?"
+    },
+    "answer": "friction",
+    "options": [
+      {
+        "id": "friction",
+        "label": {
+          "es": "Al frotarlo, la fricción convirtió el movimiento en calor.",
+          "en": "Rubbing it, friction turned movement into heat."
+        },
+        "feedback": {
+          "es": "¡Así es! La fricción entre el bloque y la superficie produce calor. Por eso te frotas las manos cuando tienes frío.",
+          "en": "That's right! Friction between the block and the surface makes heat. That's why you rub your hands when you are cold."
+        }
+      },
+      {
+        "id": "sun",
+        "label": {
+          "es": "Le dio el sol.",
+          "en": "The sun shone on it."
+        },
+        "feedback": {
+          "es": "Piensa otra vez: el bloque estaba en el taller, y solo se calentó mientras lo frotabas.",
+          "en": "Think again: the block was in the workshop, and it only warmed up while you rubbed it."
+        }
+      },
+      {
+        "id": "color",
+        "label": {
+          "es": "La superficie tenía un color caliente.",
+          "en": "The surface had a warm color."
+        },
+        "feedback": {
+          "es": "Piensa otra vez: el color no produce calor. ¿Qué pasó mientras el bloque se movía?",
+          "en": "Think again: color does not make heat. What happened while the block was moving?"
+        }
+      }
+    ]
+  },
+  "fairComparison": {
+    "variable": "surface",
+    "keep": [
+      "times"
+    ]
+  },
+  "challenges": [
+    {
+      "id": "only-wood",
+      "title": {
+        "es": "Caso nuevo: solo hay madera",
+        "en": "Changed case: only wood"
+      },
+      "goal": {
+        "es": "Solo hay madera. Elige cuántas veces frotar para llegar a la meta.",
+        "en": "There is only wood. Choose how many times to rub to reach the goal."
+      },
+      "intro": {
+        "es": "Ahora solo hay una mesa de madera, pero puedes frotar 5, 10, 15 o 20 veces. La meta es entre 30 y 32 °C. ¿Cuántas veces frotas?",
+        "en": "Now there is only a wooden table, but you can rub 5, 10, 15 or 20 times. The goal is between 30 and 32 °C. How many times do you rub?"
+      },
+      "success": {
+        "es": "¡Lo lograste en un caso nuevo! Con la misma superficie, frotar más veces produce más calor: 15 frotadas fueron justas.",
+        "en": "You did it in a new case! On the same surface, rubbing more times makes more heat: 15 rubs were just right."
+      },
+      "reward": 30,
+      "startingBlocks": [
+        {
+          "block": "set_rub_surface",
+          "surface": "wood"
+        },
+        {
+          "block": "rub",
+          "times": 10
+        }
+      ],
+      "world": {
+        "rub": {
+          "surface": "wood",
+          "surfaces": [
+            "wood"
+          ],
+          "startTemperature": 20,
+          "timesOptions": [
+            5,
+            10,
+            15,
+            20
+          ]
+        }
+      },
+      "winCondition": {
+        "min": 30,
+        "max": 32
+      },
+      "explain": {
+        "question": {
+          "es": "Al terminar, pones el bloque caliente sobre una mesa fría. ¿Qué pasa con el calor?",
+          "en": "When you finish, you put the warm block on a cold table. What happens to the heat?"
+        },
+        "answer": "to-table",
+        "options": [
+          {
+            "id": "to-table",
+            "label": {
+              "es": "Pasa del bloque caliente a la mesa fría.",
+              "en": "It goes from the warm block to the cold table."
+            },
+            "feedback": {
+              "es": "¡Así es! El calor siempre pasa del objeto más caliente al más frío, hasta que quedan igual.",
+              "en": "That's right! Heat always goes from the warmer object to the colder one, until they are the same."
+            }
+          },
+          {
+            "id": "to-block",
+            "label": {
+              "es": "Pasa de la mesa fría al bloque.",
+              "en": "It goes from the cold table to the block."
+            },
+            "feedback": {
+              "es": "Piensa otra vez: ¿qué pasa con un vaso de agua caliente sobre una mesa? ¿Se calienta más o se enfría?",
+              "en": "Think again: what happens to a glass of hot water on a table? Does it get hotter or cool down?"
+            }
+          },
+          {
+            "id": "stays",
+            "label": {
+              "es": "El calor se queda en el bloque para siempre.",
+              "en": "The heat stays in the block forever."
+            },
+            "feedback": {
+              "es": "Piensa otra vez: las cosas calientes se enfrían con el tiempo. ¿A dónde se va su calor?",
+              "en": "Think again: warm things cool down over time. Where does their heat go?"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "curriculum": {
+    "grade": 4,
+    "phase": 4,
+    "status": "direct",
+    "program": {
+      "es": "Programa Sintético Fase 4, 4.º grado, pp. 46-47: \"Efectos de la aplicación de fuerzas y del calor sobre los objetos\": formas de generar calor, como la fricción y el contacto.",
+      "en": "SEP Programa Sintético, Phase 4, 4th grade, pp. 46-47: \"Effects of applying forces and heat on objects\": ways to make heat, such as friction and contact."
+    },
+    "books": [
+      {
+        "es": "No encontramos una actividad de calor por fricción en Nuestros saberes 4.º ni en Proyectos de Aula 4.º (2026). El tema está en el programa; revisar Proyectos Escolares y Proyectos Comunitarios 4.º.",
+        "en": "We found no activity on heat from friction in Nuestros saberes 4th grade or Proyectos de Aula 4th grade (2026). The topic is in the program; check Proyectos Escolares and Proyectos Comunitarios, 4th grade."
+      }
+    ]
+  },
+  "teacher": {
+    "objective": {
+      "es": "Explicar que la fricción produce calor, y que una superficie más áspera o frotar más veces produce más calor.",
+      "en": "Explain that friction makes heat, and that a rougher surface or more rubbing makes more heat."
+    },
+    "decision": {
+      "es": "Elige una superficie (misión principal) o un número de frotadas (caso nuevo), cambiando una sola cosa.",
+      "en": "Chooses a surface (main mission) or a number of rubs (changed case), changing one thing only."
+    },
+    "evidence": {
+      "es": "Predice si el bloque quedará frío, en la meta o caliente; usa la marca anterior para comparar; explica que la fricción convierte el movimiento en calor; en el caso nuevo, aplica \"más frotadas, más calor\".",
+      "en": "Predicts whether the block ends cold, in the goal or hot; uses the previous mark to compare; explains that friction turns movement into heat; in the changed case, applies \"more rubs, more heat\"."
+    },
+    "prerequisites": {
+      "es": "Leer un termómetro en grados Celsius y comparar \"más\" y \"menos\".",
+      "en": "Reading a thermometer in degrees Celsius and comparing \"more\" and \"less\"."
+    },
+    "assumptions": {
+      "es": "Modelo de juego: cada frotada calienta el bloque 2 °C × la aspereza de la superficie (vidrio 0,15, madera 0,35, alfombra 0,55, lija 0,85). Son valores del juego, no medidas reales. El bloque no se enfría mientras se frota. En la realidad, el calor también se reparte en la superficie y el aire.",
+      "en": "Game model: each rub warms the block by 2 °C × the surface's roughness (glass 0.15, wood 0.35, carpet 0.55, sandpaper 0.85). These are game values, not real measurements. The block does not cool down while rubbed. In reality, heat also spreads into the surface and the air."
+    },
+    "vocabulary": [
+      {
+        "es": "fricción",
+        "en": "friction"
+      },
+      {
+        "es": "calor",
+        "en": "heat"
+      },
+      {
+        "es": "temperatura",
+        "en": "temperature"
+      },
+      {
+        "es": "áspero / liso",
+        "en": "rough / smooth"
+      },
+      {
+        "es": "frotar",
+        "en": "to rub"
+      }
+    ],
+    "misconceptions": [
+      {
+        "es": "\"El calor solo viene del fuego o del sol\": la fricción también produce calor.",
+        "en": "\"Heat only comes from fire or the sun\": friction also makes heat."
+      },
+      {
+        "es": "\"Las cosas lisas nunca se calientan\": se calientan menos, pero también.",
+        "en": "\"Smooth things never warm up\": they warm up less, but they still do."
+      },
+      {
+        "es": "\"El frío pasa a lo caliente\": es el calor el que pasa de lo caliente a lo frío.",
+        "en": "\"Cold moves into warm things\": it is heat that moves from warm to cold."
+      }
+    ],
+    "opening": {
+      "es": "Cuando tienes frío y te frotas las manos, ¿qué sientes? ¿Por qué crees que pasa?",
+      "en": "When you are cold and rub your hands, what do you feel? Why do you think that happens?"
+    },
+    "discussion": {
+      "es": "¿Qué superficie calentó más el bloque? ¿Qué tienen en común las superficies que más calientan?",
+      "en": "Which surface warmed the block the most? What do the warmest surfaces have in common?"
+    },
+    "transfer": {
+      "es": "En papel: los frenos de una bicicleta frotan la llanta para detenerla. Después de frenar mucho en una bajada, ¿cómo estará la llanta? ¿Por qué?",
+      "en": "On paper: a bicycle's brakes rub the wheel to stop it. After braking a lot going downhill, how will the wheel feel? Why?"
+    },
+    "meaning": {
+      "es": "\"Resuelta\" significa que llegó a la meta eligiendo la superficie. \"Aplicada\" significa que también la alcanzó eligiendo cuántas frotadas, que es otra decisión. Ninguna es una nota: usa la pregunta de papel.",
+      "en": "\"Solved\" means they reached the goal by choosing the surface. \"Applied\" means they also reached it by choosing how many rubs, a different decision. Neither is a grade: use the paper question."
+    }
+  }
+}

@@ -1,0 +1,1048 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ilo/room.schema.json",
+  "title": "ILO room",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "kind",
+    "name",
+    "spawn",
+    "areas",
+    "paths",
+    "stations",
+    "exits",
+    "decorations",
+    "scatter"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "$ref": "#/$defs/id"
+    },
+    "kind": {
+      "enum": [
+        "outdoor",
+        "house",
+        "indoor"
+      ]
+    },
+    "name": {
+      "$ref": "#/$defs/text"
+    },
+    "spawn": {
+      "$ref": "#/$defs/point"
+    },
+    "minY": {
+      "type": "number",
+      "minimum": 0
+    },
+    "areas": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "type": {
+            "enum": [
+              "forest",
+              "savannah",
+              "arctic",
+              "plaza",
+              "indoor",
+              "sand",
+              "jungle",
+              "sea",
+              "shallows"
+            ]
+          },
+          "points": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "$ref": "#/$defs/pair"
+            }
+          },
+          "circle": {
+            "type": "object",
+            "required": [
+              "x",
+              "y",
+              "radius"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "radius": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "points"
+            ]
+          },
+          {
+            "required": [
+              "circle"
+            ]
+          }
+        ]
+      }
+    },
+    "paths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "width",
+          "points"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "width": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "points": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "$ref": "#/$defs/pair"
+            }
+          },
+          "style": {
+            "description": "How the path looks. A boardwalk can cross sea and shallows.",
+            "enum": [
+              "dirt",
+              "boardwalk"
+            ]
+          }
+        }
+      }
+    },
+    "stations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "style",
+          "x",
+          "y",
+          "name",
+          "description"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "kind": {
+            "enum": [
+              "lesson",
+              "soon",
+              "shop",
+              "room"
+            ]
+          },
+          "lesson": {
+            "$ref": "#/$defs/id"
+          },
+          "room": {
+            "$ref": "#/$defs/id"
+          },
+          "style": {
+            "enum": [
+              "tower",
+              "cabin",
+              "slide",
+              "shop",
+              "house",
+              "arcade",
+              "counter",
+              "boathouse",
+              "reef-hut",
+              "juice-bar",
+              "stage",
+              "museum"
+            ]
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "name": {
+            "$ref": "#/$defs/text"
+          },
+          "description": {
+            "$ref": "#/$defs/text"
+          },
+          "door": {
+            "type": "object",
+            "required": [
+              "x",
+              "y"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              }
+            }
+          },
+          "art": {
+            "type": "object",
+            "required": [
+              "asset",
+              "scale",
+              "bounds"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "asset": {
+                "type": "string"
+              },
+              "scale": {
+                "type": "number"
+              },
+              "bounds": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              },
+              "footprint": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rect": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 4,
+                    "maxItems": 4
+                  },
+                  "ellipse": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 4,
+                    "maxItems": 4
+                  }
+                }
+              },
+              "states": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "animation": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "houseStyles": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "lesson"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "lesson"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "room"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "room"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "exits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "x",
+          "y",
+          "width",
+          "height",
+          "spawn",
+          "to"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "width": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "height": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "spawn": {
+            "$ref": "#/$defs/point"
+          },
+          "to": {
+            "$ref": "#/$defs/id"
+          },
+          "toExit": {
+            "$ref": "#/$defs/id"
+          },
+          "toStation": {
+            "$ref": "#/$defs/id"
+          },
+          "sign": {
+            "type": "object",
+            "required": [
+              "x",
+              "y"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "toExit"
+            ]
+          },
+          {
+            "required": [
+              "toStation"
+            ]
+          }
+        ]
+      }
+    },
+    "decorations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "x",
+          "y"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "$ref": "#/$defs/decorationType"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "radius": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "size": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        }
+      }
+    },
+    "scatter": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "area",
+          "count",
+          "seed"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "$ref": "#/$defs/decorationType"
+          },
+          "area": {
+            "$ref": "#/$defs/id"
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 200
+          },
+          "seed": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "interior": {
+      "enum": [
+        "shop",
+        "tower",
+        "cabin",
+        "icecabin",
+        "adobe",
+        "juice",
+        "fiesta",
+        "museum"
+      ]
+    },
+    "furniture": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "x",
+          "y"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "scale": {
+            "type": "number"
+          },
+          "art": {
+            "type": "string"
+          },
+          "animation": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "layer": {
+            "const": "ceiling"
+          },
+          "sortY": {
+            "type": "number"
+          },
+          "frames": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 4,
+              "maxItems": 4
+            }
+          },
+          "tiles": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "collectibles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "x",
+          "y"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "critters": {
+      "description": "Wild animals that live in the room (Phase 13). Wanderers use count; animals with a home (a burrow, an ice hole) use x and y; water animals find the room's ponds and lagoons.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "enum": [
+              "butterfly",
+              "songbird",
+              "squirrel",
+              "firefly",
+              "meerkat",
+              "bird-flock",
+              "elephant",
+              "snow-hare",
+              "seal",
+              "pigeon",
+              "duck",
+              "jumping-fish",
+              "crab",
+              "heron",
+              "toucan",
+              "macaw",
+              "sea-turtle"
+            ]
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 8
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "radius": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "regions": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "residents": {
+      "description": "Friendly residents standing in the room (Phase 13); names and lines are in world/residents.json.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "x",
+          "y"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "scale": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "toys": {
+      "description": "Physics toys in the room (Phase 13, js/toys.js).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "x",
+          "y"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "enum": [
+              "ball",
+              "goal",
+              "seesaw",
+              "swing",
+              "bounce-mushroom",
+              "sled-hill",
+              "water-wheel",
+              "marimba-stones",
+              "paper-boat",
+              "magnet-rock",
+              "kite"
+            ]
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "scale": {
+            "type": "number"
+          },
+          "spoon": {
+            "type": "object",
+            "required": [
+              "x",
+              "y"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              }
+            }
+          },
+          "stones": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "x",
+                "y"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "slope": {
+            "type": "object",
+            "required": [
+              "dx",
+              "dy",
+              "length"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "dx": {
+                "type": "number"
+              },
+              "dy": {
+                "type": "number"
+              },
+              "length": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "layout": {
+      "description": "The designers' layered room (DESIGN_PROMPT_3.md), written by tools/apply-layouts.js: pictures, where Ilo walks, and every object.",
+      "type": "object",
+      "required": [
+        "ground",
+        "scale",
+        "surface",
+        "walk",
+        "blocked",
+        "water",
+        "objects"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "revision": {
+          "type": "string"
+        },
+        "ground": {
+          "type": "string"
+        },
+        "foreground": {
+          "type": "string"
+        },
+        "scale": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "How big Ilo, the pet, residents and animals are drawn."
+        },
+        "surface": {
+          "type": "string",
+          "description": "The ground, for friction (js/toys.js)."
+        },
+        "walk": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "minItems": 3
+          },
+          "minItems": 1
+        },
+        "blocked": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "minItems": 3
+          }
+        },
+        "water": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "minItems": 3
+            }
+          }
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "type",
+              "asset",
+              "x",
+              "y",
+              "scale",
+              "layer"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "asset": {
+                "type": "string"
+              },
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "scale": {
+                "type": "number"
+              },
+              "layer": {
+                "enum": [
+                  "ground-effect",
+                  "ground-overlay",
+                  "floor",
+                  "wall",
+                  "stand",
+                  "ceiling",
+                  "overhead"
+                ]
+              },
+              "verticalScale": {
+                "type": "number"
+              },
+              "animation": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "footprint": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rect": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 4,
+                    "maxItems": 4
+                  },
+                  "ellipse": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 4,
+                    "maxItems": 4
+                  }
+                }
+              },
+              "sortY": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "perches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "x",
+              "y"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "party": {
+          "type": "object"
+        },
+        "window": {
+          "type": "object",
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "text": {
+      "type": "object",
+      "required": [
+        "es",
+        "en"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "es": {
+          "type": "string",
+          "minLength": 1
+        },
+        "en": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "point": {
+      "type": "object",
+      "required": [
+        "x",
+        "y"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        }
+      }
+    },
+    "pair": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "decorationType": {
+      "enum": [
+        "tree",
+        "pine",
+        "acacia",
+        "bush",
+        "rock",
+        "iceberg",
+        "lamp",
+        "grass",
+        "flowers",
+        "mushroom",
+        "snowpile",
+        "pond",
+        "ice-lake",
+        "fountain",
+        "board",
+        "target",
+        "bench",
+        "palm",
+        "palm-short",
+        "banana",
+        "monstera",
+        "bromeliad",
+        "hibiscus",
+        "mangrove",
+        "shell",
+        "starfish",
+        "sandcastle",
+        "beach-umbrella",
+        "towel",
+        "canoe",
+        "driftwood",
+        "tide-pool",
+        "stepping-stone",
+        "glass-deck",
+        "rock-cliff",
+        "lagoon",
+        "waterfall",
+        "kiosco",
+        "market-stall",
+        "market-stall-toys",
+        "market-stall-crafts",
+        "paleta-cart",
+        "balloon-seller",
+        "papel-picado-string",
+        "marigold-arch",
+        "candles",
+        "marigold-petals",
+        "sugar-skull-tiles",
+        "decorated-pine",
+        "star-pinata",
+        "farolito",
+        "poinsettia",
+        "string-lights",
+        "jacaranda",
+        "party-kites",
+        "flower-garland",
+        "fair-banner",
+        "balloons",
+        "model-volcano",
+        "project-stand"
+      ]
+    }
+  }
+}

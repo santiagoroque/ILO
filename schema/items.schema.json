@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ilo/items.schema.json",
+  "title": "ILO shop items",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "colors",
+    "clothing",
+    "pets",
+    "petFoodPrice",
+    "petNames",
+    "furniture",
+    "houseStyles"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 2
+    },
+    "colors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "color",
+          "price",
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "price": {
+            "$ref": "#/$defs/price"
+          },
+          "name": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      }
+    },
+    "clothing": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "slot",
+          "price",
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "slot": {
+            "enum": [
+              "head",
+              "face",
+              "neck",
+              "body",
+              "feet",
+              "hand"
+            ]
+          },
+          "price": {
+            "$ref": "#/$defs/price"
+          },
+          "name": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      }
+    },
+    "pets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/simpleItem"
+      }
+    },
+    "petFoodPrice": {
+      "$ref": "#/$defs/price"
+    },
+    "petNames": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 12
+      }
+    },
+    "furniture": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "price",
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "price": {
+            "$ref": "#/$defs/price"
+          },
+          "name": {
+            "$ref": "#/$defs/text"
+          },
+          "set": {
+            "enum": [
+              "classic",
+              "coast",
+              "lab",
+              "crafts",
+              "cozy",
+              "play",
+              "garden"
+            ]
+          }
+        }
+      }
+    },
+    "houseStyles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "price",
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "name": {
+            "$ref": "#/$defs/text"
+          },
+          "price": {
+            "$ref": "#/$defs/price"
+          }
+        }
+      }
+    },
+    "wallpapers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/simpleItem"
+      }
+    },
+    "floors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/simpleItem"
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "price": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "simpleItem": {
+      "type": "object",
+      "required": [
+        "id",
+        "price",
+        "name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "price": {
+          "$ref": "#/$defs/price"
+        },
+        "name": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "text": {
+      "type": "object",
+      "required": [
+        "es",
+        "en"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "es": {
+          "type": "string",
+          "minLength": 1
+        },
+        "en": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

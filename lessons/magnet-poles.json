@@ -1,0 +1,420 @@
+{
+  "$schema": "../schema/lesson.schema.json",
+  "schemaVersion": 1,
+  "id": "magnet-poles",
+  "concept": {
+    "es": "Magnetismo: polos que se atraen y se repelen",
+    "en": "Magnetism: poles that attract and repel"
+  },
+  "title": {
+    "es": "La caja con imán",
+    "en": "The box with a magnet"
+  },
+  "goal": {
+    "es": "Gira el imán de la grúa para que atraiga la caja y la levante.",
+    "en": "Turn the crane's magnet so it pulls the box and lifts it."
+  },
+  "learningGoal": {
+    "es": "Los imanes tienen dos polos, norte (N) y sur (S). Polos diferentes se atraen; polos iguales se empujan (se repelen).",
+    "en": "Magnets have two poles, north (N) and south (S). Different poles attract; the same poles push apart (repel)."
+  },
+  "intro": {
+    "es": "Al puesto de drones, que también recicla metal, llegó una caja que tiene un imán dentro, con el polo norte (N) hacia arriba. La grúa también tiene un imán. Elige qué polo de la grúa mira hacia abajo para levantar la caja.",
+    "en": "A box with a magnet inside arrived at the drone post, which also recycles metal, with its north pole (N) facing up. The crane also has a magnet. Choose which of the crane's poles faces down to lift the box."
+  },
+  "world": {
+    "model": "magnet",
+    "width": 16,
+    "height": 6,
+    "gravity": 9.81,
+    "zones": [],
+    "crane": {
+      "trips": 1,
+      "pole": "N",
+      "x": 1
+    },
+    "bin": {
+      "x": 14.3,
+      "label": {
+        "es": "Contenedor",
+        "en": "Bin"
+      }
+    },
+    "objects": [
+      {
+        "id": "box",
+        "shape": "box",
+        "x": 7,
+        "y": 0,
+        "width": 1.36,
+        "height": 1.02,
+        "material": "magnet",
+        "label": {
+          "es": "caja con imán",
+          "en": "box with a magnet"
+        },
+        "pole": "N"
+      }
+    ]
+  },
+  "reward": 50,
+  "toolbox": [
+    "magnet_pole",
+    "magnet_pick"
+  ],
+  "startingBlocks": [
+    {
+      "block": "magnet_pole",
+      "pole": "N"
+    },
+    {
+      "block": "magnet_pick",
+      "object": "box"
+    }
+  ],
+  "winCondition": {
+    "type": "collects_magnetic",
+    "targets": [
+      "box"
+    ],
+    "timeLimit": 30,
+    "feedback": {
+      "notPicked": {
+        "es": "La grúa no fue por la caja. Conecta el bloque \"levantar con la grúa\".",
+        "en": "The crane did not go for the box. Connect the \"pick up with the crane\" block."
+      },
+      "repelled": {
+        "es": "¡La caja se alejó! El imán de la grúa la empujó. ¿Qué pasa con dos polos iguales?",
+        "en": "The box slid away! The crane's magnet pushed it. What happens with two poles that are the same?"
+      },
+      "wrongPick": {
+        "es": "El imán no atrajo ese objeto.",
+        "en": "The magnet did not pull that object."
+      },
+      "missed": {
+        "es": "La caja no llegó al contenedor.",
+        "en": "The box did not reach the bin."
+      }
+    }
+  },
+  "warmups": [
+    {
+      "id": "opposite",
+      "question": {
+        "es": "Acercas el polo norte de un imán al polo sur de otro. ¿Qué pasa?",
+        "en": "You bring the north pole of one magnet near the south pole of another. What happens?"
+      },
+      "answer": "attract",
+      "options": [
+        {
+          "id": "attract",
+          "label": {
+            "es": "Se atraen",
+            "en": "They pull together"
+          },
+          "feedback": {
+            "es": "¡Sí! Polos distintos se atraen.",
+            "en": "Yes! Different poles attract."
+          }
+        },
+        {
+          "id": "repel",
+          "label": {
+            "es": "Se empujan",
+            "en": "They push apart"
+          },
+          "feedback": {
+            "es": "Eso pasa con polos iguales. Norte y sur son distintos, así que se atraen.",
+            "en": "That happens with matching poles. North and south are different, so they attract."
+          }
+        },
+        {
+          "id": "nothing",
+          "label": {
+            "es": "No pasa nada",
+            "en": "Nothing happens"
+          },
+          "feedback": {
+            "es": "Los imanes se notan entre sí, aun sin tocarse. Norte y sur se atraen.",
+            "en": "Magnets feel each other, even without touching. North and south attract."
+          }
+        }
+      ]
+    },
+    {
+      "id": "same",
+      "question": {
+        "es": "Ahora acercas el polo norte de un imán al polo norte de otro. ¿Qué pasa?",
+        "en": "Now you bring the north pole of one magnet near the north pole of another. What happens?"
+      },
+      "answer": "repel",
+      "options": [
+        {
+          "id": "attract",
+          "label": {
+            "es": "Se atraen",
+            "en": "They pull together"
+          },
+          "feedback": {
+            "es": "Polos iguales no se atraen: se empujan.",
+            "en": "Matching poles don't attract: they push apart."
+          }
+        },
+        {
+          "id": "repel",
+          "label": {
+            "es": "Se empujan",
+            "en": "They push apart"
+          },
+          "feedback": {
+            "es": "¡Correcto! Polos iguales se repelen: se empujan sin tocarse.",
+            "en": "Right! Matching poles repel: they push each other away without touching."
+          }
+        },
+        {
+          "id": "nothing",
+          "label": {
+            "es": "No pasa nada",
+            "en": "Nothing happens"
+          },
+          "feedback": {
+            "es": "Sí pasa algo: polos iguales se empujan.",
+            "en": "Something does happen: matching poles push apart."
+          }
+        }
+      ]
+    }
+  ],
+  "prediction": {
+    "question": {
+      "es": "Antes de ejecutar: ¿el imán de la grúa atraerá o empujará la caja?",
+      "en": "Before you run: will the crane's magnet pull or push the box?"
+    },
+    "options": [
+      {
+        "id": "pull",
+        "label": {
+          "es": "La atraerá",
+          "en": "It will pull it"
+        },
+        "outcomes": [
+          "won"
+        ]
+      },
+      {
+        "id": "push",
+        "label": {
+          "es": "La empujará",
+          "en": "It will push it"
+        },
+        "outcomes": [
+          "repelled"
+        ]
+      }
+    ]
+  },
+  "hints": [
+    {
+      "es": "Fíjate qué letra tiene el imán de la grúa abajo y qué letra tiene la caja arriba.",
+      "en": "Look at which letter the crane's magnet has at the bottom and which letter the box has on top."
+    },
+    {
+      "es": "Prueba con cada polo. ¿Qué pasa cuando las dos letras son iguales? ¿Y cuando son diferentes?",
+      "en": "Try each pole. What happens when the two letters are the same? And when they are different?"
+    },
+    {
+      "es": "Polos iguales se repelen (se empujan). Polos diferentes se atraen.",
+      "en": "The same poles repel (push apart). Different poles attract."
+    },
+    {
+      "es": "Ejemplo: la caja tiene N arriba. Si la grúa pone N abajo, N mira a N y se empujan. Necesitas el otro polo.",
+      "en": "Example: the box has N on top. If the crane puts N down, N faces N and they push apart. You need the other pole."
+    }
+  ],
+  "success": {
+    "es": "¡La levantaste! El polo sur de la grúa y el polo norte de la caja son diferentes, así que se atraen.",
+    "en": "You lifted it! The crane's south pole and the box's north pole are different, so they attract."
+  },
+  "explain": {
+    "question": {
+      "es": "¿Por qué la grúa pudo levantar la caja?",
+      "en": "Why could the crane lift the box?"
+    },
+    "answer": "different",
+    "options": [
+      {
+        "id": "different",
+        "label": {
+          "es": "Los polos que se miraban eran diferentes (S y N), y polos diferentes se atraen.",
+          "en": "The poles facing each other were different (S and N), and different poles attract."
+        },
+        "feedback": {
+          "es": "¡Así es! Polos diferentes se atraen y polos iguales se repelen.",
+          "en": "That's right! Different poles attract and the same poles repel."
+        }
+      },
+      {
+        "id": "same",
+        "label": {
+          "es": "Los polos eran iguales, y polos iguales se atraen.",
+          "en": "The poles were the same, and the same poles attract."
+        },
+        "feedback": {
+          "es": "Piensa otra vez: cuando la grúa tenía N abajo y la caja N arriba, ¿qué pasó?",
+          "en": "Think again: when the crane had N down and the box N up, what happened?"
+        }
+      },
+      {
+        "id": "stronger",
+        "label": {
+          "es": "La grúa usó más fuerza la segunda vez.",
+          "en": "The crane used more force the second time."
+        },
+        "feedback": {
+          "es": "Piensa otra vez: la fuerza del imán fue la misma. Lo único que cambiaste fue el polo.",
+          "en": "Think again: the magnet's strength was the same. The only thing you changed was the pole."
+        }
+      }
+    ]
+  },
+  "challenges": [
+    {
+      "id": "flipped-box",
+      "title": {
+        "es": "Caso nuevo: la caja volteada",
+        "en": "Changed case: the flipped box"
+      },
+      "goal": {
+        "es": "Ahora la caja tiene el polo S arriba. ¿Qué polo usas?",
+        "en": "Now the box has the S pole on top. Which pole do you use?"
+      },
+      "intro": {
+        "es": "Llegó otra caja con imán, pero esta tiene el polo sur (S) hacia arriba. ¿Qué polo de la grúa debe mirar hacia abajo para levantarla?",
+        "en": "Another box with a magnet arrived, but this one has its south pole (S) facing up. Which of the crane's poles should face down to lift it?"
+      },
+      "success": {
+        "es": "¡Lo lograste en un caso nuevo! Con S arriba, hacía falta N abajo: polos diferentes se atraen.",
+        "en": "You did it in a new case! With S on top, you needed N down: different poles attract."
+      },
+      "reward": 30,
+      "startingBlocks": [
+        {
+          "block": "magnet_pole",
+          "pole": "S"
+        },
+        {
+          "block": "magnet_pick",
+          "object": "box"
+        }
+      ],
+      "world": {
+        "objects": [
+          {
+            "id": "box",
+            "shape": "box",
+            "x": 7,
+            "y": 0,
+            "width": 1.36,
+            "height": 1.02,
+            "material": "magnet",
+            "label": {
+              "es": "caja con imán",
+              "en": "box with a magnet"
+            },
+            "pole": "S"
+          }
+        ]
+      },
+      "winCondition": {}
+    }
+  ],
+  "curriculum": {
+    "grade": 5,
+    "phase": 5,
+    "status": "direct",
+    "program": {
+      "es": "Programa Sintético Fase 5, 5.º grado, pp. 46-47: \"Efecto del magnetismo y de la fuerza de gravedad\": el magnetismo actúa a distancia; polos, atracción y repulsión; materiales.",
+      "en": "SEP Programa Sintético, Phase 5, 5th grade, pp. 46-47: \"Effect of magnetism and the force of gravity\": magnetism acts at a distance; poles, attraction and repulsion; materials."
+    },
+    "books": [
+      {
+        "es": "Nuestros saberes, 5.º grado (2026), pp. 118-120: \"Fuerza a distancia\", \"Fuerza magnética\", \"Polos magnéticos\", \"Imán\" y \"Efecto de repulsión\".",
+        "en": "Nuestros saberes, 5th grade (2026), pp. 118-120: \"Fuerza a distancia\", \"Fuerza magnética\", \"Polos magnéticos\", \"Imán\" and \"Efecto de repulsión\"."
+      },
+      {
+        "es": "Proyectos de Aula, 5.º grado (2026), proyecto \"Objetos bailarines\" (desde la p. 170): experimentos de atracción y repulsión con imanes, clips y tornillos.",
+        "en": "Proyectos de Aula, 5th grade (2026), project \"Objetos bailarines\" (from p. 170): attraction and repulsion experiments with magnets, clips and screws."
+      }
+    ]
+  },
+  "teacher": {
+    "objective": {
+      "es": "Describir que los imanes tienen polos norte y sur, y que polos diferentes se atraen y polos iguales se repelen.",
+      "en": "Describe that magnets have north and south poles, and that different poles attract and the same poles repel."
+    },
+    "decision": {
+      "es": "Elige qué polo del imán de la grúa mira hacia la caja.",
+      "en": "Chooses which pole of the crane's magnet faces the box."
+    },
+    "evidence": {
+      "es": "Predice atraer o empujar antes de ejecutar; explica con \"polos diferentes se atraen\"; en el caso nuevo elige el polo contrario sin probar los dos.",
+      "en": "Predicts pull or push before running; explains with \"different poles attract\"; in the changed case picks the opposite pole without trying both."
+    },
+    "prerequisites": {
+      "es": "Haber visto que un imán atrae algunos materiales (lección \"La grúa de imán\").",
+      "en": "Having seen that a magnet pulls some materials (lesson \"The magnet crane\")."
+    },
+    "assumptions": {
+      "es": "Modelo de juego: solo importa qué polos se miran; la fuerza no cambia con la distancia. Los colores rojo (N) y azul (S) son una convención para el juego, no una regla de la naturaleza.",
+      "en": "Game model: only which poles face each other matters; strength does not change with distance. Red (N) and blue (S) are a convention for the game, not a law of nature."
+    },
+    "vocabulary": [
+      {
+        "es": "polo norte / polo sur",
+        "en": "north pole / south pole"
+      },
+      {
+        "es": "atraer",
+        "en": "to attract"
+      },
+      {
+        "es": "repeler",
+        "en": "to repel"
+      },
+      {
+        "es": "imán",
+        "en": "magnet"
+      }
+    ],
+    "misconceptions": [
+      {
+        "es": "\"Los imanes siempre se pegan\": dos polos iguales se empujan.",
+        "en": "\"Magnets always stick together\": two poles that are the same push apart."
+      },
+      {
+        "es": "\"El polo norte es más fuerte\": los dos polos son igual de fuertes.",
+        "en": "\"The north pole is stronger\": both poles are equally strong."
+      },
+      {
+        "es": "\"Si cortas un imán, separas el norte del sur\": cada pedazo vuelve a tener dos polos (para comentar en clase).",
+        "en": "\"Cutting a magnet separates north from south\": each piece has two poles again (to discuss in class)."
+      }
+    ],
+    "opening": {
+      "es": "Si acercas dos imanes, a veces se pegan y a veces se empujan. ¿De qué crees que depende?",
+      "en": "When you bring two magnets together, sometimes they stick and sometimes they push. What do you think it depends on?"
+    },
+    "discussion": {
+      "es": "¿Qué pasó cuando los polos eran iguales? ¿Y diferentes? ¿Cómo lo supiste en el caso nuevo sin probar?",
+      "en": "What happened when the poles were the same? And different? How did you know in the changed case without testing?"
+    },
+    "transfer": {
+      "es": "En papel: un tren de juguete tiene imanes en los vagones. Un vagón tiene N al frente. ¿Qué polo debe tener atrás el vagón de adelante para que se enganchen?",
+      "en": "On paper: a toy train has magnets on its cars. One car has N at the front. Which pole should the car ahead have at its back so they hook together?"
+    },
+    "meaning": {
+      "es": "\"Resuelta\" significa que levantó la caja; con solo dos opciones pudo adivinar. \"Aplicada\" significa que también acertó con la caja volteada. La respuesta a \"¿por qué?\" dice más que ganar.",
+      "en": "\"Solved\" means they lifted the box; with only two options they may have guessed. \"Applied\" means they also got the flipped box right. The answer to \"why?\" says more than winning."
+    }
+  }
+}

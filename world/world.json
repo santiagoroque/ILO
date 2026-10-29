@@ -1,0 +1,32 @@
+{
+  "$schema": "../schema/world.schema.json",
+  "schemaVersion": 1,
+  "startRoom": "plaza",
+  "roomWidth": 1280,
+  "roomHeight": 720,
+  "rooms": [
+    { "id": "plaza", "mapX": 400, "mapY": 270, "map2": [480, 330] },
+    { "id": "forest-trail", "mapX": 250, "mapY": 290, "map2": [300, 330] },
+    { "id": "lever-glade", "mapX": 110, "mapY": 250, "map2": [130, 290] },
+    { "id": "mushroom-hollow", "mapX": 250, "mapY": 150, "map2": [290, 170] },
+    { "id": "savannah-trail", "mapX": 560, "mapY": 340, "map2": [650, 390] },
+    { "id": "drone-post", "mapX": 700, "mapY": 330, "map2": [830, 380] },
+    { "id": "waterhole", "mapX": 560, "mapY": 450, "map2": [690, 500] },
+    { "id": "snowy-ridge", "mapX": 530, "mapY": 180, "map2": [660, 200] },
+    { "id": "ice-slide", "mapX": 690, "mapY": 150, "map2": [840, 170] },
+    { "id": "frozen-lake", "mapX": 530, "mapY": 60, "map2": [660, 70] },
+    { "id": "house", "mapX": 330, "mapY": 380, "map2": [360, 410] },
+    { "id": "palm-beach", "mapX": 370, "mapY": 440, "map2": [480, 500] },
+    { "id": "mangrove-boardwalk", "mapX": 230, "mapY": 440, "map2": [300, 520] },
+    { "id": "coral-lookout", "mapX": 100, "mapY": 440, "map2": [140, 560] },
+    { "id": "waterfall-cove", "mapX": 470, "mapY": 440, "map2": [560, 585] },
+    { "id": "market-street", "mapX": 335, "mapY": 215, "map2": [440, 210] },
+    { "id": "shop-inside" },
+    { "id": "drone-post-inside" },
+    { "id": "ice-slide-inside" },
+    { "id": "lever-workshop-inside" },
+    { "id": "juice-bar-inside" },
+    { "id": "stage-inside" },
+    { "id": "museum-inside" }
+  ]
+}

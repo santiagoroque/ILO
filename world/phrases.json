@@ -1,0 +1,32 @@
+{
+  "$schema": "../schema/phrases.schema.json",
+  "schemaVersion": 1,
+  "phrases": [
+    { "es": "¡Hola!", "en": "Hi!" },
+    { "es": "¡Adiós!", "en": "Bye!" },
+    { "es": "¡Lo logré!", "en": "I did it!" },
+    { "es": "¿Me ayudas?", "en": "Can you help me?" },
+    { "es": "¡Me encanta la física!", "en": "I love physics!" },
+    { "es": "¡Qué divertido!", "en": "This is fun!" },
+    { "es": "Vamos a jugar", "en": "Let's play" },
+    { "es": "¡Buen trabajo!", "en": "Good job!" },
+    { "es": "Gracias", "en": "Thank you" },
+    { "es": "¿Dónde está la tienda?", "en": "Where is the shop?" },
+    { "es": "¡Mira mi mascota!", "en": "Look at my pet!" },
+    { "es": "¡Visita mi casa!", "en": "Visit my house!" },
+    { "es": "Estoy pensando...", "en": "I'm thinking..." },
+    { "es": "¡Otra vez!", "en": "Again!" },
+    { "es": "¡La gravedad es genial!", "en": "Gravity is awesome!" },
+    { "es": "¡Nos vemos en el Ártico!", "en": "See you in the Arctic!" }
+  ],
+  "emotes": [
+    { "id": "happy", "name": { "es": "Feliz", "en": "Happy" } },
+    { "id": "laugh", "name": { "es": "Risa", "en": "Laugh" } },
+    { "id": "heart", "name": { "es": "Corazón", "en": "Heart" } },
+    { "id": "star", "name": { "es": "Estrella", "en": "Star" } },
+    { "id": "idea", "name": { "es": "Idea", "en": "Idea" } },
+    { "id": "question", "name": { "es": "Pregunta", "en": "Question" } },
+    { "id": "coin", "name": { "es": "Moneda", "en": "Coin" } },
+    { "id": "wave", "name": { "es": "Saludo", "en": "Wave" } }
+  ]
+}

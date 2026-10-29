@@ -1,0 +1,278 @@
+{
+  "$schema": "../schema/parties.schema.json",
+  "schemaVersion": 1,
+  "parties": [
+    {
+      "id": "dia-de-muertos",
+      "name": {
+        "es": "Día de Muertos",
+        "en": "Day of the Dead"
+      },
+      "start": "10-25",
+      "end": "11-03",
+      "weather": "cempasuchil",
+      "gift": "marigold-crown",
+      "decorations": {
+        "plaza": [
+          {
+            "type": "papel-picado-string",
+            "x": 640,
+            "y": 330
+          },
+          {
+            "type": "papel-picado-string",
+            "x": 640,
+            "y": 620
+          },
+          {
+            "type": "marigold-arch",
+            "x": 640,
+            "y": 690
+          },
+          {
+            "type": "candles",
+            "x": 560,
+            "y": 470
+          },
+          {
+            "type": "candles",
+            "x": 720,
+            "y": 470
+          },
+          {
+            "type": "marigold-petals",
+            "x": 640,
+            "y": 560
+          },
+          {
+            "type": "sugar-skull-tiles",
+            "x": 420,
+            "y": 430
+          },
+          {
+            "type": "sugar-skull-tiles",
+            "x": 860,
+            "y": 430
+          }
+        ],
+        "market-street": [
+          {
+            "type": "papel-picado-string",
+            "x": 640,
+            "y": 300
+          },
+          {
+            "type": "marigold-arch",
+            "x": 460,
+            "y": 600
+          },
+          {
+            "type": "candles",
+            "x": 560,
+            "y": 520
+          },
+          {
+            "type": "marigold-petals",
+            "x": 460,
+            "y": 500
+          }
+        ]
+      }
+    },
+    {
+      "id": "posadas",
+      "name": {
+        "es": "Posadas",
+        "en": "Posadas"
+      },
+      "start": "12-01",
+      "end": "12-31",
+      "weather": "snow",
+      "gift": "party-hat",
+      "decorations": {
+        "plaza": [
+          {
+            "type": "decorated-pine",
+            "x": 900,
+            "y": 300
+          },
+          {
+            "type": "star-pinata",
+            "x": 380,
+            "y": 330
+          },
+          {
+            "type": "farolito",
+            "x": 440,
+            "y": 560
+          },
+          {
+            "type": "farolito",
+            "x": 840,
+            "y": 560
+          },
+          {
+            "type": "farolito",
+            "x": 560,
+            "y": 640
+          },
+          {
+            "type": "farolito",
+            "x": 720,
+            "y": 640
+          },
+          {
+            "type": "poinsettia",
+            "x": 330,
+            "y": 620
+          },
+          {
+            "type": "poinsettia",
+            "x": 960,
+            "y": 560
+          },
+          {
+            "type": "string-lights",
+            "x": 640,
+            "y": 330
+          }
+        ],
+        "market-street": [
+          {
+            "type": "string-lights",
+            "x": 640,
+            "y": 300
+          },
+          {
+            "type": "star-pinata",
+            "x": 560,
+            "y": 560
+          },
+          {
+            "type": "poinsettia",
+            "x": 1000,
+            "y": 520
+          },
+          {
+            "type": "farolito",
+            "x": 300,
+            "y": 560
+          }
+        ]
+      }
+    },
+    {
+      "id": "spring",
+      "name": {
+        "es": "Fiesta de primavera",
+        "en": "Spring festival"
+      },
+      "start": "03-15",
+      "end": "04-05",
+      "weather": "jacaranda",
+      "gift": "butterfly-net",
+      "decorations": {
+        "plaza": [
+          {
+            "type": "jacaranda",
+            "x": 300,
+            "y": 450
+          },
+          {
+            "type": "jacaranda",
+            "x": 980,
+            "y": 450
+          },
+          {
+            "type": "party-kites",
+            "x": 640,
+            "y": 250
+          },
+          {
+            "type": "flower-garland",
+            "x": 640,
+            "y": 330
+          }
+        ],
+        "market-street": [
+          {
+            "type": "jacaranda",
+            "x": 1180,
+            "y": 620
+          },
+          {
+            "type": "flower-garland",
+            "x": 640,
+            "y": 300
+          },
+          {
+            "type": "party-kites",
+            "x": 300,
+            "y": 250
+          }
+        ]
+      }
+    },
+    {
+      "id": "science-fair",
+      "name": {
+        "es": "Feria de ciencias",
+        "en": "Science fair"
+      },
+      "start": "05-10",
+      "end": "05-25",
+      "gift": "headlamp",
+      "decorations": {
+        "plaza": [
+          {
+            "type": "fair-banner",
+            "x": 640,
+            "y": 320
+          },
+          {
+            "type": "balloons",
+            "x": 440,
+            "y": 560
+          },
+          {
+            "type": "balloons",
+            "x": 840,
+            "y": 560
+          },
+          {
+            "type": "model-volcano",
+            "x": 960,
+            "y": 470
+          },
+          {
+            "type": "project-stand",
+            "x": 320,
+            "y": 470
+          },
+          {
+            "type": "project-stand",
+            "x": 960,
+            "y": 620
+          }
+        ],
+        "market-street": [
+          {
+            "type": "fair-banner",
+            "x": 640,
+            "y": 300
+          },
+          {
+            "type": "project-stand",
+            "x": 560,
+            "y": 560
+          },
+          {
+            "type": "balloons",
+            "x": 1000,
+            "y": 520
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ILO seasonal parties",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "parties"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "start",
+          "end",
+          "decorations"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "name": {
+            "$ref": "#/$defs/text"
+          },
+          "start": {
+            "description": "Month-day, like 10-25",
+            "type": "string",
+            "pattern": "^[01][0-9]-[0-3][0-9]$"
+          },
+          "end": {
+            "type": "string",
+            "pattern": "^[01][0-9]-[0-3][0-9]$"
+          },
+          "weather": {
+            "enum": [
+              "snow",
+              "leaves",
+              "rain",
+              "jacaranda",
+              "cempasuchil"
+            ]
+          },
+          "gift": {
+            "description": "A clothing id given once during the party.",
+            "type": "string"
+          },
+          "decorations": {
+            "description": "Extra decorations per room id.",
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "x",
+                  "y"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "papel-picado-string",
+                      "marigold-arch",
+                      "candles",
+                      "marigold-petals",
+                      "sugar-skull-tiles",
+                      "decorated-pine",
+                      "star-pinata",
+                      "farolito",
+                      "poinsettia",
+                      "string-lights",
+                      "jacaranda",
+                      "party-kites",
+                      "flower-garland",
+                      "fair-banner",
+                      "balloons",
+                      "model-volcano",
+                      "project-stand"
+                    ]
+                  },
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "text": {
+      "type": "object",
+      "required": [
+        "es",
+        "en"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "es": {
+          "type": "string",
+          "minLength": 1
+        },
+        "en": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "$schema": "../../schema/room.schema.json",
+  "schemaVersion": 1,
+  "id": "snowy-ridge",
+  "kind": "outdoor",
+  "name": {
+    "es": "Cresta nevada",
+    "en": "Snowy ridge"
+  },
+  "spawn": {
+    "x": 640,
+    "y": 610
+  },
+  "areas": [
+    {
+      "id": "ground",
+      "type": "arctic",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1280,
+          0
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ]
+    }
+  ],
+  "paths": [],
+  "stations": [],
+  "exits": [
+    {
+      "id": "south",
+      "x": 560,
+      "y": 680,
+      "width": 160,
+      "height": 40,
+      "spawn": {
+        "x": 640,
+        "y": 610
+      },
+      "to": "plaza",
+      "toExit": "north",
+      "sign": {
+        "x": 640,
+        "y": 650
+      }
+    },
+    {
+      "id": "east",
+      "x": 1240,
+      "y": 470,
+      "width": 40,
+      "height": 160,
+      "spawn": {
+        "x": 1170,
+        "y": 510
+      },
+      "to": "ice-slide",
+      "toExit": "west",
+      "sign": {
+        "x": 1150,
+        "y": 465
+      }
+    },
+    {
+      "id": "north",
+      "x": 560,
+      "y": 0,
+      "width": 160,
+      "height": 40,
+      "spawn": {
+        "x": 640,
+        "y": 110
+      },
+      "to": "frozen-lake",
+      "toExit": "south",
+      "sign": {
+        "x": 640,
+        "y": 180
+      }
+    }
+  ],
+  "decorations": [],
+  "scatter": [],
+  "collectibles": [
+    {
+      "id": "gem-snowy-ridge-1",
+      "x": 130,
+      "y": 620
+    },
+    {
+      "id": "gem-snowy-ridge-2",
+      "x": 1170,
+      "y": 640
+    }
+  ],
+  "critters": [
+    {
+      "type": "snow-hare",
+      "count": 2,
+      "regions": [
+        [
+          350,
+          560,
+          630,
+          650
+        ],
+        [
+          780,
+          300,
+          970,
+          420
+        ]
+      ]
+    }
+  ],
+  "residents": [
+    {
+      "id": "snow-guide",
+      "x": 910,
+      "y": 610,
+      "scale": 1.5
+    }
+  ],
+  "toys": [
+    {
+      "type": "sled-hill",
+      "x": 250,
+      "y": 420,
+      "scale": 1.5,
+      "slope": {
+        "dx": 0.9,
+        "dy": 0.4,
+        "length": 260
+      }
+    }
+  ],
+  "layout": {
+    "revision": "room-redesign-3-wide",
+    "ground": "world/rooms-v3/snowy-ridge/ground.svg",
+    "foreground": "world/rooms-v3/snowy-ridge/foreground.svg",
+    "scale": 1.5,
+    "surface": "arctic",
+    "walk": [
+      [
+        [
+          40,
+          250
+        ],
+        [
+          1240,
+          250
+        ],
+        [
+          1240,
+          700
+        ],
+        [
+          40,
+          700
+        ]
+      ],
+      [
+        [
+          540,
+          570
+        ],
+        [
+          740,
+          570
+        ],
+        [
+          740,
+          720
+        ],
+        [
+          540,
+          720
+        ]
+      ],
+      [
+        [
+          1100,
+          450
+        ],
+        [
+          1280,
+          450
+        ],
+        [
+          1280,
+          650
+        ],
+        [
+          1100,
+          650
+        ]
+      ],
+      [
+        [
+          580,
+          0
+        ],
+        [
+          700,
+          0
+        ],
+        [
+          700,
+          380
+        ],
+        [
+          580,
+          380
+        ]
+      ]
+    ],
+    "blocked": [
+      [
+        [
+          0,
+          535
+        ],
+        [
+          75,
+          535
+        ],
+        [
+          75,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ],
+      [
+        [
+          1205,
+          535
+        ],
+        [
+          1280,
+          535
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          1205,
+          720
+        ]
+      ]
+    ],
+    "water": {},
+    "objects": [
+      {
+        "type": "target",
+        "asset": "world/decorations/target.svg",
+        "x": 1010,
+        "y": 400,
+        "scale": 1.52,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            1010,
+            396.8,
+            36.5,
+            13.1
+          ]
+        }
+      },
+      {
+        "type": "target",
+        "asset": "world/decorations/target.svg",
+        "x": 1130,
+        "y": 570,
+        "scale": 1.52,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            1130,
+            566.8,
+            36.5,
+            13.1
+          ]
+        }
+      }
+    ]
+  }
+}

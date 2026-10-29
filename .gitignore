@@ -1,0 +1,8 @@
+# SEP books (copyrighted, and too big for GitHub): keep them on this computer only.
+sources/
+
+# Made again by `npm install` and `npm run build-site`.
+node_modules/
+dist/
+
+.DS_Store

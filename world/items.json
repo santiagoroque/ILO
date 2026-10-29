@@ -1,0 +1,1015 @@
+{
+  "$schema": "../schema/items.schema.json",
+  "schemaVersion": 2,
+  "colors": [
+    {
+      "id": "teal",
+      "color": "#2bb3a3",
+      "price": 0,
+      "name": {
+        "es": "Turquesa",
+        "en": "Teal"
+      }
+    },
+    {
+      "id": "coral",
+      "color": "#f2765b",
+      "price": 20,
+      "name": {
+        "es": "Coral",
+        "en": "Coral"
+      }
+    },
+    {
+      "id": "sun",
+      "color": "#f4c430",
+      "price": 20,
+      "name": {
+        "es": "Sol",
+        "en": "Sun"
+      }
+    },
+    {
+      "id": "grape",
+      "color": "#8e6bd6",
+      "price": 20,
+      "name": {
+        "es": "Uva",
+        "en": "Grape"
+      }
+    },
+    {
+      "id": "sky",
+      "color": "#4aa3e8",
+      "price": 20,
+      "name": {
+        "es": "Cielo",
+        "en": "Sky"
+      }
+    },
+    {
+      "id": "leaf",
+      "color": "#6cbf4b",
+      "price": 20,
+      "name": {
+        "es": "Hoja",
+        "en": "Leaf"
+      }
+    }
+  ],
+  "clothing": [
+    {
+      "id": "cap",
+      "slot": "head",
+      "price": 20,
+      "name": {
+        "es": "Gorra",
+        "en": "Cap"
+      }
+    },
+    {
+      "id": "flower",
+      "slot": "head",
+      "price": 15,
+      "name": {
+        "es": "Flor",
+        "en": "Flower"
+      }
+    },
+    {
+      "id": "beanie",
+      "slot": "head",
+      "price": 30,
+      "name": {
+        "es": "Gorro de lana",
+        "en": "Beanie"
+      }
+    },
+    {
+      "id": "explorer",
+      "slot": "head",
+      "price": 35,
+      "name": {
+        "es": "Sombrero de explorador",
+        "en": "Explorer hat"
+      }
+    },
+    {
+      "id": "crown",
+      "slot": "head",
+      "price": 40,
+      "name": {
+        "es": "Corona",
+        "en": "Crown"
+      }
+    },
+    {
+      "id": "glasses",
+      "slot": "face",
+      "price": 20,
+      "name": {
+        "es": "Lentes",
+        "en": "Glasses"
+      }
+    },
+    {
+      "id": "sunglasses",
+      "slot": "face",
+      "price": 25,
+      "name": {
+        "es": "Lentes de sol",
+        "en": "Sunglasses"
+      }
+    },
+    {
+      "id": "goggles",
+      "slot": "face",
+      "price": 30,
+      "name": {
+        "es": "Gafas de nieve",
+        "en": "Snow goggles"
+      }
+    },
+    {
+      "id": "scarf",
+      "slot": "neck",
+      "price": 20,
+      "name": {
+        "es": "Bufanda",
+        "en": "Scarf"
+      }
+    },
+    {
+      "id": "bowtie",
+      "slot": "neck",
+      "price": 15,
+      "name": {
+        "es": "Moño",
+        "en": "Bow tie"
+      }
+    },
+    {
+      "id": "medal",
+      "slot": "neck",
+      "price": 35,
+      "name": {
+        "es": "Medalla",
+        "en": "Medal"
+      }
+    },
+    {
+      "id": "hoodie",
+      "slot": "body",
+      "price": 30,
+      "name": {
+        "es": "Sudadera",
+        "en": "Hoodie"
+      }
+    },
+    {
+      "id": "labcoat",
+      "slot": "body",
+      "price": 40,
+      "name": {
+        "es": "Bata de laboratorio",
+        "en": "Lab coat"
+      }
+    },
+    {
+      "id": "vest",
+      "slot": "body",
+      "price": 35,
+      "name": {
+        "es": "Chaleco de safari",
+        "en": "Safari vest"
+      }
+    },
+    {
+      "id": "sneakers",
+      "slot": "feet",
+      "price": 20,
+      "name": {
+        "es": "Tenis",
+        "en": "Sneakers"
+      }
+    },
+    {
+      "id": "boots",
+      "slot": "feet",
+      "price": 25,
+      "name": {
+        "es": "Botas de nieve",
+        "en": "Snow boots"
+      }
+    },
+    {
+      "id": "magnifier",
+      "slot": "hand",
+      "price": 30,
+      "name": {
+        "es": "Lupa",
+        "en": "Magnifying glass"
+      }
+    },
+    {
+      "id": "wrench",
+      "slot": "hand",
+      "price": 20,
+      "name": {
+        "es": "Llave inglesa",
+        "en": "Wrench"
+      }
+    },
+    {
+      "id": "sun-hat",
+      "slot": "head",
+      "price": 25,
+      "name": {
+        "es": "Sombrero de palma",
+        "en": "Palm sun hat"
+      }
+    },
+    {
+      "id": "party-hat",
+      "slot": "head",
+      "price": 15,
+      "name": {
+        "es": "Gorro de fiesta",
+        "en": "Party hat"
+      }
+    },
+    {
+      "id": "marigold-crown",
+      "slot": "head",
+      "price": 20,
+      "name": {
+        "es": "Corona de cempasúchil",
+        "en": "Marigold crown"
+      }
+    },
+    {
+      "id": "headlamp",
+      "slot": "head",
+      "price": 30,
+      "name": {
+        "es": "Lámpara de cabeza",
+        "en": "Headlamp"
+      }
+    },
+    {
+      "id": "snorkel",
+      "slot": "face",
+      "price": 30,
+      "name": {
+        "es": "Visor de buceo",
+        "en": "Snorkel mask"
+      }
+    },
+    {
+      "id": "star-glasses",
+      "slot": "face",
+      "price": 20,
+      "name": {
+        "es": "Lentes de estrella",
+        "en": "Star glasses"
+      }
+    },
+    {
+      "id": "shell-necklace",
+      "slot": "neck",
+      "price": 20,
+      "name": {
+        "es": "Collar de conchas",
+        "en": "Shell necklace"
+      }
+    },
+    {
+      "id": "bandana",
+      "slot": "neck",
+      "price": 15,
+      "name": {
+        "es": "Paliacate",
+        "en": "Bandana"
+      }
+    },
+    {
+      "id": "rash-guard",
+      "slot": "body",
+      "price": 30,
+      "name": {
+        "es": "Playera de nadar",
+        "en": "Swim shirt"
+      }
+    },
+    {
+      "id": "poncho",
+      "slot": "body",
+      "price": 35,
+      "name": {
+        "es": "Jorongo",
+        "en": "Poncho"
+      }
+    },
+    {
+      "id": "sandals",
+      "slot": "feet",
+      "price": 15,
+      "name": {
+        "es": "Sandalias",
+        "en": "Sandals"
+      }
+    },
+    {
+      "id": "rain-boots",
+      "slot": "feet",
+      "price": 25,
+      "name": {
+        "es": "Botas de lluvia",
+        "en": "Rain boots"
+      }
+    },
+    {
+      "id": "butterfly-net",
+      "slot": "hand",
+      "price": 25,
+      "name": {
+        "es": "Red para mariposas",
+        "en": "Butterfly net"
+      }
+    },
+    {
+      "id": "juice-cup",
+      "slot": "hand",
+      "price": 10,
+      "name": {
+        "es": "Vaso de jugo",
+        "en": "Juice cup"
+      }
+    }
+  ],
+  "pets": [
+    {
+      "id": "fox",
+      "price": 60,
+      "name": {
+        "es": "Zorrito",
+        "en": "Fox kit"
+      }
+    },
+    {
+      "id": "meerkat",
+      "price": 60,
+      "name": {
+        "es": "Suricata",
+        "en": "Meerkat pup"
+      }
+    },
+    {
+      "id": "hare",
+      "price": 60,
+      "name": {
+        "es": "Liebre ártica",
+        "en": "Arctic hare"
+      }
+    },
+    {
+      "id": "axolotl",
+      "price": 70,
+      "name": {
+        "es": "Ajolote",
+        "en": "Axolotl"
+      }
+    },
+    {
+      "id": "macaw",
+      "price": 70,
+      "name": {
+        "es": "Guacamaya",
+        "en": "Macaw"
+      }
+    },
+    {
+      "id": "armadillo",
+      "price": 60,
+      "name": {
+        "es": "Armadillo",
+        "en": "Armadillo"
+      }
+    }
+  ],
+  "petFoodPrice": 5,
+  "petNames": [
+    "Luna",
+    "Chispa",
+    "Kiwi",
+    "Nube",
+    "Mango",
+    "Pipo",
+    "Coco",
+    "Lila",
+    "Toto",
+    "Bimba",
+    "Sol",
+    "Tito"
+  ],
+  "furniture": [
+    {
+      "id": "rug",
+      "price": 10,
+      "name": {
+        "es": "Alfombra",
+        "en": "Rug"
+      },
+      "set": "classic"
+    },
+    {
+      "id": "plant",
+      "price": 10,
+      "name": {
+        "es": "Planta",
+        "en": "Plant"
+      },
+      "set": "classic"
+    },
+    {
+      "id": "poster",
+      "price": 5,
+      "name": {
+        "es": "Póster del sistema solar",
+        "en": "Solar system poster"
+      },
+      "set": "classic"
+    },
+    {
+      "id": "lamp",
+      "price": 15,
+      "name": {
+        "es": "Lámpara",
+        "en": "Lamp"
+      },
+      "set": "classic"
+    },
+    {
+      "id": "chair",
+      "price": 15,
+      "name": {
+        "es": "Silla",
+        "en": "Chair"
+      },
+      "set": "classic"
+    },
+    {
+      "id": "table",
+      "price": 20,
+      "name": {
+        "es": "Mesa",
+        "en": "Table"
+      },
+      "set": "classic"
+    },
+    {
+      "id": "beanbag",
+      "price": 20,
+      "name": {
+        "es": "Puf",
+        "en": "Beanbag"
+      },
+      "set": "classic"
+    },
+    {
+      "id": "globe",
+      "price": 25,
+      "name": {
+        "es": "Globo terráqueo",
+        "en": "Globe"
+      },
+      "set": "classic"
+    },
+    {
+      "id": "bookshelf",
+      "price": 30,
+      "name": {
+        "es": "Librero",
+        "en": "Bookshelf"
+      },
+      "set": "classic"
+    },
+    {
+      "id": "bed",
+      "price": 35,
+      "name": {
+        "es": "Cama",
+        "en": "Bed"
+      },
+      "set": "classic"
+    },
+    {
+      "id": "telescope",
+      "price": 50,
+      "name": {
+        "es": "Telescopio",
+        "en": "Telescope"
+      },
+      "set": "classic"
+    },
+    {
+      "id": "aquarium",
+      "price": 55,
+      "name": {
+        "es": "Acuario",
+        "en": "Aquarium"
+      },
+      "set": "classic"
+    },
+    {
+      "id": "hammock",
+      "set": "coast",
+      "price": 60,
+      "name": {
+        "es": "Hamaca",
+        "en": "Hammock"
+      }
+    },
+    {
+      "id": "bamboo-chair",
+      "set": "coast",
+      "price": 20,
+      "name": {
+        "es": "Silla de bambú",
+        "en": "Bamboo chair"
+      }
+    },
+    {
+      "id": "shell-lamp",
+      "set": "coast",
+      "price": 25,
+      "name": {
+        "es": "Lámpara de concha",
+        "en": "Shell lamp"
+      }
+    },
+    {
+      "id": "fishbowl",
+      "set": "coast",
+      "price": 30,
+      "name": {
+        "es": "Pecera",
+        "en": "Fishbowl"
+      }
+    },
+    {
+      "id": "surfboard",
+      "set": "coast",
+      "price": 35,
+      "name": {
+        "es": "Tabla de surf",
+        "en": "Surfboard"
+      }
+    },
+    {
+      "id": "bird-of-paradise",
+      "set": "coast",
+      "price": 20,
+      "name": {
+        "es": "Ave del paraíso",
+        "en": "Bird of paradise"
+      }
+    },
+    {
+      "id": "lab-bench",
+      "set": "lab",
+      "price": 60,
+      "name": {
+        "es": "Mesa de laboratorio",
+        "en": "Lab bench"
+      }
+    },
+    {
+      "id": "newton-cradle",
+      "set": "lab",
+      "price": 40,
+      "name": {
+        "es": "Péndulo de Newton",
+        "en": "Newton's cradle"
+      }
+    },
+    {
+      "id": "pendulum-clock",
+      "set": "lab",
+      "price": 55,
+      "name": {
+        "es": "Reloj de péndulo",
+        "en": "Pendulum clock"
+      }
+    },
+    {
+      "id": "model-rocket",
+      "set": "lab",
+      "price": 45,
+      "name": {
+        "es": "Cohete de juguete",
+        "en": "Model rocket"
+      }
+    },
+    {
+      "id": "solar-mobile",
+      "set": "lab",
+      "price": 50,
+      "name": {
+        "es": "Móvil del sistema solar",
+        "en": "Solar system mobile"
+      }
+    },
+    {
+      "id": "microscope",
+      "set": "lab",
+      "price": 30,
+      "name": {
+        "es": "Microscopio",
+        "en": "Microscope"
+      }
+    },
+    {
+      "id": "talavera-vase",
+      "set": "crafts",
+      "price": 25,
+      "name": {
+        "es": "Jarrón de talavera",
+        "en": "Talavera vase"
+      }
+    },
+    {
+      "id": "alebrije",
+      "set": "crafts",
+      "price": 45,
+      "name": {
+        "es": "Alebrije",
+        "en": "Alebrije"
+      }
+    },
+    {
+      "id": "papel-picado",
+      "set": "crafts",
+      "price": 20,
+      "name": {
+        "es": "Papel picado",
+        "en": "Papel picado"
+      }
+    },
+    {
+      "id": "textile-cushion",
+      "set": "crafts",
+      "price": 15,
+      "name": {
+        "es": "Cojín tejido",
+        "en": "Woven cushion"
+      }
+    },
+    {
+      "id": "cempasuchil-pot",
+      "set": "crafts",
+      "price": 15,
+      "name": {
+        "es": "Maceta de cempasúchil",
+        "en": "Marigold pot"
+      }
+    },
+    {
+      "id": "pinata",
+      "set": "crafts",
+      "price": 30,
+      "name": {
+        "es": "Piñata",
+        "en": "Piñata"
+      }
+    },
+    {
+      "id": "sofa",
+      "set": "cozy",
+      "price": 70,
+      "name": {
+        "es": "Sofá",
+        "en": "Sofa"
+      }
+    },
+    {
+      "id": "fireplace",
+      "set": "cozy",
+      "price": 80,
+      "name": {
+        "es": "Chimenea",
+        "en": "Fireplace"
+      }
+    },
+    {
+      "id": "bunk-bed",
+      "set": "cozy",
+      "price": 70,
+      "name": {
+        "es": "Litera",
+        "en": "Bunk bed"
+      }
+    },
+    {
+      "id": "record-player",
+      "set": "cozy",
+      "price": 45,
+      "name": {
+        "es": "Tocadiscos",
+        "en": "Record player"
+      }
+    },
+    {
+      "id": "wall-clock",
+      "set": "cozy",
+      "price": 15,
+      "name": {
+        "es": "Reloj de pared",
+        "en": "Wall clock"
+      }
+    },
+    {
+      "id": "window-seat",
+      "set": "cozy",
+      "price": 40,
+      "name": {
+        "es": "Banca de ventana",
+        "en": "Window seat"
+      }
+    },
+    {
+      "id": "trampoline",
+      "set": "play",
+      "price": 55,
+      "name": {
+        "es": "Trampolín",
+        "en": "Trampoline"
+      }
+    },
+    {
+      "id": "toy-box",
+      "set": "play",
+      "price": 25,
+      "name": {
+        "es": "Baúl de juguetes",
+        "en": "Toy box"
+      }
+    },
+    {
+      "id": "mini-slide",
+      "set": "play",
+      "price": 50,
+      "name": {
+        "es": "Resbaladilla",
+        "en": "Little slide"
+      }
+    },
+    {
+      "id": "ball-pit",
+      "set": "play",
+      "price": 50,
+      "name": {
+        "es": "Alberca de pelotas",
+        "en": "Ball pit"
+      }
+    },
+    {
+      "id": "ping-pong",
+      "set": "play",
+      "price": 60,
+      "name": {
+        "es": "Mesa de ping-pong",
+        "en": "Ping-pong table"
+      }
+    },
+    {
+      "id": "arcade-mini",
+      "set": "play",
+      "price": 65,
+      "name": {
+        "es": "Mini máquina",
+        "en": "Mini arcade"
+      }
+    },
+    {
+      "id": "potted-cactus",
+      "set": "garden",
+      "price": 15,
+      "name": {
+        "es": "Cactus",
+        "en": "Potted cactus"
+      }
+    },
+    {
+      "id": "hanging-plants",
+      "set": "garden",
+      "price": 25,
+      "name": {
+        "es": "Plantas colgantes",
+        "en": "Hanging plants"
+      }
+    },
+    {
+      "id": "aquarium-big",
+      "set": "garden",
+      "price": 90,
+      "name": {
+        "es": "Acuario grande",
+        "en": "Big aquarium"
+      }
+    },
+    {
+      "id": "bird-cage-open",
+      "set": "garden",
+      "price": 35,
+      "name": {
+        "es": "Casita de pájaros",
+        "en": "Birdhouse stand"
+      }
+    },
+    {
+      "id": "lantern",
+      "set": "garden",
+      "price": 20,
+      "name": {
+        "es": "Farol",
+        "en": "Lantern"
+      }
+    },
+    {
+      "id": "fountain-small",
+      "set": "garden",
+      "price": 45,
+      "name": {
+        "es": "Fuente pequeña",
+        "en": "Little fountain"
+      }
+    }
+  ],
+  "houseStyles": [
+    {
+      "id": "cabin",
+      "price": 0,
+      "name": {
+        "es": "Cabaña del bosque",
+        "en": "Forest cabin"
+      }
+    },
+    {
+      "id": "adobe",
+      "price": 150,
+      "name": {
+        "es": "Casa de adobe",
+        "en": "Adobe house"
+      }
+    },
+    {
+      "id": "icecabin",
+      "price": 150,
+      "name": {
+        "es": "Cabaña de hielo",
+        "en": "Ice cabin"
+      }
+    },
+    {
+      "id": "bungalow",
+      "price": 250,
+      "name": {
+        "es": "Cabaña de playa",
+        "en": "Beach bungalow"
+      }
+    },
+    {
+      "id": "treehouse",
+      "price": 300,
+      "name": {
+        "es": "Casa del árbol",
+        "en": "Treehouse"
+      }
+    },
+    {
+      "id": "hacienda",
+      "price": 350,
+      "name": {
+        "es": "Casa con patio",
+        "en": "Courtyard house"
+      }
+    },
+    {
+      "id": "mushroom-house",
+      "price": 300,
+      "name": {
+        "es": "Casita hongo",
+        "en": "Mushroom cottage"
+      }
+    },
+    {
+      "id": "observatory",
+      "price": 500,
+      "name": {
+        "es": "Observatorio",
+        "en": "Observatory"
+      }
+    }
+  ],
+  "wallpapers": [
+    {
+      "id": "stripes",
+      "price": 30,
+      "name": {
+        "es": "Rayas",
+        "en": "Stripes"
+      }
+    },
+    {
+      "id": "stars",
+      "price": 30,
+      "name": {
+        "es": "Estrellas",
+        "en": "Stars"
+      }
+    },
+    {
+      "id": "jungle",
+      "price": 30,
+      "name": {
+        "es": "Hojas de la selva",
+        "en": "Jungle leaves"
+      }
+    },
+    {
+      "id": "papel-picado",
+      "price": 30,
+      "name": {
+        "es": "Papel picado",
+        "en": "Papel picado"
+      }
+    },
+    {
+      "id": "waves",
+      "price": 30,
+      "name": {
+        "es": "Olas",
+        "en": "Ocean waves"
+      }
+    },
+    {
+      "id": "chalkboard",
+      "price": 30,
+      "name": {
+        "es": "Pizarrón",
+        "en": "Chalkboard"
+      }
+    }
+  ],
+  "floors": [
+    {
+      "id": "checkerboard",
+      "price": 30,
+      "name": {
+        "es": "Cuadros",
+        "en": "Checkerboard"
+      }
+    },
+    {
+      "id": "grass-carpet",
+      "price": 30,
+      "name": {
+        "es": "Alfombra de pasto",
+        "en": "Grass carpet"
+      }
+    },
+    {
+      "id": "ocean-tiles",
+      "price": 30,
+      "name": {
+        "es": "Azulejos de mar",
+        "en": "Ocean tiles"
+      }
+    },
+    {
+      "id": "talavera",
+      "price": 30,
+      "name": {
+        "es": "Talavera",
+        "en": "Talavera"
+      }
+    },
+    {
+      "id": "stone",
+      "price": 30,
+      "name": {
+        "es": "Piedra",
+        "en": "Rustic stone"
+      }
+    },
+    {
+      "id": "parquet",
+      "price": 30,
+      "name": {
+        "es": "Parqué",
+        "en": "Honey parquet"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1054 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ilo/lesson.schema.json",
+  "title": "ILO lesson",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "concept",
+    "title",
+    "learningGoal",
+    "intro",
+    "world",
+    "toolbox",
+    "startingBlocks",
+    "winCondition",
+    "hints",
+    "success",
+    "teacher",
+    "goal",
+    "curriculum"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "concept": {
+      "$ref": "#/$defs/text"
+    },
+    "title": {
+      "$ref": "#/$defs/text"
+    },
+    "learningGoal": {
+      "$ref": "#/$defs/text"
+    },
+    "intro": {
+      "$ref": "#/$defs/text"
+    },
+    "world": {
+      "type": "object",
+      "required": [
+        "width",
+        "height",
+        "gravity",
+        "objects",
+        "zones"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "height": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gravity": {
+          "type": "number",
+          "minimum": 0
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/object"
+          }
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/zone"
+          }
+        },
+        "model": {
+          "enum": [
+            "matter",
+            "slide",
+            "lever",
+            "magnet",
+            "rub"
+          ]
+        },
+        "surface": {
+          "enum": [
+            "ice",
+            "snow",
+            "wood",
+            "sand"
+          ]
+        },
+        "lever": {
+          "type": "object",
+          "required": [
+            "from",
+            "to",
+            "height",
+            "mass",
+            "fulcrum",
+            "fulcrumOptions",
+            "load",
+            "effort"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "from": {
+              "type": "number"
+            },
+            "to": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "mass": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "fulcrum": {
+              "type": "number"
+            },
+            "fulcrumOptions": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "number"
+              }
+            },
+            "load": {
+              "type": "string"
+            },
+            "effort": {
+              "type": "string"
+            }
+          }
+        },
+        "crane": {
+          "type": "object",
+          "required": [
+            "trips"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "trips": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "pole": {
+              "enum": [
+                "N",
+                "S"
+              ]
+            },
+            "x": {
+              "type": "number"
+            }
+          }
+        },
+        "bin": {
+          "type": "object",
+          "required": [
+            "x"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "label": {
+              "$ref": "#/$defs/text"
+            }
+          }
+        },
+        "rub": {
+          "type": "object",
+          "required": [
+            "surface",
+            "startTemperature",
+            "timesOptions"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "surface": {
+              "enum": [
+                "glass",
+                "wood",
+                "carpet",
+                "sandpaper"
+              ]
+            },
+            "surfaces": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "enum": [
+                  "glass",
+                  "wood",
+                  "carpet",
+                  "sandpaper"
+                ]
+              }
+            },
+            "startTemperature": {
+              "type": "number"
+            },
+            "timesOptions": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "toolbox": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "set_gravity",
+          "set_mass",
+          "drop",
+          "set_surface",
+          "push",
+          "move_fulcrum",
+          "magnet_pick",
+          "magnet_pole",
+          "set_rub_surface",
+          "rub"
+        ]
+      }
+    },
+    "startingBlocks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/step"
+      }
+    },
+    "winCondition": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/landsInZone"
+        },
+        {
+          "$ref": "#/$defs/stopsInZone"
+        },
+        {
+          "$ref": "#/$defs/leverTips"
+        },
+        {
+          "$ref": "#/$defs/collectsMagnetic"
+        },
+        {
+          "$ref": "#/$defs/temperatureInBand"
+        }
+      ]
+    },
+    "hints": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/text"
+      }
+    },
+    "success": {
+      "$ref": "#/$defs/text"
+    },
+    "reward": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "prediction": {
+      "description": "An optional guess before a run. Each option lists the run outcomes it matches: \"won\" or a winCondition.feedback key.",
+      "type": "object",
+      "required": [
+        "question",
+        "options"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "question": {
+          "$ref": "#/$defs/text"
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "label",
+              "outcomes"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+              },
+              "label": {
+                "$ref": "#/$defs/text"
+              },
+              "outcomes": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "challenges": {
+      "description": "Changed cases: the same idea with new conditions. Each one replaces parts of the main lesson.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "intro",
+          "success",
+          "world",
+          "winCondition"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "title": {
+            "$ref": "#/$defs/text"
+          },
+          "intro": {
+            "$ref": "#/$defs/text"
+          },
+          "success": {
+            "$ref": "#/$defs/text"
+          },
+          "reward": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "startingBlocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/step"
+            }
+          },
+          "hints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/text"
+            }
+          },
+          "world": {
+            "type": "object",
+            "description": "Fields here replace the same fields of the main world (for example objects, zones or lever)."
+          },
+          "winCondition": {
+            "type": "object",
+            "description": "Fields here replace the same fields of the main winCondition."
+          },
+          "goal": {
+            "$ref": "#/$defs/text"
+          },
+          "explain": {
+            "$ref": "#/$defs/explain"
+          }
+        }
+      }
+    },
+    "teacher": {
+      "description": "Notes for the teacher (teacher.html).",
+      "type": "object",
+      "required": [
+        "objective",
+        "prerequisites",
+        "assumptions",
+        "vocabulary",
+        "misconceptions",
+        "opening",
+        "discussion",
+        "transfer",
+        "meaning",
+        "decision",
+        "evidence"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "objective": {
+          "$ref": "#/$defs/text"
+        },
+        "prerequisites": {
+          "$ref": "#/$defs/text"
+        },
+        "assumptions": {
+          "$ref": "#/$defs/text"
+        },
+        "vocabulary": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        },
+        "misconceptions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        },
+        "opening": {
+          "$ref": "#/$defs/text"
+        },
+        "discussion": {
+          "$ref": "#/$defs/text"
+        },
+        "transfer": {
+          "$ref": "#/$defs/text"
+        },
+        "meaning": {
+          "$ref": "#/$defs/text"
+        },
+        "decision": {
+          "$ref": "#/$defs/text"
+        },
+        "evidence": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "goal": {
+      "description": "The mission in at most about 20 words, shown big. The longer story is in intro.",
+      "$ref": "#/$defs/text"
+    },
+    "explain": {
+      "description": "After a win: one 'why' question with answers. Never costs coins.",
+      "$ref": "#/$defs/explain"
+    },
+    "curriculum": {
+      "description": "How the lesson relates to Mexico's SEP program.",
+      "type": "object",
+      "required": [
+        "status",
+        "program"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "grade": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        },
+        "phase": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        },
+        "status": {
+          "enum": [
+            "direct",
+            "preparation",
+            "extension"
+          ]
+        },
+        "program": {
+          "$ref": "#/$defs/text"
+        },
+        "books": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      }
+    },
+    "fairComparison": {
+      "description": "Ask the kid to pick two runs that compare one setting fairly.",
+      "type": "object",
+      "required": [
+        "variable",
+        "keep"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "variable": {
+          "enum": [
+            "planet",
+            "surface",
+            "position",
+            "mass",
+            "times",
+            "pole"
+          ]
+        },
+        "keep": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "planet",
+              "surface",
+              "position",
+              "mass",
+              "times",
+              "pole"
+            ]
+          }
+        }
+      }
+    },
+    "warmups": {
+      "description": "Phase 12: one or two quick tap questions before the experiment, about everyday examples of the idea. Exactly one right answer each.",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "$ref": "#/$defs/warmup"
+      }
+    }
+  },
+  "$defs": {
+    "text": {
+      "type": "object",
+      "required": [
+        "es",
+        "en"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "es": {
+          "type": "string",
+          "minLength": 1
+        },
+        "en": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "object": {
+      "type": "object",
+      "required": [
+        "id",
+        "shape",
+        "x",
+        "y"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "shape": {
+          "enum": [
+            "box",
+            "circle",
+            "sled"
+          ]
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "height": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "radius": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "mass": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "velocityX": {
+          "type": "number"
+        },
+        "fixed": {
+          "type": "boolean"
+        },
+        "carriedByDrone": {
+          "type": "boolean"
+        },
+        "color": {
+          "type": "string"
+        },
+        "label": {
+          "$ref": "#/$defs/text"
+        },
+        "material": {
+          "enum": [
+            "iron",
+            "steel",
+            "aluminum",
+            "copper",
+            "brass",
+            "wood",
+            "plastic",
+            "glass",
+            "magnet"
+          ]
+        },
+        "pole": {
+          "enum": [
+            "N",
+            "S"
+          ],
+          "description": "For a magnet object: the pole facing up."
+        }
+      }
+    },
+    "zone": {
+      "type": "object",
+      "required": [
+        "id",
+        "x",
+        "width",
+        "label"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "x": {
+          "type": "number"
+        },
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "label": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "step": {
+      "type": "object",
+      "required": [
+        "block"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "block": {
+          "enum": [
+            "set_gravity",
+            "set_mass",
+            "drop",
+            "set_surface",
+            "push",
+            "move_fulcrum",
+            "magnet_pick",
+            "magnet_pole",
+            "set_rub_surface",
+            "rub"
+          ]
+        },
+        "planet": {
+          "enum": [
+            "moon",
+            "mars",
+            "earth",
+            "jupiter"
+          ]
+        },
+        "object": {
+          "type": "string"
+        },
+        "mass": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "surface": {
+          "enum": [
+            "ice",
+            "snow",
+            "wood",
+            "sand",
+            "glass",
+            "carpet",
+            "sandpaper"
+          ]
+        },
+        "position": {
+          "type": "number"
+        },
+        "pole": {
+          "enum": [
+            "N",
+            "S"
+          ]
+        },
+        "times": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "landsInZone": {
+      "type": "object",
+      "required": [
+        "type",
+        "object",
+        "zone",
+        "timeLimit",
+        "feedback"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "lands_in_zone"
+        },
+        "object": {
+          "type": "string"
+        },
+        "zone": {
+          "type": "string"
+        },
+        "timeLimit": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "feedback": {
+          "type": "object",
+          "required": [
+            "tooShort",
+            "tooFar",
+            "notDropped"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "tooShort": {
+              "$ref": "#/$defs/text"
+            },
+            "tooFar": {
+              "$ref": "#/$defs/text"
+            },
+            "notDropped": {
+              "$ref": "#/$defs/text"
+            }
+          }
+        }
+      }
+    },
+    "stopsInZone": {
+      "type": "object",
+      "required": [
+        "type",
+        "object",
+        "zone",
+        "timeLimit",
+        "feedback"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "stops_in_zone"
+        },
+        "object": {
+          "type": "string"
+        },
+        "zone": {
+          "type": "string"
+        },
+        "timeLimit": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "feedback": {
+          "type": "object",
+          "required": [
+            "tooShort",
+            "tooFar",
+            "notPushed"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "tooShort": {
+              "$ref": "#/$defs/text"
+            },
+            "tooFar": {
+              "$ref": "#/$defs/text"
+            },
+            "notPushed": {
+              "$ref": "#/$defs/text"
+            }
+          }
+        }
+      }
+    },
+    "leverTips": {
+      "type": "object",
+      "required": [
+        "type",
+        "object",
+        "effort",
+        "timeLimit",
+        "feedback"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "lever_tips"
+        },
+        "object": {
+          "type": "string"
+        },
+        "effort": {
+          "type": "string"
+        },
+        "timeLimit": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "feedback": {
+          "type": "object",
+          "required": [
+            "tooHeavy",
+            "notDropped"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "tooHeavy": {
+              "$ref": "#/$defs/text"
+            },
+            "notDropped": {
+              "$ref": "#/$defs/text"
+            }
+          }
+        }
+      }
+    },
+    "collectsMagnetic": {
+      "type": "object",
+      "required": [
+        "type",
+        "targets",
+        "timeLimit",
+        "feedback"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "collects_magnetic"
+        },
+        "targets": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "timeLimit": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "feedback": {
+          "type": "object",
+          "required": [
+            "notPicked",
+            "repelled",
+            "wrongPick",
+            "missed"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "notPicked": {
+              "$ref": "#/$defs/text"
+            },
+            "repelled": {
+              "$ref": "#/$defs/text"
+            },
+            "wrongPick": {
+              "$ref": "#/$defs/text"
+            },
+            "missed": {
+              "$ref": "#/$defs/text"
+            }
+          }
+        }
+      }
+    },
+    "temperatureInBand": {
+      "type": "object",
+      "required": [
+        "type",
+        "min",
+        "max",
+        "timeLimit",
+        "feedback"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "temperature_in_band"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "timeLimit": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "feedback": {
+          "type": "object",
+          "required": [
+            "tooCold",
+            "tooHot",
+            "notRubbed"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "tooCold": {
+              "$ref": "#/$defs/text"
+            },
+            "tooHot": {
+              "$ref": "#/$defs/text"
+            },
+            "notRubbed": {
+              "$ref": "#/$defs/text"
+            }
+          }
+        }
+      }
+    },
+    "explain": {
+      "type": "object",
+      "required": [
+        "question",
+        "options",
+        "answer"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "question": {
+          "$ref": "#/$defs/text"
+        },
+        "answer": {
+          "type": "string"
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "label",
+              "feedback"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+              },
+              "label": {
+                "$ref": "#/$defs/text"
+              },
+              "feedback": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        }
+      }
+    },
+    "warmup": {
+      "type": "object",
+      "required": [
+        "id",
+        "question",
+        "options",
+        "answer"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "question": {
+          "$ref": "#/$defs/text"
+        },
+        "picture": {
+          "description": "A picture from assets/, like minigames/friction/track-ice.svg.",
+          "type": "string",
+          "pattern": "^[a-z0-9/_-]+\\.svg$"
+        },
+        "answer": {
+          "type": "string"
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "label",
+              "feedback"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+              },
+              "label": {
+                "$ref": "#/$defs/text"
+              },
+              "feedback": {
+                "$ref": "#/$defs/text"
+              },
+              "picture": {
+                "description": "A picture from assets/, like minigames/friction/track-ice.svg.",
+                "type": "string",
+                "pattern": "^[a-z0-9/_-]+\\.svg$"
+              }
+            }
+          },
+          "maxItems": 4
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "ilo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ILO: kids learn physics by building small games with code blocks.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "postinstall": "node tools/copy-vendor.js",
+    "start": "node tools/serve.js",
+    "check": "node tools/check-lessons.js",
+    "test": "node --test tests/",
+    "import-art": "node tools/import-art.js",
+    "build-site": "node tools/build-site.js",
+    "apply-layouts": "node tools/apply-layouts.js"
+  },
+  "dependencies": {
+    "blockly": "13.4.0",
+    "matter-js": "0.20.0"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

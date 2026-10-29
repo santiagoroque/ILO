@@ -1,0 +1,444 @@
+{
+  "$schema": "../schema/lesson.schema.json",
+  "schemaVersion": 1,
+  "id": "gravity",
+  "concept": {
+    "es": "Gravedad y caída de objetos",
+    "en": "Gravity and falling objects"
+  },
+  "title": {
+    "es": "Entrega en otro planeta",
+    "en": "Delivery on another planet"
+  },
+  "goal": {
+    "es": "Elige la gravedad del simulador para que el paquete caiga en la zona verde.",
+    "en": "Choose the simulator's gravity so the package lands in the green zone."
+  },
+  "learningGoal": {
+    "es": "La gravedad hace que los objetos caigan. Con más gravedad caen más rápido, y con menos gravedad caen más despacio. La masa no cambia qué tan rápido cae algo.",
+    "en": "Gravity makes objects fall. With more gravity they fall faster, and with less gravity they fall more slowly. Mass does not change how fast something falls."
+  },
+  "intro": {
+    "es": "El puesto de drones tiene un simulador que puede copiar la gravedad de otros lugares del universo. En el simulador, un dron vuela hacia la derecha a 3 m/s y a 8 m de altura llevando un paquete. Cuando lo suelta, el paquete sigue avanzando mientras cae. Elige qué gravedad usa el simulador para que el paquete caiga justo en la zona verde.",
+    "en": "The drone post has a simulator that can copy the gravity of other places in the universe. In the simulator, a drone flies right at 3 m/s and 8 m high carrying a package. When it lets go, the package keeps moving forward while it falls. Choose which gravity the simulator uses so the package lands right in the green zone."
+  },
+  "world": {
+    "width": 16,
+    "height": 9,
+    "gravity": 9.81,
+    "objects": [
+      {
+        "id": "package",
+        "shape": "box",
+        "x": 1,
+        "y": 8,
+        "width": 0.6,
+        "height": 0.6,
+        "mass": 2,
+        "velocityX": 3,
+        "carriedByDrone": true,
+        "color": "#c98a3d",
+        "label": {
+          "es": "el paquete",
+          "en": "the package"
+        }
+      }
+    ],
+    "zones": [
+      {
+        "id": "pad",
+        "x": 6.5,
+        "width": 1.4,
+        "label": {
+          "es": "Zona de entrega",
+          "en": "Delivery zone"
+        }
+      }
+    ]
+  },
+  "reward": 50,
+  "toolbox": [
+    "set_gravity",
+    "set_mass",
+    "drop"
+  ],
+  "startingBlocks": [
+    {
+      "block": "set_gravity",
+      "planet": "earth"
+    },
+    {
+      "block": "drop",
+      "object": "package"
+    }
+  ],
+  "winCondition": {
+    "type": "lands_in_zone",
+    "object": "package",
+    "zone": "pad",
+    "timeLimit": 8,
+    "feedback": {
+      "tooShort": {
+        "es": "El paquete cayó antes de llegar a la zona. Cayó demasiado rápido. ¿Dónde hay menos gravedad?",
+        "en": "The package landed before the zone. It fell too fast. Where is there less gravity?"
+      },
+      "tooFar": {
+        "es": "El paquete se pasó de la zona. Cayó demasiado despacio. ¿Dónde hay más gravedad?",
+        "en": "The package went past the zone. It fell too slowly. Where is there more gravity?"
+      },
+      "notDropped": {
+        "es": "El dron nunca soltó el paquete. Conecta el bloque \"soltar\" debajo de \"cuando se presione Ejecutar\".",
+        "en": "The drone never let go of the package. Connect the \"drop\" block under \"when Run is pressed\"."
+      }
+    }
+  },
+  "warmups": [
+    {
+      "id": "heavy-light",
+      "question": {
+        "es": "Sueltas al mismo tiempo una pelota pesada y una ligera, desde la misma altura y sin viento. ¿Cuál llega primero al suelo?",
+        "en": "You drop a heavy ball and a light ball at the same time, from the same height, with no wind. Which reaches the ground first?"
+      },
+      "picture": "warmups/gravity-two-balls.svg",
+      "answer": "same",
+      "options": [
+        {
+          "id": "heavy",
+          "label": {
+            "es": "La pesada",
+            "en": "The heavy one"
+          },
+          "feedback": {
+            "es": "Parece lógico, pero no: sin aire que estorbe, las dos caen igual de rápido.",
+            "en": "It seems right, but no: with no air in the way, both fall just as fast."
+          }
+        },
+        {
+          "id": "light",
+          "label": {
+            "es": "La ligera",
+            "en": "The light one"
+          },
+          "feedback": {
+            "es": "No: la masa no hace que algo caiga más lento. Sin aire, las dos caen igual.",
+            "en": "No: mass does not make something fall more slowly. With no air, both fall the same."
+          }
+        },
+        {
+          "id": "same",
+          "label": {
+            "es": "Llegan al mismo tiempo",
+            "en": "They land at the same time"
+          },
+          "feedback": {
+            "es": "¡Sí! La gravedad hace caer igual de rápido a las cosas pesadas y a las ligeras, si el aire no estorba.",
+            "en": "Yes! Gravity makes heavy and light things fall equally fast, when air doesn't get in the way."
+          }
+        }
+      ]
+    },
+    {
+      "id": "weak-gravity",
+      "question": {
+        "es": "En la Luna la gravedad jala menos que en la Tierra. Si sueltas una pelota allá, ¿cómo cae?",
+        "en": "On the Moon, gravity pulls less than on Earth. If you drop a ball there, how does it fall?"
+      },
+      "picture": "warmups/gravity-moon-drop.svg",
+      "answer": "slower",
+      "options": [
+        {
+          "id": "faster",
+          "label": {
+            "es": "Más rápido que en la Tierra",
+            "en": "Faster than on Earth"
+          },
+          "feedback": {
+            "es": "Al revés: con menos gravedad, el jalón es más débil.",
+            "en": "The other way around: with less gravity, the pull is weaker."
+          }
+        },
+        {
+          "id": "slower",
+          "label": {
+            "es": "Más despacio que en la Tierra",
+            "en": "More slowly than on Earth"
+          },
+          "feedback": {
+            "es": "¡Correcto! Menos gravedad, caída más lenta. Así pasa más tiempo en el aire.",
+            "en": "Right! Less gravity, slower fall. So it spends more time in the air."
+          }
+        },
+        {
+          "id": "float",
+          "label": {
+            "es": "No cae: se queda flotando",
+            "en": "It doesn't fall: it floats"
+          },
+          "feedback": {
+            "es": "La Luna sí tiene gravedad, solo que más débil. La pelota cae, pero despacio.",
+            "en": "The Moon does have gravity, just weaker. The ball falls, but slowly."
+          }
+        }
+      ]
+    }
+  ],
+  "prediction": {
+    "question": {
+      "es": "Antes de ejecutar: ¿dónde crees que caerá el paquete?",
+      "en": "Before you run: where do you think the package will land?"
+    },
+    "options": [
+      {
+        "id": "before",
+        "label": {
+          "es": "Antes de la zona",
+          "en": "Before the zone"
+        },
+        "outcomes": [
+          "tooShort"
+        ]
+      },
+      {
+        "id": "in",
+        "label": {
+          "es": "En la zona",
+          "en": "In the zone"
+        },
+        "outcomes": [
+          "won"
+        ]
+      },
+      {
+        "id": "past",
+        "label": {
+          "es": "Después de la zona",
+          "en": "Past the zone"
+        },
+        "outcomes": [
+          "tooFar"
+        ]
+      }
+    ]
+  },
+  "hints": [
+    {
+      "es": "Fíjate en cuánto tiempo pasa el paquete en el aire. Mira el reloj (t) en la esquina.",
+      "en": "Watch how long the package stays in the air. Look at the clock (t) in the corner."
+    },
+    {
+      "es": "Compara dos lugares cambiando solo la gravedad. La altura y la velocidad del dron quedan iguales. La marca gris muestra dónde cayó la vez anterior.",
+      "en": "Compare two places by changing only the gravity. The drone's height and speed stay the same. The grey mark shows where it landed last time."
+    },
+    {
+      "es": "Con menos gravedad, el paquete cae más despacio, pasa más tiempo en el aire y sigue avanzando, así que llega más lejos. Con más gravedad, cae antes.",
+      "en": "With less gravity the package falls more slowly, stays in the air longer and keeps moving forward, so it lands farther away. With more gravity it lands sooner."
+    },
+    {
+      "es": "Ejemplo: en la Tierra cayó antes de la zona, así que necesitas menos gravedad que la Tierra. La Luna tiene muchísima menos y lo manda demasiado lejos. Prueba un lugar con gravedad entre la Luna y la Tierra.",
+      "en": "Example: on Earth it landed before the zone, so you need less gravity than Earth. The Moon has much less and sends it too far. Try a place with gravity between the Moon and Earth."
+    }
+  ],
+  "success": {
+    "es": "¡Entrega perfecta en Marte! La gravedad de Marte es más débil que la de la Tierra, así que el paquete cayó más despacio y llegó más lejos. ¿Notaste que cambiar la masa no cambió dónde cayó?",
+    "en": "Perfect delivery on Mars! Mars has weaker gravity than Earth, so the package fell more slowly and traveled farther. Did you notice that changing the mass did not change where it landed?"
+  },
+  "explain": {
+    "question": {
+      "es": "¿Por qué el paquete llegó más lejos con menos gravedad?",
+      "en": "Why did the package go farther with less gravity?"
+    },
+    "answer": "time",
+    "options": [
+      {
+        "id": "time",
+        "label": {
+          "es": "Cayó más despacio, así que pasó más tiempo en el aire avanzando.",
+          "en": "It fell more slowly, so it spent more time in the air moving forward."
+        },
+        "feedback": {
+          "es": "¡Así es! Más tiempo en el aire significa más distancia hacia adelante.",
+          "en": "That's right! More time in the air means more distance forward."
+        }
+      },
+      {
+        "id": "faster",
+        "label": {
+          "es": "El dron voló más rápido.",
+          "en": "The drone flew faster."
+        },
+        "feedback": {
+          "es": "Piensa otra vez: el dron voló a 3 m/s en todos los planetas. ¿Qué cambió?",
+          "en": "Think again: the drone flew at 3 m/s on every planet. What changed?"
+        }
+      },
+      {
+        "id": "lighter",
+        "label": {
+          "es": "El paquete pesaba menos, así que cayó más lento.",
+          "en": "The package was lighter, so it fell more slowly."
+        },
+        "feedback": {
+          "es": "Piensa otra vez: prueba cambiar la masa. ¿Cambia dónde cae?",
+          "en": "Think again: try changing the mass. Does it change where it lands?"
+        }
+      }
+    ]
+  },
+  "challenges": [
+    {
+      "id": "low-fast",
+      "title": {
+        "es": "Caso nuevo: el dron bajo y rápido",
+        "en": "Changed case: the low, fast drone"
+      },
+      "intro": {
+        "es": "Ahora el simulador hace volar el dron más bajo (5 m) y más rápido (4 m/s), y la zona de entrega está mucho más lejos, a 10 m. Usa lo que aprendiste: ¿qué gravedad hace que el paquete llegue ahora?",
+        "en": "Now the simulator flies the drone lower (5 m) and faster (4 m/s), and the delivery zone is much farther away, at 10 m. Use what you learned: which gravity makes the package reach it now?"
+      },
+      "success": {
+        "es": "¡Lo lograste en un caso nuevo! Desde más abajo, el paquete pasa menos tiempo en el aire, así que hizo falta una gravedad todavía más débil, la de la Luna, para que llegara tan lejos.",
+        "en": "You did it in a new case! From lower down the package spends less time in the air, so it needed an even weaker gravity, the Moon's, to reach that far."
+      },
+      "reward": 30,
+      "startingBlocks": [
+        {
+          "block": "set_gravity",
+          "planet": "mars"
+        },
+        {
+          "block": "drop",
+          "object": "package"
+        }
+      ],
+      "world": {
+        "objects": [
+          {
+            "id": "package",
+            "shape": "box",
+            "x": 1,
+            "y": 5,
+            "width": 0.6,
+            "height": 0.6,
+            "mass": 2,
+            "velocityX": 4,
+            "carriedByDrone": true,
+            "color": "#c98a3d",
+            "label": {
+              "es": "el paquete",
+              "en": "the package"
+            }
+          }
+        ],
+        "zones": [
+          {
+            "id": "pad",
+            "x": 10,
+            "width": 1.3,
+            "label": {
+              "es": "Zona de entrega",
+              "en": "Delivery zone"
+            }
+          }
+        ]
+      },
+      "winCondition": {},
+      "goal": {
+        "es": "El dron vuela más bajo y más rápido. ¿Qué gravedad lo lleva a la zona?",
+        "en": "The drone flies lower and faster. Which gravity gets it to the zone?"
+      }
+    }
+  ],
+  "curriculum": {
+    "grade": 6,
+    "phase": 5,
+    "status": "extension",
+    "program": {
+      "es": "Programa Sintético Fase 5, 6.º grado, pp. 46-47: \"Efecto del magnetismo y de la fuerza de gravedad\": caída de objetos y simuladores que muestran que el tiempo de caída no depende de la masa. Para 4.º y 5.º es una ampliación.",
+      "en": "SEP Programa Sintético, Phase 5, 6th grade, pp. 46-47: \"Effect of magnetism and the force of gravity\": falling objects, and simulators showing fall time does not depend on mass. For 4th and 5th grade it is an extension."
+    },
+    "books": [
+      {
+        "es": "Nuestros saberes, 6.º grado (2026): \"Gravedad\" y \"Fuerza gravitacional\" (p. 117), \"Masa\" y \"Peso\" (p. 118).",
+        "en": "Nuestros saberes, 6th grade (2026): \"Gravedad\" and \"Fuerza gravitacional\" (p. 117), \"Masa\" and \"Peso\" (p. 118)."
+      }
+    ]
+  },
+  "teacher": {
+    "objective": {
+      "es": "Predecir cómo una gravedad más débil cambia el tiempo en el aire y la distancia horizontal de un paquete que se suelta, cuando la altura y la velocidad del dron no cambian.",
+      "en": "Predict how weaker gravity changes the time in the air and the horizontal distance of a released package, when the drone's height and speed stay the same."
+    },
+    "prerequisites": {
+      "es": "Comparar cantidades (más/menos), leer una regla en metros, y saber que en un experimento se cambia una cosa a la vez.",
+      "en": "Comparing quantities (more/less), reading a ruler in meters, and knowing that an experiment changes one thing at a time."
+    },
+    "assumptions": {
+      "es": "Modelo ideal: sin aire, el paquete sale con la velocidad horizontal del dron y cae con aceleración constante g. Tiempo de caída t = √(2h/g); distancia horizontal desde el punto de suelta x = v·t. La masa no cambia el resultado. Es un simulador: el dron vuela igual en todos los planetas, algo que en la vida real no pasaría (otra atmósfera, otro motor). Las marcas en el suelo cuentan desde el borde izquierdo, no desde donde se soltó el paquete.",
+      "en": "Ideal model: no air, the package leaves with the drone's horizontal speed and falls with constant acceleration g. Fall time t = √(2h/g); horizontal distance from the release point x = v·t. Mass does not change the result. It is a simulator: the drone flies the same on every planet, which would not happen in real life (different air, different engine). The ground marks count from the left edge, not from where the package was released."
+    },
+    "vocabulary": [
+      {
+        "es": "gravedad",
+        "en": "gravity"
+      },
+      {
+        "es": "caer",
+        "en": "to fall"
+      },
+      {
+        "es": "masa",
+        "en": "mass"
+      },
+      {
+        "es": "velocidad",
+        "en": "speed"
+      },
+      {
+        "es": "predicción",
+        "en": "prediction"
+      },
+      {
+        "es": "comparar",
+        "en": "to compare"
+      }
+    ],
+    "misconceptions": [
+      {
+        "es": "\"Marte es la respuesta correcta\": la respuesta depende de la altura, la velocidad y dónde está la zona. El caso nuevo lo muestra.",
+        "en": "\"Mars is the right answer\": the answer depends on the height, the speed and where the zone is. The changed case shows this."
+      },
+      {
+        "es": "\"Lo más pesado cae más rápido\": en este modelo sin aire, la masa no cambia la caída. Pídeles probar el bloque de masa.",
+        "en": "\"Heavier things fall faster\": in this model with no air, mass does not change the fall. Ask them to try the mass block."
+      },
+      {
+        "es": "\"Menos gravedad significa que el paquete flota\": sigue cayendo, solo más despacio.",
+        "en": "\"Less gravity means the package floats\": it still falls, just more slowly."
+      }
+    ],
+    "opening": {
+      "es": "Si sueltas una pelota en la Luna y en la Tierra desde la misma altura, ¿cuál llega primero al suelo? ¿Por qué?",
+      "en": "If you drop a ball on the Moon and on Earth from the same height, which one reaches the ground first? Why?"
+    },
+    "discussion": {
+      "es": "¿Qué cambiaste entre un intento y otro, y qué dejaste igual? ¿Cómo te ayudó la marca del intento anterior?",
+      "en": "What did you change between one try and the next, and what did you keep the same? How did the mark from the last try help you?"
+    },
+    "transfer": {
+      "es": "En papel: un dron suelta una caja desde 2 m de altura en vez de 8 m, en la Tierra. ¿La caja cae más cerca o más lejos? Explica con la palabra \"tiempo\".",
+      "en": "On paper: a drone drops a box from 2 m instead of 8 m, on Earth. Does the box land closer or farther? Explain using the word \"time\"."
+    },
+    "meaning": {
+      "es": "\"Resuelto\" significa que entregó el paquete en el caso principal; pudo haber sido probando todas las opciones. \"Aplicado\" significa que también resolvió el caso nuevo (dron más bajo y rápido), que necesita otra respuesta. Ninguno de los dos es una nota: confirma la comprensión con la pregunta de papel.",
+      "en": "\"Solved\" means they delivered the package in the main case; they may have tried every option. \"Applied\" means they also solved the changed case (lower, faster drone), which needs a different answer. Neither is a grade: check understanding with the paper question."
+    },
+    "decision": {
+      "es": "Elige un planeta (la gravedad), dejando igual la altura y la velocidad del dron.",
+      "en": "Chooses a planet (the gravity), keeping the drone's height and speed the same."
+    },
+    "evidence": {
+      "es": "Predice dónde cae; compara con la marca anterior; explica con \"más tiempo en el aire\"; en el caso nuevo elige otra gravedad sin probarlas todas.",
+      "en": "Predicts where it lands; compares with the previous mark; explains with \"more time in the air\"; in the changed case picks another gravity without trying them all."
+    }
+  }
+}

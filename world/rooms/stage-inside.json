@@ -1,0 +1,510 @@
+{
+  "$schema": "../../schema/room.schema.json",
+  "schemaVersion": 1,
+  "id": "stage-inside",
+  "kind": "indoor",
+  "interior": "fiesta",
+  "name": {
+    "es": "Dentro del salón de fiestas",
+    "en": "Inside the fiesta hall"
+  },
+  "spawn": {
+    "x": 640,
+    "y": 620
+  },
+  "minY": 280,
+  "areas": [
+    {
+      "id": "ground",
+      "type": "indoor",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1280,
+          0
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ]
+    }
+  ],
+  "paths": [],
+  "stations": [],
+  "exits": [
+    {
+      "id": "south",
+      "x": 560,
+      "y": 680,
+      "width": 160,
+      "height": 40,
+      "spawn": {
+        "x": 640,
+        "y": 610
+      },
+      "to": "market-street",
+      "toStation": "stage",
+      "sign": {
+        "x": 640,
+        "y": 650
+      }
+    }
+  ],
+  "decorations": [],
+  "scatter": [],
+  "furniture": [
+    {
+      "id": "stage",
+      "x": 640,
+      "y": 385,
+      "scale": 0.8,
+      "art": "world/stations/performance-stage.svg"
+    },
+    {
+      "id": "dance-floor",
+      "x": 638,
+      "y": 625,
+      "scale": 1,
+      "tiles": true
+    },
+    {
+      "id": "speaker",
+      "x": 180,
+      "y": 470,
+      "scale": 1.04,
+      "art": "world/stations/speaker.svg"
+    },
+    {
+      "id": "speaker",
+      "x": 1100,
+      "y": 470,
+      "scale": 1.04,
+      "art": "world/stations/speaker.svg"
+    },
+    {
+      "id": "marimba",
+      "x": 970,
+      "y": 610,
+      "scale": 0.8,
+      "art": "world/stations/marimba.svg",
+      "animation": [
+        "world/stations/marimba-1.svg",
+        "world/stations/marimba-2.svg",
+        "world/stations/marimba-3.svg"
+      ]
+    },
+    {
+      "id": "papel-picado",
+      "x": 330,
+      "y": 180,
+      "scale": 1.6
+    },
+    {
+      "id": "papel-picado",
+      "x": 950,
+      "y": 180,
+      "scale": 1.6
+    },
+    {
+      "id": "lantern",
+      "x": 180,
+      "y": 340,
+      "scale": 1.28
+    },
+    {
+      "id": "lantern",
+      "x": 1100,
+      "y": 340,
+      "scale": 1.28
+    }
+  ],
+  "layout": {
+    "revision": "room-redesign-3-wide",
+    "ground": "world/rooms-v3/stage-inside/ground.svg",
+    "scale": 1.5,
+    "surface": "indoor",
+    "walk": [
+      [
+        [
+          40,
+          270
+        ],
+        [
+          1240,
+          270
+        ],
+        [
+          1240,
+          700
+        ],
+        [
+          40,
+          700
+        ]
+      ],
+      [
+        [
+          540,
+          570
+        ],
+        [
+          740,
+          570
+        ],
+        [
+          740,
+          720
+        ],
+        [
+          540,
+          720
+        ]
+      ]
+    ],
+    "blocked": [],
+    "water": {},
+    "objects": [
+      {
+        "type": "cabin-window",
+        "asset": "world/walls/cabin-window.svg",
+        "x": 640,
+        "y": 175,
+        "scale": 1,
+        "layer": "wall"
+      },
+      {
+        "type": "dance-tile-coral",
+        "asset": "world/stations/dance-tile-coral-1.svg",
+        "x": 510,
+        "y": 465,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-coral-1.svg",
+          "world/stations/dance-tile-coral-2.svg",
+          "world/stations/dance-tile-coral-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-gold",
+        "asset": "world/stations/dance-tile-gold-1.svg",
+        "x": 574,
+        "y": 465,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-gold-1.svg",
+          "world/stations/dance-tile-gold-2.svg",
+          "world/stations/dance-tile-gold-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-teal",
+        "asset": "world/stations/dance-tile-teal-1.svg",
+        "x": 638,
+        "y": 465,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-teal-1.svg",
+          "world/stations/dance-tile-teal-2.svg",
+          "world/stations/dance-tile-teal-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-violet",
+        "asset": "world/stations/dance-tile-violet-1.svg",
+        "x": 702,
+        "y": 465,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-violet-1.svg",
+          "world/stations/dance-tile-violet-2.svg",
+          "world/stations/dance-tile-violet-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-coral",
+        "asset": "world/stations/dance-tile-coral-1.svg",
+        "x": 766,
+        "y": 465,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-coral-1.svg",
+          "world/stations/dance-tile-coral-2.svg",
+          "world/stations/dance-tile-coral-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-gold",
+        "asset": "world/stations/dance-tile-gold-1.svg",
+        "x": 510,
+        "y": 505,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-gold-1.svg",
+          "world/stations/dance-tile-gold-2.svg",
+          "world/stations/dance-tile-gold-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-teal",
+        "asset": "world/stations/dance-tile-teal-1.svg",
+        "x": 574,
+        "y": 505,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-teal-1.svg",
+          "world/stations/dance-tile-teal-2.svg",
+          "world/stations/dance-tile-teal-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-violet",
+        "asset": "world/stations/dance-tile-violet-1.svg",
+        "x": 638,
+        "y": 505,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-violet-1.svg",
+          "world/stations/dance-tile-violet-2.svg",
+          "world/stations/dance-tile-violet-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-coral",
+        "asset": "world/stations/dance-tile-coral-1.svg",
+        "x": 702,
+        "y": 505,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-coral-1.svg",
+          "world/stations/dance-tile-coral-2.svg",
+          "world/stations/dance-tile-coral-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-gold",
+        "asset": "world/stations/dance-tile-gold-1.svg",
+        "x": 766,
+        "y": 505,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-gold-1.svg",
+          "world/stations/dance-tile-gold-2.svg",
+          "world/stations/dance-tile-gold-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-teal",
+        "asset": "world/stations/dance-tile-teal-1.svg",
+        "x": 510,
+        "y": 545,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-teal-1.svg",
+          "world/stations/dance-tile-teal-2.svg",
+          "world/stations/dance-tile-teal-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-violet",
+        "asset": "world/stations/dance-tile-violet-1.svg",
+        "x": 574,
+        "y": 545,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-violet-1.svg",
+          "world/stations/dance-tile-violet-2.svg",
+          "world/stations/dance-tile-violet-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-coral",
+        "asset": "world/stations/dance-tile-coral-1.svg",
+        "x": 638,
+        "y": 545,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-coral-1.svg",
+          "world/stations/dance-tile-coral-2.svg",
+          "world/stations/dance-tile-coral-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-gold",
+        "asset": "world/stations/dance-tile-gold-1.svg",
+        "x": 702,
+        "y": 545,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-gold-1.svg",
+          "world/stations/dance-tile-gold-2.svg",
+          "world/stations/dance-tile-gold-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-teal",
+        "asset": "world/stations/dance-tile-teal-1.svg",
+        "x": 766,
+        "y": 545,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-teal-1.svg",
+          "world/stations/dance-tile-teal-2.svg",
+          "world/stations/dance-tile-teal-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-violet",
+        "asset": "world/stations/dance-tile-violet-1.svg",
+        "x": 510,
+        "y": 585,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-violet-1.svg",
+          "world/stations/dance-tile-violet-2.svg",
+          "world/stations/dance-tile-violet-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-coral",
+        "asset": "world/stations/dance-tile-coral-1.svg",
+        "x": 574,
+        "y": 585,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-coral-1.svg",
+          "world/stations/dance-tile-coral-2.svg",
+          "world/stations/dance-tile-coral-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-gold",
+        "asset": "world/stations/dance-tile-gold-1.svg",
+        "x": 638,
+        "y": 585,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-gold-1.svg",
+          "world/stations/dance-tile-gold-2.svg",
+          "world/stations/dance-tile-gold-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-teal",
+        "asset": "world/stations/dance-tile-teal-1.svg",
+        "x": 702,
+        "y": 585,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-teal-1.svg",
+          "world/stations/dance-tile-teal-2.svg",
+          "world/stations/dance-tile-teal-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-violet",
+        "asset": "world/stations/dance-tile-violet-1.svg",
+        "x": 766,
+        "y": 585,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-violet-1.svg",
+          "world/stations/dance-tile-violet-2.svg",
+          "world/stations/dance-tile-violet-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-coral",
+        "asset": "world/stations/dance-tile-coral-1.svg",
+        "x": 510,
+        "y": 625,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-coral-1.svg",
+          "world/stations/dance-tile-coral-2.svg",
+          "world/stations/dance-tile-coral-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-gold",
+        "asset": "world/stations/dance-tile-gold-1.svg",
+        "x": 574,
+        "y": 625,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-gold-1.svg",
+          "world/stations/dance-tile-gold-2.svg",
+          "world/stations/dance-tile-gold-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-teal",
+        "asset": "world/stations/dance-tile-teal-1.svg",
+        "x": 638,
+        "y": 625,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-teal-1.svg",
+          "world/stations/dance-tile-teal-2.svg",
+          "world/stations/dance-tile-teal-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-violet",
+        "asset": "world/stations/dance-tile-violet-1.svg",
+        "x": 702,
+        "y": 625,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-violet-1.svg",
+          "world/stations/dance-tile-violet-2.svg",
+          "world/stations/dance-tile-violet-3.svg"
+        ]
+      },
+      {
+        "type": "dance-tile-coral",
+        "asset": "world/stations/dance-tile-coral-1.svg",
+        "x": 766,
+        "y": 625,
+        "scale": 1,
+        "layer": "floor",
+        "animation": [
+          "world/stations/dance-tile-coral-1.svg",
+          "world/stations/dance-tile-coral-2.svg",
+          "world/stations/dance-tile-coral-3.svg"
+        ]
+      }
+    ]
+  }
+}

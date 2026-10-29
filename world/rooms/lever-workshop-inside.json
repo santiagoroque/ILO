@@ -1,0 +1,246 @@
+{
+  "$schema": "../../schema/room.schema.json",
+  "schemaVersion": 1,
+  "id": "lever-workshop-inside",
+  "kind": "indoor",
+  "interior": "cabin",
+  "name": {
+    "es": "Dentro del taller",
+    "en": "Inside the workshop"
+  },
+  "spawn": {
+    "x": 640,
+    "y": 620
+  },
+  "minY": 280,
+  "areas": [
+    {
+      "id": "ground",
+      "type": "indoor",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1280,
+          0
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ]
+    }
+  ],
+  "paths": [],
+  "stations": [
+    {
+      "id": "lever-machine",
+      "kind": "lesson",
+      "lesson": "lever",
+      "style": "arcade",
+      "x": 470,
+      "y": 450,
+      "name": {
+        "es": "Levanta la roca",
+        "en": "Lift the rock"
+      },
+      "description": {
+        "es": "Minijuego de palancas: levanta una roca pesada.",
+        "en": "Lever minigame: lift a heavy rock."
+      },
+      "door": {
+        "x": 470,
+        "y": 477.4
+      },
+      "art": {
+        "asset": "world/stations/arcade-lever.svg",
+        "scale": 1.8,
+        "bounds": [
+          380,
+          162,
+          560,
+          450
+        ],
+        "footprint": {
+          "rect": [
+            409,
+            407,
+            531,
+            450
+          ]
+        },
+        "animation": [
+          "world/stations/arcade-lever-1.svg",
+          "world/stations/arcade-lever-2.svg",
+          "world/stations/arcade-lever-3.svg"
+        ]
+      }
+    },
+    {
+      "id": "heat-machine",
+      "kind": "lesson",
+      "lesson": "heat",
+      "style": "arcade",
+      "x": 920,
+      "y": 450,
+      "name": {
+        "es": "Frota y calienta",
+        "en": "Rub it warm"
+      },
+      "description": {
+        "es": "Minijuego de fricción y calor (4.º grado).",
+        "en": "Friction and heat minigame (4th grade)."
+      },
+      "door": {
+        "x": 920,
+        "y": 477.4
+      },
+      "art": {
+        "asset": "world/stations/arcade-heat.svg",
+        "scale": 1.8,
+        "bounds": [
+          830,
+          162,
+          1010,
+          450
+        ],
+        "footprint": {
+          "rect": [
+            859,
+            407,
+            981,
+            450
+          ]
+        },
+        "animation": [
+          "world/stations/arcade-heat-1.svg",
+          "world/stations/arcade-heat-2.svg",
+          "world/stations/arcade-heat-3.svg"
+        ]
+      }
+    }
+  ],
+  "exits": [
+    {
+      "id": "south",
+      "x": 560,
+      "y": 680,
+      "width": 160,
+      "height": 40,
+      "spawn": {
+        "x": 640,
+        "y": 610
+      },
+      "to": "lever-glade",
+      "toStation": "lever-workshop",
+      "sign": {
+        "x": 640,
+        "y": 650
+      }
+    }
+  ],
+  "decorations": [],
+  "scatter": [],
+  "furniture": [
+    {
+      "id": "table",
+      "x": 180,
+      "y": 600,
+      "scale": 1.6
+    },
+    {
+      "id": "bookshelf",
+      "x": 1100,
+      "y": 400,
+      "scale": 1.6
+    },
+    {
+      "id": "chair",
+      "x": 340,
+      "y": 610,
+      "scale": 1.6
+    },
+    {
+      "id": "lamp",
+      "x": 150,
+      "y": 380,
+      "scale": 1.6
+    },
+    {
+      "id": "plant",
+      "x": 1170,
+      "y": 590,
+      "scale": 1.6
+    }
+  ],
+  "layout": {
+    "revision": "room-redesign-3-wide",
+    "ground": "world/rooms-v3/lever-workshop-inside/ground.svg",
+    "scale": 1.5,
+    "surface": "indoor",
+    "walk": [
+      [
+        [
+          40,
+          270
+        ],
+        [
+          1240,
+          270
+        ],
+        [
+          1240,
+          700
+        ],
+        [
+          40,
+          700
+        ]
+      ],
+      [
+        [
+          540,
+          570
+        ],
+        [
+          740,
+          570
+        ],
+        [
+          740,
+          720
+        ],
+        [
+          540,
+          720
+        ]
+      ]
+    ],
+    "blocked": [],
+    "water": {},
+    "objects": [
+      {
+        "type": "cabin-window",
+        "asset": "world/walls/cabin-window.svg",
+        "x": 640,
+        "y": 175,
+        "scale": 1,
+        "layer": "wall"
+      },
+      {
+        "type": "workshop-tools",
+        "asset": "world/decorations/workshop-tools-v3.svg",
+        "x": 200,
+        "y": 180,
+        "scale": 0.8,
+        "layer": "wall"
+      }
+    ]
+  }
+}

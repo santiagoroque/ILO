@@ -1,0 +1,567 @@
+{
+  "$schema": "../schema/lesson.schema.json",
+  "schemaVersion": 1,
+  "id": "magnets",
+  "concept": {
+    "es": "Magnetismo: qué atrae un imán",
+    "en": "Magnetism: what a magnet attracts"
+  },
+  "title": {
+    "es": "La grúa de imán",
+    "en": "The magnet crane"
+  },
+  "goal": {
+    "es": "Con 3 viajes, lleva al contenedor todo lo que el imán puede levantar.",
+    "en": "With 3 trips, take everything the magnet can lift to the bin."
+  },
+  "learningGoal": {
+    "es": "Un imán atrae a distancia algunos materiales, como el hierro y el acero. No atrae a la madera, el plástico, el vidrio ni a todos los metales: el aluminio y el cobre no se pegan.",
+    "en": "A magnet pulls some materials from a distance, like iron and steel. It does not pull wood, plastic, glass or every metal: aluminum and copper do not stick."
+  },
+  "intro": {
+    "es": "En el puesto de drones, que también recicla metal, una grúa con un imán separa los objetos de hierro y acero. La grúa solo tiene 3 viajes. Elige qué objetos levantar: si el imán no atrae un objeto, el viaje se pierde.",
+    "en": "At the drone post, which also recycles metal, a crane with a magnet sorts out the iron and steel things. The crane only has 3 trips. Choose which objects to pick up: if the magnet does not pull an object, the trip is wasted."
+  },
+  "world": {
+    "model": "magnet",
+    "width": 16,
+    "height": 6,
+    "gravity": 9.81,
+    "zones": [],
+    "crane": {
+      "trips": 3,
+      "pole": "S",
+      "x": 1
+    },
+    "bin": {
+      "x": 14.3,
+      "label": {
+        "es": "Metal para reciclar",
+        "en": "Metal to recycle"
+      }
+    },
+    "objects": [
+      {
+        "id": "clip",
+        "shape": "box",
+        "x": 2,
+        "y": 0,
+        "width": 0.85,
+        "height": 0.42,
+        "material": "steel",
+        "label": {
+          "es": "clip de acero",
+          "en": "steel clip"
+        }
+      },
+      {
+        "id": "can",
+        "shape": "box",
+        "x": 3.8,
+        "y": 0,
+        "width": 0.85,
+        "height": 1.36,
+        "material": "aluminum",
+        "label": {
+          "es": "lata de aluminio",
+          "en": "aluminum can"
+        }
+      },
+      {
+        "id": "nail",
+        "shape": "box",
+        "x": 5.6,
+        "y": 0,
+        "width": 1.19,
+        "height": 0.34,
+        "material": "iron",
+        "label": {
+          "es": "clavo de hierro",
+          "en": "iron nail"
+        }
+      },
+      {
+        "id": "key",
+        "shape": "box",
+        "x": 7.4,
+        "y": 0,
+        "width": 1.02,
+        "height": 0.42,
+        "material": "brass",
+        "label": {
+          "es": "llave de latón",
+          "en": "brass key"
+        }
+      },
+      {
+        "id": "cap",
+        "shape": "circle",
+        "x": 9.2,
+        "y": 0,
+        "width": 0.77,
+        "height": 0.34,
+        "material": "steel",
+        "label": {
+          "es": "corcholata de acero",
+          "en": "steel bottle cap"
+        }
+      },
+      {
+        "id": "spoon",
+        "shape": "box",
+        "x": 11,
+        "y": 0,
+        "width": 1.36,
+        "height": 0.26,
+        "material": "plastic",
+        "label": {
+          "es": "cuchara de plástico",
+          "en": "plastic spoon"
+        }
+      }
+    ]
+  },
+  "reward": 50,
+  "toolbox": [
+    "magnet_pick"
+  ],
+  "startingBlocks": [
+    {
+      "block": "magnet_pick",
+      "object": "clip"
+    },
+    {
+      "block": "magnet_pick",
+      "object": "can"
+    }
+  ],
+  "winCondition": {
+    "type": "collects_magnetic",
+    "targets": [
+      "clip",
+      "nail",
+      "cap"
+    ],
+    "timeLimit": 40,
+    "feedback": {
+      "notPicked": {
+        "es": "La grúa no levantó nada. Conecta bloques \"levantar con la grúa\" debajo de \"cuando se presione Ejecutar\".",
+        "en": "The crane did not pick anything. Connect \"pick up with the crane\" blocks under \"when Run is pressed\"."
+      },
+      "repelled": {
+        "es": "El imán empujó el objeto en vez de atraerlo. ¿Qué polos se están mirando?",
+        "en": "The magnet pushed the object away instead of pulling it. Which poles are facing each other?"
+      },
+      "wrongPick": {
+        "es": "Se perdió un viaje: el imán no atrae ese objeto. ¿De qué material está hecho?",
+        "en": "A trip was wasted: the magnet does not pull that object. What material is it made of?"
+      },
+      "missed": {
+        "es": "Todo lo que elegiste se pegó, pero quedó algo de hierro o acero fuera del contenedor. ¿Qué te faltó?",
+        "en": "Everything you chose stuck, but some iron or steel was left out of the bin. What did you miss?"
+      }
+    }
+  },
+  "warmups": [
+    {
+      "id": "what-sticks",
+      "question": {
+        "es": "¿Cuál de estas cosas atrae un imán?",
+        "en": "Which of these does a magnet attract?"
+      },
+      "picture": "warmups/magnets-paper-clip-spoon-pencil.svg",
+      "answer": "clip",
+      "options": [
+        {
+          "id": "clip",
+          "label": {
+            "es": "Un clip de acero",
+            "en": "A steel paper clip"
+          },
+          "feedback": {
+            "es": "¡Sí! El acero tiene hierro, y los imanes atraen el hierro.",
+            "en": "Yes! Steel contains iron, and magnets attract iron."
+          }
+        },
+        {
+          "id": "spoon",
+          "label": {
+            "es": "Una cuchara de plástico",
+            "en": "A plastic spoon"
+          },
+          "feedback": {
+            "es": "El plástico no es magnético: el imán no lo atrae.",
+            "en": "Plastic is not magnetic: the magnet doesn't attract it."
+          }
+        },
+        {
+          "id": "pencil",
+          "label": {
+            "es": "Un lápiz de madera",
+            "en": "A wooden pencil"
+          },
+          "feedback": {
+            "es": "La madera no es magnética: el imán no la atrae.",
+            "en": "Wood is not magnetic: the magnet doesn't attract it."
+          }
+        }
+      ]
+    },
+    {
+      "id": "can",
+      "question": {
+        "es": "Una lata de aluminio es de metal. ¿La atrae un imán?",
+        "en": "An aluminum can is made of metal. Does a magnet attract it?"
+      },
+      "picture": "warmups/magnets-aluminum-can.svg",
+      "answer": "no",
+      "options": [
+        {
+          "id": "yes",
+          "label": {
+            "es": "Sí, los imanes atraen todos los metales",
+            "en": "Yes, magnets attract all metals"
+          },
+          "feedback": {
+            "es": "No todos los metales son magnéticos. El aluminio no lo es.",
+            "en": "Not all metals are magnetic. Aluminum isn't."
+          }
+        },
+        {
+          "id": "no",
+          "label": {
+            "es": "No, el aluminio no es magnético",
+            "en": "No, aluminum isn't magnetic"
+          },
+          "feedback": {
+            "es": "¡Correcto! Los imanes atraen el hierro y el acero, pero no el aluminio ni el cobre.",
+            "en": "Right! Magnets attract iron and steel, but not aluminum or copper."
+          }
+        },
+        {
+          "id": "empty",
+          "label": {
+            "es": "Solo si está vacía",
+            "en": "Only if it's empty"
+          },
+          "feedback": {
+            "es": "Vacía o llena, el aluminio no es magnético.",
+            "en": "Empty or full, aluminum is not magnetic."
+          }
+        }
+      ]
+    }
+  ],
+  "prediction": {
+    "question": {
+      "es": "Antes de ejecutar: ¿todo lo que elegiste se pegará al imán?",
+      "en": "Before you run: will everything you chose stick to the magnet?"
+    },
+    "options": [
+      {
+        "id": "all",
+        "label": {
+          "es": "Sí, todo se pegará",
+          "en": "Yes, everything will stick"
+        },
+        "outcomes": [
+          "won",
+          "missed"
+        ]
+      },
+      {
+        "id": "some",
+        "label": {
+          "es": "Algo no se pegará",
+          "en": "Something won't stick"
+        },
+        "outcomes": [
+          "wrongPick",
+          "repelled"
+        ]
+      }
+    ]
+  },
+  "hints": [
+    {
+      "es": "Mira bien cuando el imán baja: algunos objetos saltan hacia él sin tocarlo. Eso es el magnetismo actuando a distancia.",
+      "en": "Watch closely when the magnet comes down: some objects jump up to it without touching. That is magnetism acting at a distance."
+    },
+    {
+      "es": "Prueba un objeto a la vez y anota en \"Mis experimentos\" cuáles se pegan y de qué material son.",
+      "en": "Try one object at a time and note in \"My experiments\" which ones stick and what they are made of."
+    },
+    {
+      "es": "El imán atrae el hierro y el acero. No todos los metales: el aluminio, el cobre y el latón no se pegan.",
+      "en": "The magnet pulls iron and steel. Not every metal: aluminum, copper and brass do not stick."
+    },
+    {
+      "es": "Ejemplo: el clip es de acero, así que se pega; la lata es de aluminio, así que no. Busca los otros dos objetos de hierro o acero.",
+      "en": "Example: the clip is steel, so it sticks; the can is aluminum, so it does not. Find the other two iron or steel objects."
+    }
+  ],
+  "success": {
+    "es": "¡Separaste el metal! El imán atrae el hierro y el acero, aunque no los toque. La lata de aluminio y la llave de latón son metales, pero el imán no las atrae.",
+    "en": "You sorted the metal! The magnet pulls iron and steel, even without touching them. The aluminum can and the brass key are metal, but the magnet does not pull them."
+  },
+  "explain": {
+    "question": {
+      "es": "¿Por qué la grúa no pudo levantar la lata?",
+      "en": "Why couldn't the crane pick up the can?"
+    },
+    "answer": "aluminum",
+    "options": [
+      {
+        "id": "aluminum",
+        "label": {
+          "es": "Es de aluminio, y el imán no atrae el aluminio.",
+          "en": "It is aluminum, and the magnet does not pull aluminum."
+        },
+        "feedback": {
+          "es": "¡Así es! El imán atrae algunos materiales, como el hierro y el acero, pero no todos los metales.",
+          "en": "That's right! The magnet pulls some materials, like iron and steel, but not every metal."
+        }
+      },
+      {
+        "id": "heavy",
+        "label": {
+          "es": "Era demasiado pesada.",
+          "en": "It was too heavy."
+        },
+        "feedback": {
+          "es": "Piensa otra vez: la lata es ligera, y el clavo de hierro sí subió. ¿Qué tienen de diferente?",
+          "en": "Think again: the can is light, and the iron nail did go up. What is different about them?"
+        }
+      },
+      {
+        "id": "far",
+        "label": {
+          "es": "El imán estaba muy lejos.",
+          "en": "The magnet was too far away."
+        },
+        "feedback": {
+          "es": "Piensa otra vez: el imán bajó igual de cerca sobre todos los objetos. ¿Por qué unos subieron y otros no?",
+          "en": "Think again: the magnet came down just as close over every object. Why did some go up and others not?"
+        }
+      }
+    ]
+  },
+  "challenges": [
+    {
+      "id": "new-items",
+      "title": {
+        "es": "Caso nuevo: otros objetos",
+        "en": "Changed case: new objects"
+      },
+      "goal": {
+        "es": "Objetos nuevos y solo 2 viajes. Predice cuáles atrae el imán.",
+        "en": "New objects and only 2 trips. Predict which ones the magnet pulls."
+      },
+      "intro": {
+        "es": "Llegó otra caja al puesto de drones con objetos que no has probado. La grúa solo tiene 2 viajes. ¿Qué dos objetos levanta?",
+        "en": "Another box arrived at the drone post with objects you have not tried. The crane only has 2 trips. Which two objects does it pick up?"
+      },
+      "success": {
+        "es": "¡Lo lograste con objetos nuevos! Reconociste el hierro y el acero por su material, no por si brillan o son metal.",
+        "en": "You did it with new objects! You recognized iron and steel by their material, not by whether they shine or are metal."
+      },
+      "reward": 30,
+      "startingBlocks": [
+        {
+          "block": "magnet_pick",
+          "object": "foil"
+        },
+        {
+          "block": "magnet_pick",
+          "object": "wire"
+        }
+      ],
+      "world": {
+        "crane": {
+          "trips": 2,
+          "pole": "S",
+          "x": 1
+        },
+        "objects": [
+          {
+            "id": "foil",
+            "shape": "box",
+            "x": 2,
+            "y": 0,
+            "width": 1.19,
+            "height": 0.26,
+            "material": "aluminum",
+            "label": {
+              "es": "papel aluminio",
+              "en": "aluminum foil"
+            }
+          },
+          {
+            "id": "nut",
+            "shape": "circle",
+            "x": 3.8,
+            "y": 0,
+            "width": 0.68,
+            "height": 0.51,
+            "material": "iron",
+            "label": {
+              "es": "tuerca de hierro",
+              "en": "iron nut"
+            }
+          },
+          {
+            "id": "wire",
+            "shape": "box",
+            "x": 5.6,
+            "y": 0,
+            "width": 1.36,
+            "height": 0.2,
+            "material": "copper",
+            "label": {
+              "es": "alambre de cobre",
+              "en": "copper wire"
+            }
+          },
+          {
+            "id": "pencil",
+            "shape": "box",
+            "x": 7.4,
+            "y": 0,
+            "width": 1.53,
+            "height": 0.2,
+            "material": "wood",
+            "label": {
+              "es": "lápiz de madera",
+              "en": "wooden pencil"
+            }
+          },
+          {
+            "id": "screw",
+            "shape": "box",
+            "x": 9.2,
+            "y": 0,
+            "width": 0.85,
+            "height": 0.34,
+            "material": "steel",
+            "label": {
+              "es": "tornillo de acero",
+              "en": "steel screw"
+            }
+          },
+          {
+            "id": "bottle",
+            "shape": "box",
+            "x": 11,
+            "y": 0,
+            "width": 0.85,
+            "height": 1.19,
+            "material": "glass",
+            "label": {
+              "es": "frasco de vidrio",
+              "en": "glass jar"
+            }
+          }
+        ]
+      },
+      "winCondition": {
+        "targets": [
+          "nut",
+          "screw"
+        ]
+      }
+    }
+  ],
+  "curriculum": {
+    "grade": 5,
+    "phase": 5,
+    "status": "direct",
+    "program": {
+      "es": "Programa Sintético Fase 5, 5.º grado, pp. 46-47: \"Efecto del magnetismo y de la fuerza de gravedad\": el magnetismo actúa a distancia; polos, atracción y repulsión; materiales.",
+      "en": "SEP Programa Sintético, Phase 5, 5th grade, pp. 46-47: \"Effect of magnetism and the force of gravity\": magnetism acts at a distance; poles, attraction and repulsion; materials."
+    },
+    "books": [
+      {
+        "es": "Nuestros saberes, 5.º grado (2026), pp. 118-120: \"Fuerza a distancia\", \"Fuerza magnética\", \"Polos magnéticos\", \"Imán\" y \"Efecto de repulsión\".",
+        "en": "Nuestros saberes, 5th grade (2026), pp. 118-120: \"Fuerza a distancia\", \"Fuerza magnética\", \"Polos magnéticos\", \"Imán\" and \"Efecto de repulsión\"."
+      },
+      {
+        "es": "Proyectos de Aula, 5.º grado (2026), proyecto \"Objetos bailarines\" (desde la p. 170): experimentos de atracción y repulsión con imanes, clips y tornillos.",
+        "en": "Proyectos de Aula, 5th grade (2026), project \"Objetos bailarines\" (from p. 170): attraction and repulsion experiments with magnets, clips and screws."
+      }
+    ]
+  },
+  "teacher": {
+    "objective": {
+      "es": "Clasificar materiales según si un imán los atrae, y explicar que el imán actúa a distancia y no atrae a todos los metales.",
+      "en": "Sort materials by whether a magnet pulls them, and explain that a magnet acts at a distance and does not pull every metal."
+    },
+    "decision": {
+      "es": "Elige qué objetos levantar con pocos viajes, así que tiene que predecir por el material antes de probar.",
+      "en": "Chooses which objects to pick with few trips, so they must predict from the material before testing."
+    },
+    "evidence": {
+      "es": "Elige el hierro y el acero sin desperdiciar viajes; explica que el aluminio, el cobre y el latón son metales que el imán no atrae; en el caso nuevo, predice objetos que no había probado.",
+      "en": "Picks the iron and steel without wasting trips; explains that aluminum, copper and brass are metals the magnet does not pull; in the changed case, predicts objects not tried before."
+    },
+    "prerequisites": {
+      "es": "Reconocer materiales comunes (metal, madera, plástico, vidrio) y saber que hay distintos metales.",
+      "en": "Recognizing common materials (metal, wood, plastic, glass) and knowing there are different metals."
+    },
+    "assumptions": {
+      "es": "Modelo de juego: el imán de la grúa atrae el hierro y el acero desde 60 cm y nada más; la fuerza no cambia con la distancia ni con el tamaño. \"Acero\" aquí es acero común: algunos aceros inoxidables (como muchas cucharas) casi no son atraídos, lo cual puede comentarse en clase.",
+      "en": "Game model: the crane's magnet pulls iron and steel from 60 cm and nothing else; strength does not change with distance or size. \"Steel\" here means ordinary steel: some stainless steels (like many spoons) are hardly pulled at all, which is worth discussing in class."
+    },
+    "vocabulary": [
+      {
+        "es": "imán",
+        "en": "magnet"
+      },
+      {
+        "es": "atraer",
+        "en": "to attract"
+      },
+      {
+        "es": "magnetismo",
+        "en": "magnetism"
+      },
+      {
+        "es": "hierro / acero",
+        "en": "iron / steel"
+      },
+      {
+        "es": "material",
+        "en": "material"
+      }
+    ],
+    "misconceptions": [
+      {
+        "es": "\"Los imanes atraen todos los metales\": el aluminio, el cobre y el latón no se pegan.",
+        "en": "\"Magnets attract all metals\": aluminum, copper and brass do not stick."
+      },
+      {
+        "es": "\"Lo que brilla es magnético\": el papel aluminio brilla y no se pega.",
+        "en": "\"Shiny things are magnetic\": aluminum foil is shiny and does not stick."
+      },
+      {
+        "es": "\"El imán tiene que tocar el objeto\": el magnetismo actúa a distancia.",
+        "en": "\"The magnet has to touch the object\": magnetism acts at a distance."
+      }
+    ],
+    "opening": {
+      "es": "¿Qué cosas de tu casa se pegan al refrigerador con un imán? ¿Cuáles no?",
+      "en": "What things at home stick to the fridge with a magnet? Which ones don't?"
+    },
+    "discussion": {
+      "es": "¿Cómo supiste qué objetos elegir? ¿Todos los metales se pegaron? ¿Por qué crees que en un centro de reciclaje usan imanes?",
+      "en": "How did you know which objects to choose? Did every metal stick? Why do you think recycling centers use magnets?"
+    },
+    "transfer": {
+      "es": "En papel: en una caja hay monedas de cobre, clavos de hierro, una regla de plástico y una lata de acero. ¿Cuáles sacarías con un imán? Explica por qué.",
+      "en": "On paper: a box has copper coins, iron nails, a plastic ruler and a steel can. Which would you pull out with a magnet? Explain why."
+    },
+    "meaning": {
+      "es": "\"Resuelta\" significa que separó los objetos correctos; pudo haber probado uno por uno en varios intentos (revisa \"Mis experimentos\"). \"Aplicada\" significa que también lo logró con objetos nuevos y solo 2 viajes. Ninguna es una nota.",
+      "en": "\"Solved\" means they sorted the right objects; they may have tested them one by one over several runs (check \"My experiments\"). \"Applied\" means they also did it with new objects and only 2 trips. Neither is a grade."
+    }
+  }
+}

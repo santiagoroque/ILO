@@ -1,0 +1,287 @@
+{
+  "$schema": "../../schema/room.schema.json",
+  "schemaVersion": 1,
+  "id": "drone-post-inside",
+  "kind": "indoor",
+  "interior": "tower",
+  "name": {
+    "es": "Dentro del puesto de drones",
+    "en": "Inside the drone post"
+  },
+  "spawn": {
+    "x": 640,
+    "y": 620
+  },
+  "minY": 280,
+  "areas": [
+    {
+      "id": "ground",
+      "type": "indoor",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1280,
+          0
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ]
+    }
+  ],
+  "paths": [],
+  "stations": [
+    {
+      "id": "gravity-machine",
+      "kind": "lesson",
+      "lesson": "gravity",
+      "style": "arcade",
+      "x": 300,
+      "y": 450,
+      "name": {
+        "es": "Entrega en otro planeta",
+        "en": "Delivery on another planet"
+      },
+      "description": {
+        "es": "Minijuego de gravedad: entrega paquetes en otros planetas.",
+        "en": "Gravity minigame: deliver packages on other planets."
+      },
+      "door": {
+        "x": 300,
+        "y": 477.4
+      },
+      "art": {
+        "asset": "world/stations/arcade-gravity.svg",
+        "scale": 1.8,
+        "bounds": [
+          210,
+          162,
+          390,
+          450
+        ],
+        "footprint": {
+          "rect": [
+            239,
+            407,
+            361,
+            450
+          ]
+        },
+        "animation": [
+          "world/stations/arcade-gravity-1.svg",
+          "world/stations/arcade-gravity-2.svg",
+          "world/stations/arcade-gravity-3.svg"
+        ]
+      }
+    },
+    {
+      "id": "magnet-machine",
+      "kind": "lesson",
+      "lesson": "magnets",
+      "style": "arcade",
+      "x": 640,
+      "y": 450,
+      "name": {
+        "es": "La grúa de imán",
+        "en": "The magnet crane"
+      },
+      "description": {
+        "es": "Minijuego de imanes: qué materiales atrae (5.º grado).",
+        "en": "Magnet minigame: which materials it attracts (5th grade)."
+      },
+      "door": {
+        "x": 640,
+        "y": 477.4
+      },
+      "art": {
+        "asset": "world/stations/arcade-magnets.svg",
+        "scale": 1.8,
+        "bounds": [
+          550,
+          162,
+          730,
+          450
+        ],
+        "footprint": {
+          "rect": [
+            579,
+            407,
+            701,
+            450
+          ]
+        },
+        "animation": [
+          "world/stations/arcade-magnets-1.svg",
+          "world/stations/arcade-magnets-2.svg",
+          "world/stations/arcade-magnets-3.svg"
+        ]
+      }
+    },
+    {
+      "id": "poles-machine",
+      "kind": "lesson",
+      "lesson": "magnet-poles",
+      "style": "arcade",
+      "x": 980,
+      "y": 450,
+      "name": {
+        "es": "La caja con imán",
+        "en": "The box with a magnet"
+      },
+      "description": {
+        "es": "Minijuego de polos: atraer y repeler (5.º grado).",
+        "en": "Poles minigame: attract and repel (5th grade)."
+      },
+      "door": {
+        "x": 980,
+        "y": 477.4
+      },
+      "art": {
+        "asset": "world/stations/arcade-magnet-poles.svg",
+        "scale": 1.8,
+        "bounds": [
+          890,
+          162,
+          1070,
+          450
+        ],
+        "footprint": {
+          "rect": [
+            919,
+            407,
+            1041,
+            450
+          ]
+        },
+        "animation": [
+          "world/stations/arcade-magnet-poles-1.svg",
+          "world/stations/arcade-magnet-poles-2.svg",
+          "world/stations/arcade-magnet-poles-3.svg"
+        ]
+      }
+    }
+  ],
+  "exits": [
+    {
+      "id": "south",
+      "x": 560,
+      "y": 680,
+      "width": 160,
+      "height": 40,
+      "spawn": {
+        "x": 640,
+        "y": 610
+      },
+      "to": "drone-post",
+      "toStation": "drone-post",
+      "sign": {
+        "x": 640,
+        "y": 650
+      }
+    }
+  ],
+  "decorations": [],
+  "scatter": [],
+  "furniture": [
+    {
+      "id": "table",
+      "x": 170,
+      "y": 620,
+      "scale": 1.6
+    },
+    {
+      "id": "chair",
+      "x": 330,
+      "y": 620,
+      "scale": 1.6
+    },
+    {
+      "id": "globe",
+      "x": 1100,
+      "y": 610,
+      "scale": 1.6
+    },
+    {
+      "id": "telescope",
+      "x": 1010,
+      "y": 610,
+      "scale": 1.6
+    },
+    {
+      "id": "poster",
+      "x": 200,
+      "y": 170,
+      "scale": 1.6
+    },
+    {
+      "id": "plant",
+      "x": 1160,
+      "y": 410,
+      "scale": 1.6
+    }
+  ],
+  "layout": {
+    "revision": "room-redesign-3-wide",
+    "ground": "world/rooms-v3/drone-post-inside/ground.svg",
+    "scale": 1.5,
+    "surface": "indoor",
+    "walk": [
+      [
+        [
+          40,
+          270
+        ],
+        [
+          1240,
+          270
+        ],
+        [
+          1240,
+          700
+        ],
+        [
+          40,
+          700
+        ]
+      ],
+      [
+        [
+          540,
+          570
+        ],
+        [
+          740,
+          570
+        ],
+        [
+          740,
+          720
+        ],
+        [
+          540,
+          720
+        ]
+      ]
+    ],
+    "blocked": [],
+    "water": {},
+    "objects": [
+      {
+        "type": "cabin-window",
+        "asset": "world/walls/cabin-window.svg",
+        "x": 640,
+        "y": 175,
+        "scale": 1,
+        "layer": "wall"
+      }
+    ]
+  }
+}

@@ -1,0 +1,429 @@
+{
+  "$schema": "../schema/lesson.schema.json",
+  "schemaVersion": 1,
+  "id": "friction",
+  "concept": {
+    "es": "Fricción",
+    "en": "Friction"
+  },
+  "title": {
+    "es": "El trineo que frena",
+    "en": "The braking sled"
+  },
+  "goal": {
+    "es": "Elige la superficie para que el trineo se detenga en la estación.",
+    "en": "Choose the surface so the sled stops at the station."
+  },
+  "learningGoal": {
+    "es": "La fricción es una fuerza que frena las cosas que se deslizan. Una superficie más áspera tiene más fricción y frena más rápido. La masa no cambia dónde se detiene.",
+    "en": "Friction is a force that slows down things that slide. A rougher surface has more friction and stops things sooner. Mass does not change where it stops."
+  },
+  "intro": {
+    "es": "En la pista de pruebas del tobogán puedes cambiar la superficie. Un trineo sale del tobogán de hielo a 5 m/s. Elige la superficie de la pista para que el trineo se detenga justo en la estación verde.",
+    "en": "On the slide's test track you can swap the surface. A sled leaves the ice slide at 5 m/s. Choose the track surface so the sled stops right at the green station."
+  },
+  "world": {
+    "model": "slide",
+    "width": 16,
+    "height": 9,
+    "gravity": 9.81,
+    "surface": "wood",
+    "objects": [
+      {
+        "id": "sled",
+        "shape": "sled",
+        "x": 1.2,
+        "y": 0.25,
+        "width": 1,
+        "height": 0.5,
+        "mass": 20,
+        "velocityX": 5,
+        "color": "#e63946",
+        "label": {
+          "es": "el trineo",
+          "en": "the sled"
+        }
+      }
+    ],
+    "zones": [
+      {
+        "id": "station",
+        "x": 11,
+        "width": 1.6,
+        "label": {
+          "es": "Estación",
+          "en": "Station"
+        }
+      }
+    ]
+  },
+  "reward": 50,
+  "toolbox": [
+    "set_surface",
+    "set_mass",
+    "push"
+  ],
+  "startingBlocks": [
+    {
+      "block": "set_surface",
+      "surface": "wood"
+    },
+    {
+      "block": "push",
+      "object": "sled"
+    }
+  ],
+  "winCondition": {
+    "type": "stops_in_zone",
+    "object": "sled",
+    "zone": "station",
+    "timeLimit": 8,
+    "feedback": {
+      "tooShort": {
+        "es": "El trineo se detuvo antes de la estación. La pista lo frenó demasiado. ¿Qué superficie tiene menos fricción?",
+        "en": "The sled stopped before the station. The track slowed it down too much. Which surface has less friction?"
+      },
+      "tooFar": {
+        "es": "El trineo pasó de largo. La pista casi no lo frenó. ¿Qué superficie tiene más fricción?",
+        "en": "The sled went past the station. The track hardly slowed it down. Which surface has more friction?"
+      },
+      "notPushed": {
+        "es": "El trineo nunca salió. Conecta el bloque \"empujar\" debajo de \"cuando se presione Ejecutar\".",
+        "en": "The sled never started. Connect the \"push\" block under \"when Run is pressed\"."
+      }
+    }
+  },
+  "warmups": [
+    {
+      "id": "ice-sand",
+      "question": {
+        "es": "Empujas igual de fuerte una caja sobre hielo y otra sobre arena. ¿Cuál se desliza más lejos?",
+        "en": "You push a box on ice and another on sand, just as hard. Which slides farther?"
+      },
+      "picture": "warmups/friction-ice-sand.svg",
+      "answer": "ice",
+      "options": [
+        {
+          "id": "ice",
+          "label": {
+            "es": "La del hielo",
+            "en": "The one on ice"
+          },
+          "feedback": {
+            "es": "¡Sí! El hielo es liso y tiene poca fricción, así que la frena muy poco.",
+            "en": "Yes! Ice is smooth and has little friction, so it barely slows down."
+          }
+        },
+        {
+          "id": "sand",
+          "label": {
+            "es": "La de la arena",
+            "en": "The one on sand"
+          },
+          "feedback": {
+            "es": "La arena es áspera: tiene mucha fricción y frena rápido la caja.",
+            "en": "Sand is rough: it has a lot of friction and stops the box quickly."
+          }
+        },
+        {
+          "id": "same",
+          "label": {
+            "es": "Llegan igual de lejos",
+            "en": "They go just as far"
+          },
+          "feedback": {
+            "es": "El empujón es igual, pero el suelo no. Un suelo más áspero frena más.",
+            "en": "The push is the same, but the ground isn't. Rougher ground slows it more."
+          }
+        }
+      ]
+    },
+    {
+      "id": "what-stops",
+      "question": {
+        "es": "Una pelota rueda por el pasto y poco a poco se detiene. ¿Qué la frena?",
+        "en": "A ball rolls across the grass and slowly stops. What slows it down?"
+      },
+      "picture": "warmups/friction-grass-stop.svg",
+      "answer": "friction",
+      "options": [
+        {
+          "id": "friction",
+          "label": {
+            "es": "La fricción con el pasto",
+            "en": "Friction with the grass"
+          },
+          "feedback": {
+            "es": "¡Exacto! La fricción es una fuerza que frena lo que se desliza o rueda.",
+            "en": "Exactly! Friction is a force that slows down things that slide or roll."
+          }
+        },
+        {
+          "id": "tired",
+          "label": {
+            "es": "La pelota se cansa",
+            "en": "The ball gets tired"
+          },
+          "feedback": {
+            "es": "Las pelotas no se cansan. Algo la frena: el roce con el pasto.",
+            "en": "Balls don't get tired. Something slows it: rubbing against the grass."
+          }
+        },
+        {
+          "id": "nothing",
+          "label": {
+            "es": "Nada: las cosas siempre se detienen solas",
+            "en": "Nothing: things always stop on their own"
+          },
+          "feedback": {
+            "es": "Si nada la frenara, seguiría rodando. Lo que la frena es la fricción.",
+            "en": "If nothing slowed it, it would keep rolling. What slows it is friction."
+          }
+        }
+      ]
+    }
+  ],
+  "prediction": {
+    "question": {
+      "es": "Antes de ejecutar: ¿dónde crees que se detendrá el trineo?",
+      "en": "Before you run: where do you think the sled will stop?"
+    },
+    "options": [
+      {
+        "id": "before",
+        "label": {
+          "es": "Antes de la estación",
+          "en": "Before the station"
+        },
+        "outcomes": [
+          "tooShort"
+        ]
+      },
+      {
+        "id": "in",
+        "label": {
+          "es": "En la estación",
+          "en": "At the station"
+        },
+        "outcomes": [
+          "won"
+        ]
+      },
+      {
+        "id": "past",
+        "label": {
+          "es": "Después de la estación",
+          "en": "Past the station"
+        },
+        "outcomes": [
+          "tooFar"
+        ]
+      }
+    ]
+  },
+  "hints": [
+    {
+      "es": "Fíjate en qué tan rápido pierde velocidad el trineo en cada superficie.",
+      "en": "Watch how quickly the sled loses speed on each surface."
+    },
+    {
+      "es": "Compara dos superficies cambiando solo la superficie. El trineo sale siempre igual de rápido. La marca gris muestra dónde se detuvo la vez anterior.",
+      "en": "Compare two surfaces by changing only the surface. The sled always starts at the same speed. The grey mark shows where it stopped last time."
+    },
+    {
+      "es": "Una superficie con más fricción (μ más grande) frena más, y el trineo se detiene antes. Con menos fricción se desliza más lejos. La masa no cambia dónde se detiene.",
+      "en": "A surface with more friction (bigger μ) brakes harder, so the sled stops sooner. With less friction it slides farther. Mass does not change where it stops."
+    },
+    {
+      "es": "Ejemplo: en madera se detuvo antes de la estación, así que necesitas menos fricción que la madera. En hielo pasa de largo, así que necesitas más que el hielo. Prueba la superficie que está entre las dos.",
+      "en": "Example: on wood it stopped before the station, so you need less friction than wood. On ice it goes past, so you need more than ice. Try the surface in between."
+    }
+  ],
+  "success": {
+    "es": "¡Llegada perfecta! La nieve tiene menos fricción que la madera, así que el trineo se deslizó más lejos, pero más que el hielo, así que se detuvo a tiempo. ¿Notaste que la masa no cambió dónde se detuvo?",
+    "en": "Perfect arrival! Snow has less friction than wood, so the sled slid farther, but more than ice, so it stopped in time. Did you notice that mass did not change where it stopped?"
+  },
+  "explain": {
+    "question": {
+      "es": "¿Por qué el trineo se detuvo antes en la madera que en el hielo?",
+      "en": "Why did the sled stop sooner on wood than on ice?"
+    },
+    "answer": "friction",
+    "options": [
+      {
+        "id": "friction",
+        "label": {
+          "es": "La madera tiene más fricción, y la fricción lo frena más.",
+          "en": "Wood has more friction, and friction slows it down more."
+        },
+        "feedback": {
+          "es": "¡Así es! Más fricción, frenado más rápido.",
+          "en": "That's right! More friction, faster braking."
+        }
+      },
+      {
+        "id": "push",
+        "label": {
+          "es": "En la madera lo empujaron más despacio.",
+          "en": "On wood it was pushed more slowly."
+        },
+        "feedback": {
+          "es": "Piensa otra vez: el trineo salió a 5 m/s en todas las superficies.",
+          "en": "Think again: the sled started at 5 m/s on every surface."
+        }
+      },
+      {
+        "id": "heavy",
+        "label": {
+          "es": "En la madera el trineo pesa más.",
+          "en": "On wood the sled weighs more."
+        },
+        "feedback": {
+          "es": "Piensa otra vez: el trineo pesa lo mismo. Prueba cambiar la masa: ¿cambia dónde se detiene?",
+          "en": "Think again: the sled weighs the same. Try changing the mass: does it change where it stops?"
+        }
+      }
+    ]
+  },
+  "fairComparison": {
+    "variable": "surface",
+    "keep": [
+      "mass"
+    ]
+  },
+  "challenges": [
+    {
+      "id": "near-station",
+      "title": {
+        "es": "Caso nuevo: la estación cercana",
+        "en": "Changed case: the near station"
+      },
+      "intro": {
+        "es": "Movieron la estación mucho más cerca del tobogán, entre 5 y 6 m. El trineo sale igual de rápido. ¿Qué superficie lo detiene ahí ahora?",
+        "en": "The station was moved much closer to the slide, between 5 and 6 m. The sled starts just as fast. Which surface stops it there now?"
+      },
+      "success": {
+        "es": "¡Lo lograste en un caso nuevo! La estación está más cerca, así que hacía falta más fricción que la nieve: la madera frena más y lo detuvo antes.",
+        "en": "You did it in a new case! The station is closer, so it needed more friction than snow: wood brakes harder and stopped it sooner."
+      },
+      "reward": 30,
+      "startingBlocks": [
+        {
+          "block": "set_surface",
+          "surface": "snow"
+        },
+        {
+          "block": "push",
+          "object": "sled"
+        }
+      ],
+      "world": {
+        "zones": [
+          {
+            "id": "station",
+            "x": 5,
+            "width": 1,
+            "label": {
+              "es": "Estación",
+              "en": "Station"
+            }
+          }
+        ]
+      },
+      "winCondition": {},
+      "goal": {
+        "es": "La estación está más cerca. ¿Qué superficie lo detiene ahí?",
+        "en": "The station is closer. Which surface stops it there?"
+      }
+    }
+  ],
+  "curriculum": {
+    "grade": 4,
+    "phase": 4,
+    "status": "preparation",
+    "program": {
+      "es": "Programa Sintético Fase 4, 4.º grado, pp. 46-47: la fricción como una forma de generar calor. Esta lección trabaja la fricción como fuerza que frena; la lección \"Frota y calienta\" cubre el calor.",
+      "en": "SEP Programa Sintético, Phase 4, 4th grade, pp. 46-47: friction as a way to make heat. This lesson works on friction as a force that slows things; the lesson \"Rub it warm\" covers the heat."
+    },
+    "books": [
+      {
+        "es": "Proyectos de Aula, 4.º grado (2026), proyecto \"Optimizando las fuerzas\" (pp. 174-190): la fuerza de fricción (p. 187) y ruedas que la reducen (pp. 188-189).",
+        "en": "Proyectos de Aula, 4th grade (2026), project \"Optimizando las fuerzas\" (pp. 174-190): friction force (p. 187) and wheels that reduce it (pp. 188-189)."
+      }
+    ]
+  },
+  "teacher": {
+    "objective": {
+      "es": "Explicar que una superficie con más fricción hace que un objeto que se desliza se detenga antes, y elegir una superficie para una distancia de frenado dada.",
+      "en": "Explain that a surface with more friction makes a sliding object stop sooner, and choose a surface for a given stopping distance."
+    },
+    "prerequisites": {
+      "es": "Saber que las cosas en movimiento pueden frenar, comparar distancias en metros, y cambiar una cosa a la vez.",
+      "en": "Knowing that moving things can slow down, comparing distances in meters, and changing one thing at a time."
+    },
+    "assumptions": {
+      "es": "Modelo simplificado: el trineo sale a 5 m/s sobre una pista plana y frena con aceleración constante μ·g. Distancia de frenado d = v²/(2μg). Los valores de μ (hielo 0,03, nieve 0,12, madera 0,3, arena 0,6) son del juego, no medidas reales: la fricción real depende de muchas cosas. La masa no cambia el resultado.",
+      "en": "Simplified model: the sled starts at 5 m/s on a flat track and slows with constant deceleration μ·g. Stopping distance d = v²/(2μg). The μ values (ice 0.03, snow 0.12, wood 0.3, sand 0.6) belong to the game, not real measurements: real friction depends on many things. Mass does not change the result."
+    },
+    "vocabulary": [
+      {
+        "es": "fricción",
+        "en": "friction"
+      },
+      {
+        "es": "superficie",
+        "en": "surface"
+      },
+      {
+        "es": "deslizarse",
+        "en": "to slide"
+      },
+      {
+        "es": "frenar",
+        "en": "to slow down"
+      },
+      {
+        "es": "áspero / liso",
+        "en": "rough / smooth"
+      }
+    ],
+    "misconceptions": [
+      {
+        "es": "\"Las superficies lisas empujan las cosas\": no empujan, solo frenan menos.",
+        "en": "\"Smooth surfaces push things along\": they do not push, they just slow things down less."
+      },
+      {
+        "es": "\"Lo más pesado se detiene antes\": en este modelo la masa no cambia la distancia.",
+        "en": "\"Heavier things stop sooner\": in this model mass does not change the distance."
+      },
+      {
+        "es": "\"La nieve siempre es la respuesta\": depende de dónde está la estación. El caso nuevo lo muestra.",
+        "en": "\"Snow is always the answer\": it depends on where the station is. The changed case shows this."
+      }
+    ],
+    "opening": {
+      "es": "¿Dónde llegarías más lejos deslizándote con calcetines: en un piso de madera o en una alfombra? ¿Por qué?",
+      "en": "Where would you slide farther in socks: on a wooden floor or on a carpet? Why?"
+    },
+    "discussion": {
+      "es": "¿Cómo supiste si necesitabas más o menos fricción? ¿Qué te dijo la marca del intento anterior?",
+      "en": "How did you know whether you needed more or less friction? What did the mark from the last try tell you?"
+    },
+    "transfer": {
+      "es": "En papel: un patinador quiere frenar en poco espacio. ¿Debería frenar sobre hielo o sobre tierra? Explica con la palabra \"fricción\".",
+      "en": "On paper: a skater wants to stop in a short space. Should they brake on ice or on dirt? Explain using the word \"friction\"."
+    },
+    "meaning": {
+      "es": "\"Resuelto\" significa que detuvo el trineo en la estación del caso principal. \"Aplicado\" significa que también lo logró con la estación más cerca, que necesita otra superficie. Ninguno es una nota.",
+      "en": "\"Solved\" means they stopped the sled at the main case's station. \"Applied\" means they also did it with the closer station, which needs a different surface. Neither is a grade."
+    },
+    "decision": {
+      "es": "Elige una superficie, con el trineo saliendo siempre igual de rápido; antes compara dos intentos de forma justa.",
+      "en": "Chooses a surface, with the sled always starting at the same speed; first compares two runs fairly."
+    },
+    "evidence": {
+      "es": "Elige dos intentos que comparan solo la superficie; explica que más fricción frena más; en el caso nuevo elige más fricción para una estación más cercana.",
+      "en": "Picks two runs that compare only the surface; explains that more friction brakes more; in the changed case picks more friction for a closer station."
+    }
+  }
+}

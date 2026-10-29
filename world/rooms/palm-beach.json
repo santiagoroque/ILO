@@ -1,0 +1,615 @@
+{
+  "$schema": "../../schema/room.schema.json",
+  "schemaVersion": 1,
+  "id": "palm-beach",
+  "kind": "outdoor",
+  "name": {
+    "es": "Playa de palmeras",
+    "en": "Palm beach"
+  },
+  "spawn": {
+    "x": 620,
+    "y": 490
+  },
+  "areas": [
+    {
+      "id": "ground",
+      "type": "sand",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1280,
+          0
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ]
+    },
+    {
+      "id": "jungle-west",
+      "type": "jungle",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          420,
+          0
+        ],
+        [
+          380,
+          140
+        ],
+        [
+          0,
+          190
+        ]
+      ]
+    },
+    {
+      "id": "jungle-east",
+      "type": "jungle",
+      "points": [
+        [
+          880,
+          0
+        ],
+        [
+          1280,
+          0
+        ],
+        [
+          1280,
+          180
+        ],
+        [
+          900,
+          130
+        ]
+      ]
+    },
+    {
+      "id": "sea",
+      "type": "sea",
+      "points": [
+        [
+          0,
+          600
+        ],
+        [
+          300,
+          570
+        ],
+        [
+          640,
+          595
+        ],
+        [
+          980,
+          565
+        ],
+        [
+          1280,
+          585
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ]
+    }
+  ],
+  "paths": [],
+  "stations": [
+    {
+      "id": "boathouse",
+      "kind": "soon",
+      "style": "boathouse",
+      "x": 980,
+      "y": 390,
+      "name": {
+        "es": "Taller de barcos",
+        "en": "Boathouse"
+      },
+      "description": {
+        "es": "Pronto: aquí aprenderás qué flota y qué se hunde.",
+        "en": "Coming soon: find out what floats and what sinks."
+      },
+      "door": {
+        "x": 980,
+        "y": 411.8
+      },
+      "art": {
+        "asset": "world/buildings/boathouse-soon.svg",
+        "scale": 1.2,
+        "bounds": [
+          848,
+          78,
+          1112,
+          390
+        ],
+        "footprint": {
+          "rect": [
+            878.2,
+            310,
+            1081.8,
+            390
+          ]
+        },
+        "states": {
+          "night": "world/buildings/boathouse-soon-night.svg"
+        }
+      }
+    }
+  ],
+  "exits": [
+    {
+      "id": "north",
+      "x": 560,
+      "y": 0,
+      "width": 160,
+      "height": 40,
+      "spawn": {
+        "x": 640,
+        "y": 110
+      },
+      "to": "plaza",
+      "toExit": "south",
+      "sign": {
+        "x": 640,
+        "y": 180
+      }
+    },
+    {
+      "id": "west",
+      "x": 0,
+      "y": 470,
+      "width": 40,
+      "height": 160,
+      "spawn": {
+        "x": 110,
+        "y": 510
+      },
+      "to": "mangrove-boardwalk",
+      "toExit": "east",
+      "sign": {
+        "x": 125,
+        "y": 465
+      }
+    },
+    {
+      "id": "east",
+      "x": 1240,
+      "y": 470,
+      "width": 40,
+      "height": 160,
+      "spawn": {
+        "x": 1170,
+        "y": 510
+      },
+      "to": "waterfall-cove",
+      "toExit": "west",
+      "sign": {
+        "x": 1150,
+        "y": 465
+      }
+    }
+  ],
+  "decorations": [],
+  "scatter": [],
+  "collectibles": [
+    {
+      "id": "gem-beach-1",
+      "x": 1110,
+      "y": 530
+    }
+  ],
+  "critters": [
+    {
+      "type": "crab",
+      "count": 3,
+      "regions": [
+        [
+          450,
+          540,
+          850,
+          564
+        ]
+      ]
+    },
+    {
+      "type": "toucan",
+      "count": 1
+    },
+    {
+      "type": "macaw",
+      "count": 1
+    },
+    {
+      "type": "jumping-fish",
+      "x": 400,
+      "y": 630,
+      "radius": 80
+    },
+    {
+      "type": "jumping-fish",
+      "x": 1100,
+      "y": 620,
+      "radius": 80
+    }
+  ],
+  "residents": [
+    {
+      "id": "boatbuilder",
+      "x": 790,
+      "y": 480,
+      "scale": 1.5
+    }
+  ],
+  "toys": [
+    {
+      "type": "ball",
+      "x": 580,
+      "y": 520,
+      "scale": 1.5
+    },
+    {
+      "type": "goal",
+      "x": 740,
+      "y": 535,
+      "scale": 1.5
+    }
+  ],
+  "layout": {
+    "revision": "room-redesign-3-wide",
+    "ground": "world/rooms-v3/palm-beach/ground.svg",
+    "foreground": "world/rooms-v3/palm-beach/foreground.svg",
+    "scale": 1.5,
+    "surface": "sand",
+    "walk": [
+      [
+        [
+          580,
+          0
+        ],
+        [
+          700,
+          0
+        ],
+        [
+          700,
+          280
+        ],
+        [
+          580,
+          280
+        ]
+      ],
+      [
+        [
+          40,
+          280
+        ],
+        [
+          1240,
+          280
+        ],
+        [
+          1240,
+          450
+        ],
+        [
+          40,
+          450
+        ]
+      ],
+      [
+        [
+          0,
+          450
+        ],
+        [
+          1280,
+          450
+        ],
+        [
+          1280,
+          560
+        ],
+        [
+          0,
+          560
+        ]
+      ],
+      [
+        [
+          930,
+          560
+        ],
+        [
+          1030,
+          560
+        ],
+        [
+          1030,
+          650
+        ],
+        [
+          930,
+          650
+        ]
+      ]
+    ],
+    "blocked": [
+      [
+        [
+          0,
+          535
+        ],
+        [
+          75,
+          535
+        ],
+        [
+          75,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ],
+      [
+        [
+          1205,
+          535
+        ],
+        [
+          1280,
+          535
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          1205,
+          720
+        ]
+      ]
+    ],
+    "water": {
+      "sea": [
+        [
+          [
+            0,
+            565
+          ],
+          [
+            1280,
+            565
+          ],
+          [
+            1280,
+            720
+          ],
+          [
+            0,
+            720
+          ]
+        ]
+      ]
+    },
+    "objects": [
+      {
+        "type": "palm",
+        "asset": "world/decorations/palm.svg",
+        "x": 110,
+        "y": 350,
+        "scale": 1.28,
+        "layer": "stand",
+        "animation": [
+          "world/decorations/palm-1.svg",
+          "world/decorations/palm-2.svg",
+          "world/decorations/palm-3.svg"
+        ],
+        "footprint": {
+          "ellipse": [
+            110,
+            346.8,
+            23,
+            8.3
+          ]
+        }
+      },
+      {
+        "type": "palm",
+        "asset": "world/decorations/palm.svg",
+        "x": 360,
+        "y": 310,
+        "scale": 1.28,
+        "layer": "stand",
+        "animation": [
+          "world/decorations/palm-1.svg",
+          "world/decorations/palm-2.svg",
+          "world/decorations/palm-3.svg"
+        ],
+        "footprint": {
+          "ellipse": [
+            360,
+            306.8,
+            23,
+            8.3
+          ]
+        }
+      },
+      {
+        "type": "palm",
+        "asset": "world/decorations/palm.svg",
+        "x": 1170,
+        "y": 340,
+        "scale": 1.28,
+        "layer": "stand",
+        "animation": [
+          "world/decorations/palm-1.svg",
+          "world/decorations/palm-2.svg",
+          "world/decorations/palm-3.svg"
+        ],
+        "footprint": {
+          "ellipse": [
+            1170,
+            336.8,
+            23,
+            8.3
+          ]
+        }
+      },
+      {
+        "type": "beach-umbrella",
+        "asset": "world/decorations/beach-umbrella.svg",
+        "x": 180,
+        "y": 520,
+        "scale": 1.12,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            180,
+            516.8,
+            15.7,
+            5.6
+          ]
+        }
+      },
+      {
+        "type": "towel-teal",
+        "asset": "world/decorations/towel-teal.svg",
+        "x": 180,
+        "y": 550,
+        "scale": 0.96,
+        "layer": "floor"
+      },
+      {
+        "type": "sandcastle",
+        "asset": "world/decorations/sandcastle.svg",
+        "x": 375,
+        "y": 540,
+        "scale": 1.12,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            375,
+            536.8,
+            22.4,
+            8.1
+          ]
+        }
+      },
+      {
+        "type": "pier-cap",
+        "asset": "world/decorations/pier-cap-v3.svg",
+        "x": 980,
+        "y": 650,
+        "scale": 1,
+        "layer": "ground-overlay"
+      },
+      {
+        "type": "sea-edge",
+        "asset": "world/water/sea-edge-1.svg",
+        "x": 128,
+        "y": 678,
+        "scale": 1,
+        "layer": "ground-effect",
+        "animation": [
+          "world/water/sea-edge-1.svg",
+          "world/water/sea-edge-2.svg",
+          "world/water/sea-edge-3.svg",
+          "world/water/sea-edge-4.svg"
+        ]
+      },
+      {
+        "type": "sea-edge",
+        "asset": "world/water/sea-edge-1.svg",
+        "x": 384,
+        "y": 678,
+        "scale": 1,
+        "layer": "ground-effect",
+        "animation": [
+          "world/water/sea-edge-1.svg",
+          "world/water/sea-edge-2.svg",
+          "world/water/sea-edge-3.svg",
+          "world/water/sea-edge-4.svg"
+        ]
+      },
+      {
+        "type": "sea-edge",
+        "asset": "world/water/sea-edge-1.svg",
+        "x": 640,
+        "y": 678,
+        "scale": 1,
+        "layer": "ground-effect",
+        "animation": [
+          "world/water/sea-edge-1.svg",
+          "world/water/sea-edge-2.svg",
+          "world/water/sea-edge-3.svg",
+          "world/water/sea-edge-4.svg"
+        ]
+      },
+      {
+        "type": "sea-edge",
+        "asset": "world/water/sea-edge-1.svg",
+        "x": 896,
+        "y": 678,
+        "scale": 1,
+        "layer": "ground-effect",
+        "animation": [
+          "world/water/sea-edge-1.svg",
+          "world/water/sea-edge-2.svg",
+          "world/water/sea-edge-3.svg",
+          "world/water/sea-edge-4.svg"
+        ]
+      },
+      {
+        "type": "sea-edge",
+        "asset": "world/water/sea-edge-1.svg",
+        "x": 1152,
+        "y": 678,
+        "scale": 1,
+        "layer": "ground-effect",
+        "animation": [
+          "world/water/sea-edge-1.svg",
+          "world/water/sea-edge-2.svg",
+          "world/water/sea-edge-3.svg",
+          "world/water/sea-edge-4.svg"
+        ]
+      }
+    ],
+    "perches": [
+      {
+        "x": 110,
+        "y": 160
+      },
+      {
+        "x": 360,
+        "y": 120
+      },
+      {
+        "x": 1170,
+        "y": 150
+      }
+    ]
+  }
+}

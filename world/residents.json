@@ -1,0 +1,138 @@
+{
+  "$schema": "../schema/residents.schema.json",
+  "schemaVersion": 1,
+  "residents": [
+    {
+      "id": "profe",
+      "name": {
+        "es": "Profe Vera",
+        "en": "Professor Vera"
+      },
+      "species": "owl",
+      "lines": [
+        {
+          "es": "¡Hola! Adentro hay tres máquinas: gravedad e imanes. ¿Te animas?",
+          "en": "Hi! Inside there are three machines: gravity and magnets. Want to try?"
+        },
+        {
+          "es": "Una buena científica cambia una sola cosa a la vez. Así sabe qué causó el cambio.",
+          "en": "A good scientist changes just one thing at a time. That way you know what caused the change."
+        },
+        {
+          "es": "¿Viste las suricatas? Se esconden si te acercas. Míralas desde lejos.",
+          "en": "Have you seen the meerkats? They hide if you get close. Watch them from far away."
+        }
+      ]
+    },
+    {
+      "id": "tendero",
+      "name": {
+        "es": "Don Tito",
+        "en": "Mr. Tito"
+      },
+      "species": "tortoise",
+      "lines": [
+        {
+          "es": "Bienvenido. Mira con calma, aquí nadie tiene prisa.",
+          "en": "Welcome! Take your time, nobody is in a hurry here."
+        },
+        {
+          "es": "Con tus monedas puedes comprar ropa, mascotas, muebles y casas nuevas.",
+          "en": "With your coins you can buy clothes, pets, furniture and new houses."
+        },
+        {
+          "es": "¿Ya viste el catálogo de casas? Hay una en un árbol.",
+          "en": "Have you seen the house catalog? One of them is in a tree."
+        }
+      ]
+    },
+    {
+      "id": "ranger",
+      "name": {
+        "es": "Luma",
+        "en": "Luma"
+      },
+      "species": "capybara",
+      "lines": [
+        {
+          "es": "Los animales se asustan si llegas muy cerca. Obsérvalos desde lejos.",
+          "en": "Animals get scared if you come too close. Watch them from far away."
+        },
+        {
+          "es": "Cada animal que veas se anota en tu bitácora. ¡Hay 17 por descubrir!",
+          "en": "Every animal you spot goes into your field guide. There are 17 to find!"
+        },
+        {
+          "es": "En el estanque nada un pato. ¿Ya lo encontraste?",
+          "en": "A duck swims on the pond. Have you found it yet?"
+        }
+      ]
+    },
+    {
+      "id": "boatbuilder",
+      "name": {
+        "es": "Coco",
+        "en": "Coco"
+      },
+      "species": "manatee",
+      "lines": [
+        {
+          "es": "¡Hola, marinero! Estoy armando un barco. Pronto sabrás qué flota y qué se hunde.",
+          "en": "Hello, sailor! I am building a boat. Soon you will find out what floats and what sinks."
+        },
+        {
+          "es": "Desde el mirador del arrecife se ven tortugas marinas bajo el cristal.",
+          "en": "From the coral lookout you can see sea turtles under the glass."
+        },
+        {
+          "es": "Los tucanes se van volando si te acercas. Búscalos en otra palmera.",
+          "en": "Toucans fly away if you get close. Look for them on another palm."
+        }
+      ]
+    },
+    {
+      "id": "musician",
+      "name": {
+        "es": "Lala",
+        "en": "Lala"
+      },
+      "species": "hummingbird",
+      "lines": [
+        {
+          "es": "¡Bzzz! Cuando hay fiesta, la plaza se llena de música.",
+          "en": "Bzzz! When there is a party, the plaza fills with music."
+        },
+        {
+          "es": "Pulsa 9 para bailar. ¡Me encanta verte bailar!",
+          "en": "Press 9 to dance. I love watching you dance!"
+        },
+        {
+          "es": "Las piedras de la cascada suenan como una marimba. ¡Písalas!",
+          "en": "The stones at the waterfall sound like a marimba. Step on them!"
+        }
+      ]
+    },
+    {
+      "id": "snow-guide",
+      "name": {
+        "es": "Nuk",
+        "en": "Nuk"
+      },
+      "species": "snowy-owl",
+      "lines": [
+        {
+          "es": "Pulsa F para lanzar bolas de nieve a las dianas.",
+          "en": "Press F to throw snowballs at the targets."
+        },
+        {
+          "es": "Las focas suben a respirar por los agujeros del hielo del lago.",
+          "en": "Seals come up to breathe through the holes in the lake's ice."
+        },
+        {
+          "es": "En la tarde, mira el cielo del Ártico: a veces hay auroras.",
+          "en": "In the evening, look at the Arctic sky: sometimes there are northern lights."
+        }
+      ]
+    }
+  ]
+}

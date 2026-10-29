@@ -1,0 +1,741 @@
+{
+  "$schema": "../../schema/room.schema.json",
+  "schemaVersion": 1,
+  "id": "plaza",
+  "kind": "outdoor",
+  "name": {
+    "es": "Plaza central",
+    "en": "Central plaza"
+  },
+  "spawn": {
+    "x": 640,
+    "y": 560
+  },
+  "areas": [
+    {
+      "id": "ground",
+      "type": "forest",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1280,
+          0
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ]
+    },
+    {
+      "id": "plaza",
+      "type": "plaza",
+      "circle": {
+        "x": 640,
+        "y": 430,
+        "radius": 270
+      }
+    }
+  ],
+  "paths": [],
+  "stations": [
+    {
+      "id": "shop",
+      "kind": "room",
+      "room": "shop-inside",
+      "style": "shop",
+      "x": 1020,
+      "y": 390,
+      "name": {
+        "es": "Tienda",
+        "en": "Shop"
+      },
+      "description": {
+        "es": "Ropa, mascotas y muebles para tu casa.",
+        "en": "Clothes, pets and furniture for your house."
+      },
+      "door": {
+        "x": 1020,
+        "y": 411.8
+      },
+      "art": {
+        "asset": "world/buildings/shop.svg",
+        "scale": 1.2,
+        "bounds": [
+          888,
+          78,
+          1152,
+          390
+        ],
+        "footprint": {
+          "rect": [
+            918.2,
+            310,
+            1121.8,
+            390
+          ]
+        },
+        "states": {
+          "highlight": "world/buildings/shop-highlight.svg",
+          "night": "world/buildings/shop-night.svg",
+          "soon": "world/buildings/shop-soon.svg"
+        },
+        "animation": [
+          "world/buildings/shop-1.svg",
+          "world/buildings/shop-2.svg",
+          "world/buildings/shop-3.svg"
+        ]
+      }
+    },
+    {
+      "id": "my-house",
+      "kind": "room",
+      "room": "house",
+      "style": "house",
+      "x": 270,
+      "y": 400,
+      "name": {
+        "es": "Mi casa",
+        "en": "My house"
+      },
+      "description": {
+        "es": "Tu casa. Decórala como quieras.",
+        "en": "Your house. Decorate it your way."
+      },
+      "door": {
+        "x": 270,
+        "y": 421.8
+      },
+      "art": {
+        "asset": "houses/cabin-exterior.svg",
+        "scale": 1.2,
+        "bounds": [
+          126,
+          64,
+          414,
+          400
+        ],
+        "footprint": {
+          "rect": [
+            168.2,
+            254.5,
+            371.8,
+            400
+          ]
+        },
+        "states": {
+          "normal": "houses/cabin-exterior.svg",
+          "highlight": "houses/cabin-exterior-highlight.svg",
+          "night": "houses/cabin-exterior-night.svg"
+        },
+        "houseStyles": {
+          "cabin": {
+            "normal": "houses/cabin-exterior.svg",
+            "highlight": "houses/cabin-exterior-highlight.svg",
+            "night": "houses/cabin-exterior-night.svg"
+          },
+          "adobe": {
+            "normal": "houses/adobe-exterior.svg",
+            "highlight": "houses/adobe-exterior-highlight.svg",
+            "night": "houses/adobe-exterior-night.svg"
+          },
+          "icecabin": {
+            "normal": "houses/icecabin-exterior.svg",
+            "highlight": "houses/icecabin-exterior-highlight.svg",
+            "night": "houses/icecabin-exterior-night.svg"
+          },
+          "bungalow": {
+            "normal": "houses/bungalow-exterior.svg",
+            "highlight": "houses/bungalow-exterior-highlight.svg",
+            "night": "houses/bungalow-exterior-night.svg"
+          },
+          "treehouse": {
+            "normal": "houses/treehouse-exterior.svg",
+            "highlight": "houses/treehouse-exterior-highlight.svg",
+            "night": "houses/treehouse-exterior-night.svg"
+          },
+          "hacienda": {
+            "normal": "houses/hacienda-exterior.svg",
+            "highlight": "houses/hacienda-exterior-highlight.svg",
+            "night": "houses/hacienda-exterior-night.svg"
+          },
+          "mushroom-house": {
+            "normal": "houses/mushroom-house-exterior.svg",
+            "highlight": "houses/mushroom-house-exterior-highlight.svg",
+            "night": "houses/mushroom-house-exterior-night.svg"
+          },
+          "observatory": {
+            "normal": "houses/observatory-exterior.svg",
+            "highlight": "houses/observatory-exterior-highlight.svg",
+            "night": "houses/observatory-exterior-night.svg"
+          }
+        }
+      }
+    }
+  ],
+  "exits": [
+    {
+      "id": "west",
+      "x": 0,
+      "y": 470,
+      "width": 40,
+      "height": 160,
+      "spawn": {
+        "x": 460,
+        "y": 510
+      },
+      "to": "forest-trail",
+      "toExit": "east",
+      "sign": {
+        "x": 120,
+        "y": 470
+      }
+    },
+    {
+      "id": "east",
+      "x": 1240,
+      "y": 470,
+      "width": 40,
+      "height": 160,
+      "spawn": {
+        "x": 1170,
+        "y": 510
+      },
+      "to": "savannah-trail",
+      "toExit": "west",
+      "sign": {
+        "x": 1140,
+        "y": 470
+      }
+    },
+    {
+      "id": "north",
+      "x": 730,
+      "y": 0,
+      "width": 160,
+      "height": 40,
+      "spawn": {
+        "x": 810,
+        "y": 110
+      },
+      "to": "snowy-ridge",
+      "toExit": "south",
+      "sign": {
+        "x": 810,
+        "y": 180
+      }
+    },
+    {
+      "id": "south",
+      "x": 560,
+      "y": 680,
+      "width": 160,
+      "height": 40,
+      "spawn": {
+        "x": 640,
+        "y": 610
+      },
+      "to": "palm-beach",
+      "toExit": "north",
+      "sign": {
+        "x": 680,
+        "y": 650
+      }
+    },
+    {
+      "id": "north-west",
+      "x": 390,
+      "y": 0,
+      "width": 160,
+      "height": 40,
+      "spawn": {
+        "x": 470,
+        "y": 110
+      },
+      "to": "market-street",
+      "toExit": "south",
+      "sign": {
+        "x": 470,
+        "y": 180
+      }
+    }
+  ],
+  "decorations": [],
+  "scatter": [],
+  "collectibles": [
+    {
+      "id": "gem-plaza-1",
+      "x": 110,
+      "y": 650
+    },
+    {
+      "id": "gem-plaza-2",
+      "x": 1160,
+      "y": 640
+    }
+  ],
+  "critters": [
+    {
+      "type": "pigeon",
+      "count": 4,
+      "regions": [
+        [
+          400,
+          450,
+          900,
+          650
+        ]
+      ]
+    },
+    {
+      "type": "butterfly",
+      "count": 2,
+      "regions": [
+        [
+          440,
+          290,
+          860,
+          450
+        ]
+      ]
+    }
+  ],
+  "toys": [
+    {
+      "type": "ball",
+      "x": 850,
+      "y": 555,
+      "scale": 1.5
+    },
+    {
+      "type": "goal",
+      "x": 1120,
+      "y": 595,
+      "scale": 1.5
+    },
+    {
+      "type": "seesaw",
+      "x": 240,
+      "y": 620,
+      "scale": 1.5
+    }
+  ],
+  "layout": {
+    "revision": "room-redesign-3-wide",
+    "ground": "world/rooms-v3/plaza/ground.svg",
+    "foreground": "world/rooms-v3/plaza/foreground.svg",
+    "scale": 1.5,
+    "surface": "plaza",
+    "walk": [
+      [
+        [
+          40,
+          280
+        ],
+        [
+          1240,
+          280
+        ],
+        [
+          1240,
+          700
+        ],
+        [
+          40,
+          700
+        ]
+      ],
+      [
+        [
+          0,
+          450
+        ],
+        [
+          180,
+          450
+        ],
+        [
+          180,
+          650
+        ],
+        [
+          0,
+          650
+        ]
+      ],
+      [
+        [
+          1100,
+          450
+        ],
+        [
+          1280,
+          450
+        ],
+        [
+          1280,
+          650
+        ],
+        [
+          1100,
+          650
+        ]
+      ],
+      [
+        [
+          540,
+          570
+        ],
+        [
+          740,
+          570
+        ],
+        [
+          740,
+          720
+        ],
+        [
+          540,
+          720
+        ]
+      ],
+      [
+        [
+          410,
+          0
+        ],
+        [
+          530,
+          0
+        ],
+        [
+          530,
+          380
+        ],
+        [
+          410,
+          380
+        ]
+      ],
+      [
+        [
+          750,
+          0
+        ],
+        [
+          870,
+          0
+        ],
+        [
+          870,
+          380
+        ],
+        [
+          750,
+          380
+        ]
+      ]
+    ],
+    "blocked": [
+      [
+        [
+          0,
+          535
+        ],
+        [
+          75,
+          535
+        ],
+        [
+          75,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ],
+      [
+        [
+          1205,
+          535
+        ],
+        [
+          1280,
+          535
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          1205,
+          720
+        ]
+      ]
+    ],
+    "water": {},
+    "objects": [
+      {
+        "type": "fountain",
+        "asset": "world/decorations/fountain.svg",
+        "x": 640,
+        "y": 385,
+        "scale": 1.28,
+        "layer": "stand",
+        "animation": [
+          "world/decorations/fountain-room-v3-1.svg",
+          "world/decorations/fountain-room-v3-2.svg",
+          "world/decorations/fountain-room-v3-3.svg"
+        ],
+        "footprint": {
+          "ellipse": [
+            640,
+            369,
+            68,
+            24
+          ]
+        }
+      },
+      {
+        "type": "board",
+        "asset": "world/decorations/board.svg",
+        "x": 850,
+        "y": 470,
+        "scale": 1.2,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            850,
+            466.8,
+            21.6,
+            7.8
+          ]
+        }
+      },
+      {
+        "type": "bench",
+        "asset": "world/decorations/bench.svg",
+        "x": 490,
+        "y": 620,
+        "scale": 1.36,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            490,
+            616.8,
+            29.9,
+            10.8
+          ]
+        }
+      },
+      {
+        "type": "bench",
+        "asset": "world/decorations/bench.svg",
+        "x": 900,
+        "y": 610,
+        "scale": 1.36,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            900,
+            606.8,
+            29.9,
+            10.8
+          ]
+        }
+      },
+      {
+        "type": "lamp",
+        "asset": "world/decorations/lamp.svg",
+        "x": 430,
+        "y": 410,
+        "scale": 1.36,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            430,
+            406.8,
+            10.9,
+            4
+          ]
+        }
+      },
+      {
+        "type": "lamp",
+        "asset": "world/decorations/lamp.svg",
+        "x": 870,
+        "y": 360,
+        "scale": 1.36,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            870,
+            356.8,
+            10.9,
+            4
+          ]
+        }
+      },
+      {
+        "type": "lamp",
+        "asset": "world/decorations/lamp.svg",
+        "x": 130,
+        "y": 420,
+        "scale": 1.36,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            130,
+            416.8,
+            10.9,
+            4
+          ]
+        }
+      },
+      {
+        "type": "lamp",
+        "asset": "world/decorations/lamp.svg",
+        "x": 1170,
+        "y": 610,
+        "scale": 1.36,
+        "layer": "stand",
+        "footprint": {
+          "ellipse": [
+            1170,
+            606.8,
+            10.9,
+            4
+          ]
+        }
+      },
+      {
+        "type": "tree",
+        "asset": "world/decorations/tree.svg",
+        "x": 70,
+        "y": 270,
+        "scale": 2.16,
+        "layer": "stand",
+        "animation": [
+          "world/decorations/tree-1.svg",
+          "world/decorations/tree-2.svg",
+          "world/decorations/tree-3.svg"
+        ],
+        "footprint": {
+          "ellipse": [
+            70,
+            266.8,
+            56.2,
+            20.2
+          ]
+        }
+      },
+      {
+        "type": "tree",
+        "asset": "world/decorations/tree.svg",
+        "x": 1210,
+        "y": 270,
+        "scale": 2.16,
+        "layer": "stand",
+        "animation": [
+          "world/decorations/tree-1.svg",
+          "world/decorations/tree-2.svg",
+          "world/decorations/tree-3.svg"
+        ],
+        "footprint": {
+          "ellipse": [
+            1210,
+            266.8,
+            56.2,
+            20.2
+          ]
+        }
+      },
+      {
+        "type": "flowers",
+        "asset": "world/decorations/flowers.svg",
+        "x": 385,
+        "y": 380,
+        "scale": 1.36,
+        "layer": "stand",
+        "animation": [
+          "world/decorations/flowers-1.svg",
+          "world/decorations/flowers-2.svg",
+          "world/decorations/flowers-3.svg"
+        ]
+      },
+      {
+        "type": "flowers",
+        "asset": "world/decorations/flowers.svg",
+        "x": 1130,
+        "y": 360,
+        "scale": 1.36,
+        "layer": "stand",
+        "animation": [
+          "world/decorations/flowers-1.svg",
+          "world/decorations/flowers-2.svg",
+          "world/decorations/flowers-3.svg"
+        ]
+      }
+    ],
+    "party": {
+      "overhead": [
+        [
+          290,
+          310,
+          990,
+          345
+        ]
+      ],
+      "ground": [
+        [
+          80,
+          620
+        ],
+        [
+          380,
+          620
+        ],
+        [
+          520,
+          620
+        ],
+        [
+          760,
+          620
+        ],
+        [
+          880,
+          610
+        ],
+        [
+          1140,
+          620
+        ],
+        [
+          850,
+          380
+        ],
+        [
+          420,
+          400
+        ]
+      ],
+      "arch": [
+        640,
+        665
+      ],
+      "tree": [
+        640,
+        280
+      ]
+    }
+  }
+}

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ILO</title>
+  <link rel="icon" href="assets/logo/favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="map-page">
+  <!-- Shown only if the page was opened by double-clicking the file. -->
+  <div id="file-warning" class="panel error" hidden>
+    <h2>ILO necesita un servidor local / ILO needs a local server</h2>
+    <p>Abre una terminal en la carpeta de ILO, escribe <code>npm start</code> y luego abre <code>http://localhost:8080</code>.</p>
+    <p>Open a terminal in the ILO folder, type <code>npm start</code>, then open <code>http://localhost:8080</code>.</p>
+  </div>
+  <script>
+    if (location.protocol === 'file:') document.getElementById('file-warning').hidden = false;
+  </script>
+
+  <canvas id="map" class="map-canvas" aria-label="Mapa / Map"></canvas>
+  <p id="loading" class="muted center map-loading" data-i18n="world.loading"></p>
+  <div id="save-warning" class="save-warning" role="alert" data-i18n="save.unavailable" hidden></div>
+  <div id="error" class="panel error" hidden></div>
+
+  <div id="hud" class="hud" hidden>
+    <div class="hud-left">
+      <span class="logo"><img class="logo-mark" src="assets/logo/wordmark.svg" alt="ILO"></span>
+      <span class="coins" title=""><span class="coin-icon" aria-hidden="true"></span><span id="coins">0</span> <span data-i18n="world.coins"></span></span>
+    </div>
+    <div class="hud-right">
+      <button id="sound-button" type="button" data-icon class="button small"></button>
+      <a class="button small" href="lessons.html" data-i18n="world.allLessons"></a>
+      <div id="lang-switch" class="lang-switch"></div>
+    </div>
+    <p class="hud-help" data-i18n="world.help"></p>
+  </div>
+
+  <div id="area-toast" class="area-toast" aria-live="polite"></div>
+
+  <div id="prompt" class="prompt" hidden>
+    <h2 id="prompt-name"></h2>
+    <span id="prompt-done" class="badge" data-i18n="home.completed" hidden></span>
+    <p id="prompt-text"></p>
+    <button id="prompt-action" type="button" class="button primary"></button>
+    <p id="prompt-hint" class="muted small" data-i18n="world.enterHint"></p>
+  </div>
+
+  <div id="toolbar" class="toolbar" hidden>
+    <button id="snowball-button" type="button" data-icon class="button" data-i18n="world.snowball" aria-pressed="false" hidden></button>
+    <button id="stamps-button" type="button" data-icon class="button" data-i18n="world.stamps"></button>
+    <button id="guide-button" type="button" class="button" data-i18n="world.guide"></button>
+    <button id="map-button" type="button" data-icon class="button" data-i18n="world.map"></button>
+    <button id="say-button" type="button" data-icon class="button" data-i18n="world.say"></button>
+    <button id="emote-button" type="button" data-icon class="button" data-i18n="world.emotes"></button>
+    <button id="decorate-button" type="button" data-icon class="button primary" data-i18n="world.decorate" hidden></button>
+  </div>
+  <div id="say-menu" class="menu say-menu" hidden></div>
+  <div id="emote-menu" class="menu emote-menu" hidden></div>
+
+  <div id="decorator" class="decorator" hidden>
+    <div class="decorator-row">
+      <strong data-i18n="house.style"></strong>
+      <div id="house-styles" class="house-styles"></div>
+    </div>
+    <p class="muted small" data-i18n="house.help"></p>
+    <div id="inventory-items" class="inventory"></div>
+    <p id="inventory-empty" class="muted small" data-i18n="house.empty" hidden></p>
+  </div>
+
+  <div id="shop" class="shop" role="dialog" aria-modal="true" hidden></div>
+  <div id="world-map" class="shop" role="dialog" aria-modal="true" hidden></div>
+  <div id="stamp-book" class="shop" role="dialog" aria-modal="true" hidden></div>
+  <div id="field-guide" class="shop" role="dialog" aria-modal="true" hidden></div>
+  <div id="fade" class="fade" aria-hidden="true"></div>
+
+  <script type="module" src="js/world.js"></script>
+</body>
+</html>

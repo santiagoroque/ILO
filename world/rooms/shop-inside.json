@@ -1,0 +1,215 @@
+{
+  "$schema": "../../schema/room.schema.json",
+  "schemaVersion": 1,
+  "id": "shop-inside",
+  "kind": "indoor",
+  "interior": "shop",
+  "name": {
+    "es": "Dentro de la tienda",
+    "en": "Inside the shop"
+  },
+  "spawn": {
+    "x": 640,
+    "y": 620
+  },
+  "minY": 280,
+  "areas": [
+    {
+      "id": "ground",
+      "type": "indoor",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1280,
+          0
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          0,
+          720
+        ]
+      ]
+    }
+  ],
+  "paths": [],
+  "stations": [
+    {
+      "id": "counter",
+      "kind": "shop",
+      "style": "counter",
+      "x": 900,
+      "y": 420,
+      "name": {
+        "es": "Mostrador",
+        "en": "Counter"
+      },
+      "description": {
+        "es": "Ropa, mascotas y muebles para tu casa.",
+        "en": "Clothes, pets and furniture for your house."
+      },
+      "door": {
+        "x": 900,
+        "y": 448
+      },
+      "art": {
+        "asset": "world/stations/counter.svg",
+        "scale": 1.6,
+        "bounds": [
+          692,
+          260,
+          1108,
+          420
+        ],
+        "footprint": {
+          "rect": [
+            764,
+            364,
+            1036,
+            420
+          ]
+        }
+      }
+    }
+  ],
+  "exits": [
+    {
+      "id": "south",
+      "x": 560,
+      "y": 680,
+      "width": 160,
+      "height": 40,
+      "spawn": {
+        "x": 640,
+        "y": 610
+      },
+      "to": "plaza",
+      "toStation": "shop",
+      "sign": {
+        "x": 640,
+        "y": 650
+      }
+    }
+  ],
+  "decorations": [],
+  "scatter": [],
+  "furniture": [
+    {
+      "id": "bookshelf",
+      "x": 170,
+      "y": 410,
+      "scale": 1.6
+    },
+    {
+      "id": "bookshelf",
+      "x": 1120,
+      "y": 410,
+      "scale": 1.6
+    },
+    {
+      "id": "plant",
+      "x": 100,
+      "y": 600,
+      "scale": 1.6
+    },
+    {
+      "id": "plant",
+      "x": 1160,
+      "y": 600,
+      "scale": 1.6
+    },
+    {
+      "id": "rug",
+      "x": 640,
+      "y": 550,
+      "scale": 2
+    },
+    {
+      "id": "lamp",
+      "x": 330,
+      "y": 400,
+      "scale": 1.6
+    },
+    {
+      "id": "aquarium",
+      "x": 350,
+      "y": 610,
+      "scale": 1.6
+    },
+    {
+      "id": "poster",
+      "x": 320,
+      "y": 180,
+      "scale": 1.6
+    }
+  ],
+  "residents": [
+    {
+      "id": "tendero",
+      "x": 1090,
+      "y": 470,
+      "scale": 1.5
+    }
+  ],
+  "layout": {
+    "revision": "room-redesign-3-wide",
+    "ground": "world/rooms-v3/shop-inside/ground.svg",
+    "scale": 1.5,
+    "surface": "indoor",
+    "walk": [
+      [
+        [
+          40,
+          270
+        ],
+        [
+          1240,
+          270
+        ],
+        [
+          1240,
+          700
+        ],
+        [
+          40,
+          700
+        ]
+      ],
+      [
+        [
+          540,
+          570
+        ],
+        [
+          740,
+          570
+        ],
+        [
+          740,
+          720
+        ],
+        [
+          540,
+          720
+        ]
+      ]
+    ],
+    "blocked": [],
+    "water": {},
+    "objects": [
+      {
+        "type": "cabin-window",
+        "asset": "world/walls/cabin-window.svg",
+        "x": 640,
+        "y": 175,
+        "scale": 1,
+        "layer": "wall"
+      }
+    ]
+  }
+}

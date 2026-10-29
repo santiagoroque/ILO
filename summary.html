@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ILO</title>
+  <link rel="icon" href="assets/logo/favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Shown only if the page was opened by double-clicking the file. -->
+  <div id="file-warning" class="panel error" hidden>
+    <h2>ILO necesita un servidor local / ILO needs a local server</h2>
+    <p>Abre una terminal en la carpeta de ILO, escribe <code>npm start</code> y luego abre <code>http://localhost:8080</code>.</p>
+    <p>Open a terminal in the ILO folder, type <code>npm start</code>, then open <code>http://localhost:8080</code>.</p>
+  </div>
+  <script>
+    if (location.protocol === 'file:') document.getElementById('file-warning').hidden = false;
+  </script>
+
+  <header class="top-bar">
+    <a class="back" href="lessons.html" data-i18n="teacher.back"></a>
+    <div class="brand">
+      <span class="logo"><img class="logo-mark" src="assets/logo/wordmark.svg" alt="ILO"></span>
+      <span class="tagline" data-i18n="app.tagline"></span>
+    </div>
+    <div id="lang-switch" class="lang-switch"></div>
+  </header>
+
+  <main class="teacher summary">
+    <div id="error" class="panel error" hidden></div>
+    <h1 data-i18n="summary.title"></h1>
+    <p class="muted" data-i18n="summary.help"></p>
+    <div class="home-tools no-print">
+      <button id="print" type="button" class="button" data-i18n="teacher.print"></button>
+      <a id="export" class="button" download="ilo-resumen.csv" data-i18n="summary.export"></a>
+    </div>
+    <div class="table-wrap">
+      <table id="summary-table" class="summary-table"></table>
+    </div>
+    <p class="muted small" data-i18n="summary.limits"></p>
+  </main>
+
+  <script type="module" src="js/summary.js"></script>
+</body>
+</html>

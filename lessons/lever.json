@@ -1,0 +1,454 @@
+{
+  "$schema": "../schema/lesson.schema.json",
+  "schemaVersion": 1,
+  "id": "lever",
+  "concept": {
+    "es": "Máquinas simples: la palanca",
+    "en": "Simple machines: the lever"
+  },
+  "title": {
+    "es": "Levanta la roca",
+    "en": "Lift the rock"
+  },
+  "goal": {
+    "es": "Mueve el fulcro para que el saco de 10 kg levante la roca de 30 kg.",
+    "en": "Move the fulcrum so the 10 kg sandbag lifts the 30 kg rock."
+  },
+  "learningGoal": {
+    "es": "Una palanca te deja levantar algo pesado con poca fuerza. Mientras más cerca está el punto de apoyo (fulcro) de la carga, menos fuerza necesitas.",
+    "en": "A lever lets you lift something heavy with a small force. The closer the pivot (fulcrum) is to the load, the less force you need."
+  },
+  "intro": {
+    "es": "Una roca de 30 kg está en un extremo de una tabla. Solo tienes un saco de arena de 10 kg para soltar en el otro extremo. Mueve el fulcro para que el saco levante la roca.",
+    "en": "A 30 kg rock sits on one end of a plank. You only have a 10 kg sandbag to drop on the other end. Move the fulcrum so the sandbag lifts the rock."
+  },
+  "world": {
+    "model": "lever",
+    "width": 12,
+    "height": 7,
+    "gravity": 9.81,
+    "lever": {
+      "from": 2,
+      "to": 10,
+      "height": 0.6,
+      "mass": 4,
+      "fulcrum": 5,
+      "fulcrumOptions": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "load": "rock",
+      "effort": "sandbag"
+    },
+    "objects": [
+      {
+        "id": "rock",
+        "shape": "box",
+        "x": 9.6,
+        "y": 0.3,
+        "width": 0.8,
+        "height": 0.6,
+        "mass": 30,
+        "fixed": true,
+        "color": "#8d99ae",
+        "label": {
+          "es": "la roca",
+          "en": "the rock"
+        }
+      },
+      {
+        "id": "sandbag",
+        "shape": "box",
+        "x": 2.4,
+        "y": 4,
+        "width": 0.6,
+        "height": 0.5,
+        "mass": 10,
+        "color": "#c8a165",
+        "label": {
+          "es": "el saco de arena",
+          "en": "the sandbag"
+        }
+      }
+    ],
+    "zones": []
+  },
+  "reward": 50,
+  "toolbox": [
+    "move_fulcrum",
+    "drop"
+  ],
+  "startingBlocks": [
+    {
+      "block": "move_fulcrum",
+      "position": 5
+    },
+    {
+      "block": "drop",
+      "object": "sandbag"
+    }
+  ],
+  "winCondition": {
+    "type": "lever_tips",
+    "object": "rock",
+    "effort": "sandbag",
+    "timeLimit": 8,
+    "feedback": {
+      "tooHeavy": {
+        "es": "La roca no se levantó: el saco no tuvo suficiente fuerza de palanca. ¿Hacia dónde mueves el fulcro?",
+        "en": "The rock did not lift: the sandbag did not have enough leverage. Which way should the fulcrum move?"
+      },
+      "notDropped": {
+        "es": "El saco nunca cayó. Conecta el bloque \"soltar\" debajo de \"cuando se presione Ejecutar\".",
+        "en": "The sandbag never fell. Connect the \"drop\" block under \"when Run is pressed\"."
+      }
+    }
+  },
+  "warmups": [
+    {
+      "id": "seesaw",
+      "question": {
+        "es": "En un sube y baja, un adulto y un niño quieren quedar en equilibrio. ¿Quién debe sentarse más cerca del centro?",
+        "en": "On a seesaw, an adult and a child want to balance. Who should sit closer to the middle?"
+      },
+      "picture": "warmups/lever-seesaw.svg",
+      "answer": "adult",
+      "options": [
+        {
+          "id": "adult",
+          "label": {
+            "es": "El adulto",
+            "en": "The adult"
+          },
+          "feedback": {
+            "es": "¡Sí! El más pesado se sienta más cerca del punto de apoyo, y el más ligero, más lejos.",
+            "en": "Yes! The heavier one sits closer to the pivot, and the lighter one farther away."
+          }
+        },
+        {
+          "id": "child",
+          "label": {
+            "es": "El niño",
+            "en": "The child"
+          },
+          "feedback": {
+            "es": "Si el niño se acerca, el adulto gana todavía más fácil. El pesado debe acercarse al centro.",
+            "en": "If the child moves closer, the adult wins even more easily. The heavy one should move toward the middle."
+          }
+        },
+        {
+          "id": "same",
+          "label": {
+            "es": "Los dos a la misma distancia",
+            "en": "Both at the same distance"
+          },
+          "feedback": {
+            "es": "Así gana el más pesado. Para equilibrarse, el pesado se acerca al centro.",
+            "en": "Then the heavier one wins. To balance, the heavy one moves toward the middle."
+          }
+        }
+      ]
+    },
+    {
+      "id": "pry-rock",
+      "question": {
+        "es": "Quieres levantar una roca pesada con una tabla y un tronco como apoyo. ¿Dónde pones el tronco para hacer menos fuerza?",
+        "en": "You want to lift a heavy rock with a plank and a log as the pivot. Where do you put the log so you push less hard?"
+      },
+      "answer": "near-rock",
+      "options": [
+        {
+          "id": "near-rock",
+          "label": {
+            "es": "Cerca de la roca",
+            "en": "Near the rock"
+          },
+          "feedback": {
+            "es": "¡Correcto! Mientras más cerca de la carga está el apoyo, menos fuerza necesitas.",
+            "en": "Right! The closer the pivot is to the load, the less force you need."
+          }
+        },
+        {
+          "id": "near-you",
+          "label": {
+            "es": "Cerca de ti",
+            "en": "Near you"
+          },
+          "feedback": {
+            "es": "Así necesitas mucha más fuerza. Acércalo a la roca.",
+            "en": "Then you need much more force. Move it toward the rock."
+          }
+        },
+        {
+          "id": "middle",
+          "label": {
+            "es": "Justo en medio",
+            "en": "Right in the middle"
+          },
+          "feedback": {
+            "es": "En medio tendrías que empujar tanto como pesa la roca. Acércalo a la roca.",
+            "en": "In the middle you'd have to push as hard as the rock weighs. Move it toward the rock."
+          }
+        }
+      ]
+    }
+  ],
+  "prediction": {
+    "question": {
+      "es": "Antes de ejecutar: ¿qué crees que pasará con la roca?",
+      "en": "Before you run: what do you think will happen to the rock?"
+    },
+    "options": [
+      {
+        "id": "lifts",
+        "label": {
+          "es": "La roca sube",
+          "en": "The rock goes up"
+        },
+        "outcomes": [
+          "won"
+        ]
+      },
+      {
+        "id": "stays",
+        "label": {
+          "es": "La roca no se mueve",
+          "en": "The rock stays down"
+        },
+        "outcomes": [
+          "tooHeavy"
+        ]
+      }
+    ]
+  },
+  "hints": [
+    {
+      "es": "Fíjate en qué lado de la tabla baja cuando cae el saco.",
+      "en": "Watch which side of the plank goes down when the sandbag lands."
+    },
+    {
+      "es": "Compara dos posiciones cambiando solo el fulcro. La roca y el saco quedan iguales.",
+      "en": "Compare two positions by changing only the fulcrum. The rock and the sandbag stay the same."
+    },
+    {
+      "es": "El lado con el brazo más largo (más lejos del fulcro) tiene más fuerza de palanca. Para que el saco ligero gane, su brazo debe ser largo y el de la roca corto: el fulcro va cerca de la roca.",
+      "en": "The side with the longer arm (farther from the fulcrum) has more leverage. For the light sandbag to win, its arm must be long and the rock's short: the fulcrum goes near the rock."
+    },
+    {
+      "es": "Ejemplo: la roca pesa 3 veces lo que el saco, así que el brazo del saco debe ser más de 3 veces el de la roca. Con el fulcro en 8 m, el saco está a 5,6 m y la roca a 1,6 m: 5,6 es más de 3 veces 1,6.",
+      "en": "Example: the rock weighs 3 times as much as the sandbag, so the sandbag's arm must be more than 3 times the rock's. With the fulcrum at 8 m, the sandbag is 5.6 m away and the rock 1.6 m: 5.6 is more than 3 times 1.6."
+    }
+  ],
+  "success": {
+    "es": "¡La roca subió! Con el fulcro cerca de la roca, el brazo del saco es largo y el de la roca es corto, así que 10 kg pueden levantar 30 kg.",
+    "en": "The rock went up! With the fulcrum near the rock, the sandbag's arm is long and the rock's is short, so 10 kg can lift 30 kg."
+  },
+  "explain": {
+    "question": {
+      "es": "¿Por qué el saco ligero pudo levantar la roca pesada?",
+      "en": "Why could the light sandbag lift the heavy rock?"
+    },
+    "answer": "arm",
+    "options": [
+      {
+        "id": "arm",
+        "label": {
+          "es": "Con el fulcro cerca de la roca, el brazo del saco era mucho más largo.",
+          "en": "With the fulcrum near the rock, the sandbag's arm was much longer."
+        },
+        "feedback": {
+          "es": "¡Así es! Un brazo más largo da más fuerza de palanca.",
+          "en": "That's right! A longer arm gives more leverage."
+        }
+      },
+      {
+        "id": "fall",
+        "label": {
+          "es": "Porque el saco cayó desde muy alto.",
+          "en": "Because the sandbag fell from very high."
+        },
+        "feedback": {
+          "es": "Piensa otra vez: el saco cayó desde la misma altura en todos los intentos. ¿Qué cambiaste?",
+          "en": "Think again: the sandbag fell from the same height every time. What did you change?"
+        }
+      },
+      {
+        "id": "middle",
+        "label": {
+          "es": "Porque el fulcro estaba en el centro de la tabla.",
+          "en": "Because the fulcrum was in the middle of the plank."
+        },
+        "feedback": {
+          "es": "Piensa otra vez: con el fulcro en el centro, ¿qué lado bajó?",
+          "en": "Think again: with the fulcrum in the middle, which side went down?"
+        }
+      }
+    ]
+  },
+  "challenges": [
+    {
+      "id": "cracked-spot",
+      "title": {
+        "es": "Caso nuevo: la roca más ligera",
+        "en": "Changed case: the lighter rock"
+      },
+      "intro": {
+        "es": "Ahora la roca pesa 20 kg y está en 9 m. El punto de 8 m de la tabla se rajó, así que el fulcro solo puede ir entre 4 y 7 m. El saco sigue pesando 10 kg. ¿Dónde pones el fulcro?",
+        "en": "Now the rock weighs 20 kg and sits at 9 m. The 8 m spot on the plank cracked, so the fulcrum can only go between 4 and 7 m. The sandbag still weighs 10 kg. Where do you put the fulcrum?"
+      },
+      "success": {
+        "es": "¡Lo lograste en un caso nuevo! La roca pesa solo el doble que el saco, así que el brazo del saco solo necesitaba ser un poco más del doble del de la roca: con el fulcro en 7 m, 4,6 m contra 2 m.",
+        "en": "You did it in a new case! The rock only weighs twice as much as the sandbag, so the sandbag's arm only needed to be a little more than twice the rock's: with the fulcrum at 7 m, 4.6 m against 2 m."
+      },
+      "reward": 30,
+      "startingBlocks": [
+        {
+          "block": "move_fulcrum",
+          "position": 5
+        },
+        {
+          "block": "drop",
+          "object": "sandbag"
+        }
+      ],
+      "world": {
+        "objects": [
+          {
+            "id": "rock",
+            "shape": "box",
+            "x": 9.0,
+            "y": 0.3,
+            "width": 0.8,
+            "height": 0.6,
+            "mass": 20,
+            "fixed": true,
+            "color": "#8d99ae",
+            "label": {
+              "es": "la roca",
+              "en": "the rock"
+            }
+          },
+          {
+            "id": "sandbag",
+            "shape": "box",
+            "x": 2.4,
+            "y": 4,
+            "width": 0.6,
+            "height": 0.5,
+            "mass": 10,
+            "color": "#c8a165",
+            "label": {
+              "es": "el saco de arena",
+              "en": "the sandbag"
+            }
+          }
+        ],
+        "lever": {
+          "from": 2,
+          "to": 10,
+          "height": 0.6,
+          "mass": 4,
+          "fulcrum": 5,
+          "fulcrumOptions": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "load": "rock",
+          "effort": "sandbag"
+        }
+      },
+      "winCondition": {},
+      "goal": {
+        "es": "Roca más ligera y el punto de 8 m roto. ¿Dónde va el fulcro?",
+        "en": "A lighter rock and the 8 m spot broken. Where does the fulcrum go?"
+      }
+    }
+  ],
+  "curriculum": {
+    "status": "extension",
+    "program": {
+      "es": "Las palancas no aparecen en el Programa Sintético de primaria (Fases 4 y 5). Es una ampliación; otros países, como Corea, las ven de forma cualitativa en 3.º y 4.º.",
+      "en": "Levers do not appear in SEP's primary Programa Sintético (Phases 4 and 5). It is an extension; other countries, such as Korea, cover them qualitatively in grades 3 and 4."
+    },
+    "books": []
+  },
+  "teacher": {
+    "objective": {
+      "es": "Explicar que una palanca se inclina hacia el lado con más \"peso por brazo\" y elegir dónde poner el fulcro para que un peso pequeño levante uno grande.",
+      "en": "Explain that a lever tips toward the side with more \"weight times arm\", and choose where to put the fulcrum so a small weight lifts a big one."
+    },
+    "prerequisites": {
+      "es": "Medir distancias en una regla, comparar \"el doble\" y \"el triple\", y cambiar una cosa a la vez.",
+      "en": "Measuring distances on a ruler, comparing \"twice\" and \"three times\", and changing one thing at a time."
+    },
+    "assumptions": {
+      "es": "Modelo de palanca rígida: gana el lado con mayor torque (masa × distancia al fulcro); la tabla también pesa 4 kg. El saco cae desde 4 m, así que su golpe ayuda un poco. Es una simplificación: no hay fricción en el fulcro ni la tabla se dobla.",
+      "en": "Rigid lever model: the side with the larger torque (mass × distance to the fulcrum) wins; the plank itself weighs 4 kg. The sandbag drops from 4 m, so its impact helps a little. It is a simplification: no friction at the fulcrum and the plank does not bend."
+    },
+    "vocabulary": [
+      {
+        "es": "palanca",
+        "en": "lever"
+      },
+      {
+        "es": "fulcro (punto de apoyo)",
+        "en": "fulcrum (pivot)"
+      },
+      {
+        "es": "carga",
+        "en": "load"
+      },
+      {
+        "es": "brazo",
+        "en": "arm"
+      },
+      {
+        "es": "equilibrio",
+        "en": "balance"
+      }
+    ],
+    "misconceptions": [
+      {
+        "es": "\"Masas iguales siempre se equilibran\": depende también de la distancia al fulcro.",
+        "en": "\"Equal masses always balance\": it also depends on the distance to the fulcrum."
+      },
+      {
+        "es": "\"El fulcro siempre va en el centro\": en el centro, lo más pesado gana.",
+        "en": "\"The fulcrum always goes in the middle\": in the middle, the heavier side wins."
+      },
+      {
+        "es": "\"8 m es la respuesta correcta\": depende del peso y la posición de la roca. El caso nuevo lo muestra.",
+        "en": "\"8 m is the right answer\": it depends on the rock's weight and position. The changed case shows this."
+      }
+    ],
+    "opening": {
+      "es": "En un subibaja, ¿cómo puede un niño pequeño levantar a un adulto?",
+      "en": "On a seesaw, how can a small child lift an adult?"
+    },
+    "discussion": {
+      "es": "¿Qué pasó con la tabla cuando moviste el fulcro hacia la roca? ¿Por qué el caso nuevo necesitó otra posición?",
+      "en": "What happened to the plank when you moved the fulcrum toward the rock? Why did the changed case need a different position?"
+    },
+    "transfer": {
+      "es": "En papel: quieres levantar una caja de 40 kg con tu fuerza de 20 kg usando una palanca. ¿Pones el fulcro cerca de la caja o cerca de ti? ¿Cuántas veces más largo debe ser tu brazo?",
+      "en": "On paper: you want to lift a 40 kg box with your 20 kg of force using a lever. Do you put the fulcrum near the box or near you? How many times longer must your arm be?"
+    },
+    "meaning": {
+      "es": "\"Resuelto\" significa que levantó la roca en el caso principal. \"Aplicado\" significa que también lo logró con la roca más ligera y el punto rajado, que necesita otra posición. Ninguno es una nota.",
+      "en": "\"Solved\" means they lifted the rock in the main case. \"Applied\" means they also did it with the lighter rock and the cracked spot, which needs a different position. Neither is a grade."
+    },
+    "decision": {
+      "es": "Elige la posición del fulcro, con la roca y el saco iguales.",
+      "en": "Chooses the fulcrum position, with the rock and the sandbag the same."
+    },
+    "evidence": {
+      "es": "Predice si la roca sube; explica con la longitud de los brazos; en el caso nuevo elige 7 m porque la roca pesa menos.",
+      "en": "Predicts whether the rock goes up; explains with the arm lengths; in the changed case picks 7 m because the rock weighs less."
+    }
+  }
+}

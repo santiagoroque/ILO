@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ilo/world.schema.json",
+  "title": "ILO world (list of rooms)",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "startRoom",
+    "roomWidth",
+    "roomHeight",
+    "rooms"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "startRoom": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "roomWidth": {
+      "type": "number",
+      "minimum": 400
+    },
+    "roomHeight": {
+      "type": "number",
+      "minimum": 300
+    },
+    "rooms": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "mapX": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 800
+          },
+          "mapY": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 500
+          },
+          "map2": {
+            "description": "The room's spot on the new 1000 x 625 map (map/world-map-v2.svg, Phase 13).",
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 625
+              }
+            ],
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "description": "Rooms without mapX/mapY (building interiors) are not drawn on the world map."
+      }
+    }
+  }
+}
