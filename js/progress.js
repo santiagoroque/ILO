@@ -47,6 +47,28 @@ function write(data) {
   }
 }
 
+// ---- Backup file: carry progress to another computer ----
+// School computers often clear browser data, so a kid can save a copy of
+// their progress as a file and load it later (lessons.html).
+export function exportSave() {
+  return JSON.stringify({ app: 'ilo', version: VERSION, saved: new Date().toISOString(), data: read() });
+}
+
+// Loads a backup. Returns 'ok', 'not-ilo' (not an ILO backup) or 'too-new'
+// (made by a newer ILO). Only 'ok' changes anything.
+export function importSave(text) {
+  let file;
+  try {
+    file = JSON.parse(text);
+  } catch {
+    return 'not-ilo';
+  }
+  if (file?.app !== 'ilo' || !Number.isInteger(file.version) || typeof file.data !== 'object' || file.data === null || Array.isArray(file.data)) return 'not-ilo';
+  if (file.version > VERSION) return 'too-new';
+  write(upgrade({ ...file.data, version: file.data.version ?? file.version }));
+  return 'ok';
+}
+
 // False when this browser cannot keep progress (private mode, blocked or
 // full storage), so the page can tell the kid.
 export function canSave() {

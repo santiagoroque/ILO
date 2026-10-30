@@ -5,7 +5,7 @@
 // teacher can share a link that skips the world.
 import { loadStrings, mountLanguageSwitch, pick, t, translatePage } from './i18n.js';
 import { loadCatalog, loadLesson } from './lesson-loader.js';
-import { canSave, getPathPlace, lessonState, resetAll } from './progress.js';
+import { canSave, exportSave, getPathPlace, importSave, lessonState, resetAll } from './progress.js';
 import { showError } from './show-error.js';
 import { buildSteps } from './steps.js';
 
@@ -19,6 +19,23 @@ $('reset-all').addEventListener('click', () => {
   if (!confirm(t('home.resetConfirm'))) return;
   resetAll();
   location.reload(); // Every node goes back to "new".
+});
+
+// A backup file of the kid's progress, for school computers that forget.
+$('save-copy').addEventListener('click', () => {
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(new Blob([exportSave()], { type: 'application/json' }));
+  link.download = `ilo-avance-${new Date().toISOString().slice(0, 10)}.json`;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+});
+$('load-copy').addEventListener('change', async (event) => {
+  const file = event.target.files[0];
+  event.target.value = ''; // The same file can be picked again.
+  if (!file || !confirm(t('save.importConfirm'))) return;
+  const result = importSave(await file.text());
+  alert(t({ ok: 'save.imported', 'not-ilo': 'save.notIlo', 'too-new': 'save.tooNew' }[result]));
+  if (result === 'ok') location.reload();
 });
 
 const params = new URLSearchParams(location.search);
