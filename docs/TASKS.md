@@ -153,4 +153,4 @@ Status values: todo / in_progress / done. Milestones (M1 to M5) are defined in P
 | H02 | Tidy the project folder | done | 2026-10-29: the documents (PLAN, TASKS, PILOT, ASSETS, DESIGN_PROMPT 1 to 3) moved to docs/; README.md and the five pages stay at the top. References updated; check, tests and site build pass |
 | I00 | Improvement plan: 12 tasks (I01 to I12) | done | 2026-10-30: docs/superpowers/plans/2026-10-30-ilo-improvements.md. Most urgent: I01, room pictures use about 743 MB at start |
 | N4 | Plan accounts (teachers, students) | todo | A3. Replace js/progress.js |
-| N5 | Publish on GitHub Pages | todo | A6. Static files, no code changes. Free non-commercial pilot only (report S44) |
+| N5 | Publish on GitHub Pages | in_progress | 2026-10-30: Santiago said yes. Ready in the code (`.nojekyll`, no absolute paths; README "On the web with GitHub Pages"). Santiago makes the repository public and turns Pages on; then check https://santiagoroque.github.io/ILO/ |

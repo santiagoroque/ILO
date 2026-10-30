@@ -261,7 +261,13 @@ ILO saves progress **only in this browser, on this computer** (`localStorage`, u
 
 ### Publishing ILO
 
-Run `npm run build-site`. The `dist/` folder is the whole game. Upload its contents to a static host (for example GitHub Pages, free for a non-commercial pilot), or copy it to a computer with Node.js and run `node tools/serve.js` inside it (see `dist/LEEME.txt`). Browsers do not run ILO from a double-clicked file, so it always needs a host or that small server. The SEP PDFs in `sources/` are never copied into `dist/`.
+**On the web with GitHub Pages** (the repository must be public; the SEP books are never in it):
+
+1. On github.com/santiagoroque/ILO, open **Settings**, then **General**, and under "Danger Zone" choose **Change visibility** > **Public**.
+2. Open **Settings** > **Pages**. Under "Build and deployment" pick **Deploy from a branch**, branch **main**, folder **/ (root)**, and **Save**.
+3. After a minute or two the game is at **https://santiagoroque.github.io/ILO/**. Every push to `main` updates it (the empty `.nojekyll` file makes GitHub serve every file as it is).
+
+**On a USB stick or another host:** Run `npm run build-site`. The `dist/` folder is the whole game. Upload its contents to a static host (for example GitHub Pages, free for a non-commercial pilot), or copy it to a computer with Node.js and run `node tools/serve.js` inside it (see `dist/LEEME.txt`). Browsers do not run ILO from a double-clicked file, so it always needs a host or that small server. The SEP PDFs in `sources/` are never copied into `dist/`.
 
 ### Updating the art
 
