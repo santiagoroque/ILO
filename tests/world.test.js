@@ -10,6 +10,7 @@ import {
   areaOf, arrivalPoint, buildRoom, canWalk, collides, exitLabelSpot, findPath, HUD, moveWithCollisions, stationNear, withFurniture,
 } from '../js/world-data.js';
 import { stampEarned } from '../js/stamps.js';
+import { mapButtons } from '../js/world-map.js';
 
 const readJson = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
 const worldData = readJson('../world/world.json');
@@ -177,6 +178,13 @@ test('each room knows its area from its layout', () => {
   assert.equal(areaOf(rooms['snowy-ridge']), 'arctic');
   assert.equal(areaOf(rooms.house), 'indoor');
   assert.equal(areaOf(rooms.plaza), 'plaza');
+});
+
+test('the map has a button for each of the 16 places and 6 machines', () => {
+  const buttons = mapButtons(worldData, rooms);
+  assert.equal(buttons.filter((b) => !b.station).length, 16);
+  assert.equal(buttons.filter((b) => b.station).length, 6);
+  for (const b of buttons) assert.ok(b.left >= 0 && b.left <= 100 && b.top >= 0 && b.top <= 100, b.label);
 });
 
 test('a station prompt appears only near its door', () => {

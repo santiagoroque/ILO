@@ -251,8 +251,12 @@ body.map-page:has(.decorator:not([hidden])) .toolbar { bottom: auto; top: 4rem; 
 .teacher section { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1.1rem; margin: 0 0 0.8rem; }
 .teacher h2 { margin-bottom: 0.3rem; }
 .teacher ul { margin: 0.2rem 0; padding-left: 1.3rem; }
-.place-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.4rem; }
-.place-list-title { margin: 0.9rem 0 0; font-size: 1rem; }
+/* The map is the place picker: invisible buttons over each place and machine */
+.map-frame { position: relative; margin-top: 0.75rem; }
+.map-frame .world-map { margin-top: 0; }
+.map-spot { position: absolute; transform: translate(-50%, -50%); width: 7%; height: 11%; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
+.map-spot.machine { width: 3.2%; height: 5.2%; border-radius: 6px; }
+.map-spot:hover, .map-spot:focus-visible { outline: 4px solid #ffd166; outline-offset: 2px; }
 @media print {
   .top-bar, .no-print { display: none; }
   body { background: #fff; }

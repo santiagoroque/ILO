@@ -24,6 +24,27 @@ const NEW_MAP = 'map/world-map-v3.svg';
 // them (map/machine-<lesson>.svg). Clicking one goes straight to the machine.
 const MACHINE_ROOMS = { 'drone-post': 'drone-post-inside', 'ice-slide': 'ice-slide-inside', 'lever-glade': 'lever-workshop-inside' };
 const MACHINE_SIZE = 28;
+// The rooms on the map (interiors are not), at their spot on the picture.
+function mapNodes(worldData, rooms, v2) {
+  return worldData.rooms.filter((r) => r.mapX !== undefined)
+    .map((r) => ({ ...r, room: rooms[r.id], ...(v2 && r.map2 ? { mapX: r.map2[0], mapY: r.map2[1] } : {}) }));
+}
+
+// The map is the place picker: every place and every minigame machine is a
+// real button over the picture, so a mouse, a finger, the keyboard and screen
+// readers all work. `left` and `top` are percentages of the picture.
+export function mapButtons(worldData, rooms, { v2 = true, pick = (name) => name.es } = {}) {
+  const [W, H] = v2 ? [1000, 625] : [800, 500];
+  const nodes = mapNodes(worldData, rooms, v2);
+  const at = (x, y) => ({ left: (x / W) * 100, top: (y / H) * 100 });
+  return [
+    ...nodes.map((n) => ({ label: pick(n.room.name), room: n.id, station: null, ...at(n.mapX, n.mapY) })),
+    ...(v2 ? machineMarkers(nodes, rooms) : []).map((m) => ({
+      label: `${pick(m.station.name)} (${pick(rooms[m.room].name)})`, room: m.room, station: m.station.id, ...at(m.x, m.y),
+    })),
+  ];
+}
+
 function machineMarkers(nodes, rooms) {
   const out = [];
   for (const node of nodes) {
@@ -144,61 +165,33 @@ export function openWorldMap(panel, { worldData, rooms, current, pick, t, onGo }
   canvas.width = W;
   canvas.height = H;
   canvas.className = 'world-map';
-  const nodes = worldData.rooms.filter((r) => r.mapX !== undefined) // Interiors are not on the map.
-    .map((r) => ({ ...r, room: rooms[r.id], ...(v2 && r.map2 ? { mapX: r.map2[0], mapY: r.map2[1] } : {}) }));
+  const nodes = mapNodes(worldData, rooms, v2);
   const machines = v2 ? machineMarkers(nodes, rooms) : [];
-  // The same places as buttons, for keyboards and screen readers (Phase 10):
-  // every room on the map, then every minigame machine.
-  const listTitle = document.createElement('h3');
-  listTitle.className = 'place-list-title';
-  listTitle.textContent = t('world.places');
-  const list = document.createElement('div');
-  list.className = 'place-list';
-  const place = (label, go) => {
+  // Click (or Tab and Enter) a place or a machine on the map to go there.
+  const frame = document.createElement('div');
+  frame.className = 'map-frame';
+  frame.append(canvas);
+  for (const spot of mapButtons(worldData, rooms, { v2, pick })) {
     const b = document.createElement('button');
     b.type = 'button';
-    b.className = 'button small';
-    b.textContent = label;
+    b.className = `map-spot${spot.station ? ' machine' : ''}`;
+    b.style.left = `${spot.left}%`;
+    b.style.top = `${spot.top}%`;
+    b.setAttribute('aria-label', spot.label);
+    b.title = spot.label;
+    if (!spot.station && spot.room === current) b.setAttribute('aria-current', 'location');
     b.addEventListener('click', () => {
       closeMap();
-      go();
+      if (spot.station) onGo(spot.room, spot.station);
+      else if (spot.room !== current) onGo(spot.room);
     });
-    list.append(b);
-  };
-  for (const node of nodes) if (node.id !== current) place(pick(node.room.name), () => onGo(node.id));
-  for (const room of Object.values(rooms)) {
-    for (const s of room.stations) if (s.kind === 'lesson') place(`${pick(s.name)} (${pick(room.name)})`, () => onGo(room.id, s.id));
+    frame.append(b);
   }
-  panel.append(head, canvas, listTitle, list);
+  panel.append(head, frame);
   paintCanvas(canvas, (ctx) => {
     if (v2 && drawSpriteBox(ctx, NEW_MAP, 0, 0, W, H)) drawLabels(ctx, nodes, { current, pick, all: true, machines });
     else if (drawSpriteBox(ctx, 'map/world-map.svg', 0, 0, 800, 500)) drawLabels(ctx, nodes, { current, pick });
     else drawShapes(ctx, nodes, { current, pick, t });
-  });
-
-  // The canvas is scaled by CSS, so convert the click back to map pixels.
-  const toMap = (event) => {
-    const box = canvas.getBoundingClientRect();
-    return { x: ((event.clientX - box.left) / box.width) * W, y: ((event.clientY - box.top) / box.height) * H };
-  };
-  const machineAt = (event) => {
-    const p = toMap(event);
-    return machines.find((m) => Math.abs(p.x - m.x) < MACHINE_SIZE / 2 + 2 && Math.abs(p.y - m.y) < MACHINE_SIZE / 2 + 2);
-  };
-  const nodeAt = (event) => {
-    const p = toMap(event);
-    return nodes.find((n) => Math.hypot(p.x - n.mapX, p.y - n.mapY) < NODE_RADIUS + 8);
-  };
-  canvas.addEventListener('mousemove', (event) => {
-    canvas.style.cursor = machineAt(event) || nodeAt(event) ? 'pointer' : 'default';
-  });
-  canvas.addEventListener('click', (event) => {
-    const machine = machineAt(event);
-    const node = machine ? null : nodeAt(event);
-    if (!machine && !node) return;
-    closeMap();
-    if (machine) onGo(machine.room, machine.station.id);
-    else if (node.id !== current) onGo(node.id);
   });
 
   function closeMap() {
