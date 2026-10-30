@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
-const PAGES = ['index.html', 'lesson.html', 'lessons.html', 'teacher.html', 'summary.html'];
+const PAGES = ['index.html', 'lesson.html', 'lessons.html', 'teacher.html', 'summary.html', 'sw.js']; // sw.js: offline play
 const FOLDERS = ['css', 'js', 'lessons', 'world', 'locales', 'assets', 'vendor'];
 
 rmSync(dist, { recursive: true, force: true });
