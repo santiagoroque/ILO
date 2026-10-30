@@ -19,7 +19,7 @@ import { openShop } from './shop.js';
 import { showError } from './show-error.js';
 import { loadArt, onArtLoaded, paintCanvas, preload, reducedMotion, spriteReady, unload } from './sprites.js';
 import { actorPrefixes, houseFiles, nearbyRooms, roomFiles } from './room-art.js';
-import { chooseQuality, loopsOn } from './quality.js';
+import { chooseQuality, loopsOn, nextQuality } from './quality.js';
 import { createCritters, isVisible, updateCritters } from './critters.js';
 import { GUIDE_ANIMALS, openFieldGuide } from './field-guide.js';
 import { activeParty, decorateRooms, isPartyRoom } from './parties.js';
@@ -916,7 +916,7 @@ function measure(ms) {
   if (frameTimes.length > 60) frameTimes.shift();
 }
 setInterval(() => {
-  const next = chooseQuality(frameTimes, { forced: LITE_FLAG, reducedMotion });
+  const next = nextQuality(quality, frameTimes, { forced: LITE_FLAG });
   if (next === quality) return;
   quality = next;
   if (quality === 'lite') {
