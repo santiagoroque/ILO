@@ -29,6 +29,7 @@ $('save-copy').addEventListener('click', () => {
   link.click();
   setTimeout(() => URL.revokeObjectURL(link.href), 1000);
 });
+$('load-copy-button').addEventListener('click', () => $('load-copy').click()); // A real button, so Tab reaches it.
 $('load-copy').addEventListener('change', async (event) => {
   const file = event.target.files[0];
   event.target.value = ''; // The same file can be picked again.
