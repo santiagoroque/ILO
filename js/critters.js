@@ -78,6 +78,7 @@ export function critterArtFile(c, frame) {
 export const HOLES = { meerkat: 'burrow', seal: 'ice-hole' };
 
 const between = (rng, a, b) => a + rng() * (b - a);
+const HERD_GAP = 140; // Pixels between animals walking in a line (elephants).
 const MARGIN = 50;
 
 // Wading birds stand in the sea or the shallows, away from boardwalks.
@@ -151,6 +152,9 @@ export function createCritters(world, rng = Math.random) {
         const y = entry.y ?? (def.flying ? between(rng, 70, 200) : world.height - 70);
         Object.assign(c, { x: -200, y, line: y, stopAt: entry.x ?? null, state: 'away', anim: def.flying ? 'fly' : 'walk', flying: Boolean(def.flying), z: 0 });
         c.timer = between(rng, 3, def.every * 0.6);
+        // A herd: the first one leads, the others walk in a line behind it.
+        if (n > 0) Object.assign(c, { leader: critters[critters.length - n], gap: HERD_GAP * n, y: y + (n % 2 ? 18 : -18) });
+        else c.tail = HERD_GAP * ((entry.count ?? 1) - 1);
       }
       critters.push(c);
     }
@@ -255,6 +259,10 @@ export function updateCritters(critters, world, avatar, dt, rng = Math.random) {
         const angle = rng() * Math.PI * 2;
         Object.assign(c, inWater(c.water, angle, 0.5), { state: 'jump', progress: 0, facing: Math.cos(angle) > 0 ? -1 : 1 });
       }
+    } else if (def.kind === 'passer' && c.leader) {
+      // Followers copy the leader, a few steps behind it.
+      const l = c.leader;
+      Object.assign(c, { state: l.state, anim: l.anim, facing: l.facing, x: l.x - l.facing * c.gap });
     } else if (def.kind === 'passer') {
       if (c.state === 'away') {
         if (c.timer < 0) {
@@ -268,7 +276,8 @@ export function updateCritters(critters, world, avatar, dt, rng = Math.random) {
         if (c.stopAt !== null && !c.stopped && Math.abs(c.x - c.stopAt) < 4) {
           Object.assign(c, { state: 'drink', anim: 'drink', stopped: true, timer: 4 });
         }
-        if (c.x < -220 || c.x > world.width + 220) Object.assign(c, { state: 'away', timer: between(rng, def.every * 0.6, def.every * 1.4) });
+        const tail = c.tail ?? 0; // The whole herd leaves before it turns back.
+        if (c.x < -220 - tail || c.x > world.width + 220 + tail) Object.assign(c, { state: 'away', timer: between(rng, def.every * 0.6, def.every * 1.4) });
       }
     }
   }

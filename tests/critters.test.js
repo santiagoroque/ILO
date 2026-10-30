@@ -119,3 +119,16 @@ test('the sea turtle swims under the glass deck', () => {
   const turtle = createCritters(built['coral-lookout'], random(3)).find((c) => c.type === 'sea-turtle');
   assert.equal(turtle.under, true);
 });
+
+test('elephants come as a herd, one behind another', () => {
+  const world = built.waterhole;
+  const herd = createCritters(world, random(5)).filter((c) => c.type === 'elephant');
+  assert.equal(herd.length, 3);
+  let together = 0;
+  run(herd, world, FAR, 120, (list) => {
+    const seen = list.filter(isVisible);
+    if (seen.length > 1) together++;
+    for (const a of seen) for (const b of seen) if (a !== b) assert.ok(Math.abs(a.x - b.x) >= 60, `${Math.round(a.x)} and ${Math.round(b.x)}`);
+  });
+  assert.ok(together > 0, 'they were seen together');
+});
