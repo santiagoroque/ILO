@@ -7,7 +7,7 @@ import { FURNITURE } from '../js/furniture.js';
 import { placementOk } from '../js/house.js';
 import { hasPetDrawing } from '../js/pet.js';
 import {
-  arrivalPoint, buildRoom, canWalk, collides, findPath, moveWithCollisions, stationNear, withFurniture,
+  arrivalPoint, buildRoom, canWalk, collides, exitLabelSpot, findPath, HUD, moveWithCollisions, stationNear, withFurniture,
 } from '../js/world-data.js';
 import { stampEarned } from '../js/stamps.js';
 
@@ -156,6 +156,16 @@ test('the avatar walks around the fountain to reach the shop door', () => {
     ({ x, y } = moveWithCollisions(world, x, y, (dx / len) * step, (dy / len) * step));
   }
   assert.ok(Math.hypot(door.x - x, door.y - y) <= 5, `stopped at ${Math.round(x)}, ${Math.round(y)}`);
+});
+
+test('every exit label is away from the start spot and the toolbar corners', () => {
+  for (const [id, world] of Object.entries(built)) for (const exit of world.exits) {
+    const p = exitLabelSpot(world, exit);
+    assert.ok(Math.hypot(p.x - world.start.x, p.y - world.start.y) >= 90, `${id} -> ${exit.to}`);
+    assert.ok(!HUD.some(([l, t, r, b]) => p.x > l && p.x < r && p.y > t && p.y < b), `${id} -> ${exit.to} under the toolbar`);
+    // On a phone the toolbar runs along the whole bottom: labels stay above it.
+    assert.ok(p.y <= world.height - 130, `${id} -> ${exit.to} too low for a phone (${p.y})`);
+  }
 });
 
 test('a station prompt appears only near its door', () => {

@@ -10,7 +10,7 @@ import { drawStamp } from './stamps.js';
 import { drawCritters } from './critter-draw.js';
 import { drawResident, drawResidentBubble, drawTodo } from './resident-draw.js';
 import { drawFlyingKite, drawSled, drawToy, FLAT_TOYS } from './toy-draw.js';
-import { areaAt, FLAT, OVERHEAD, random, STATION_SIZE, stationSize, WATER, WATER_AREAS } from './world-data.js';
+import { areaAt, exitLabelSpot, FLAT, OVERHEAD, random, STATION_SIZE, stationSize, WATER, WATER_AREAS } from './world-data.js';
 
 const OUTLINE = '#2b2d42';
 const FONT = "'Nunito', system-ui, sans-serif";
@@ -2036,7 +2036,8 @@ function drawExit(ctx, world, exit, scene) {
   // Side exits use the sign picture: an arrow pointing right over a blank
   // plate for the room name (mirrored for the left side).
   if ((toLeft || toRight) && drawSprite(ctx, 'world/effects/exit-arrow.svg', ax, ay + 24, { scale: 0.8, flip: toLeft })) {
-    drawExitLabel(ctx, world, scene.exitLabel(exit), ax, ay + 13);
+    const spot = exitLabelSpot(world, exit);
+    drawExitLabel(ctx, world, scene.exitLabel(exit), spot.x, spot.y);
     return;
   }
   ctx.save();
@@ -2055,7 +2056,8 @@ function drawExit(ctx, world, exit, scene) {
   ctx.stroke();
   ctx.restore();
 
-  drawExitLabel(ctx, world, scene.exitLabel(exit), ax, toTop ? ay + 34 : ay - 34);
+  const spot = exitLabelSpot(world, exit); // The designers' sign spot, clear of Ilo and the toolbar.
+  drawExitLabel(ctx, world, scene.exitLabel(exit), spot.x, spot.y);
 }
 
 function drawExitLabel(ctx, world, label, ax, ly) {

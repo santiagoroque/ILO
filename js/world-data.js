@@ -406,6 +406,27 @@ export function exitAt(world, x, y) {
   return world.exits.find((e) => inRect(e, x, y, 1)) ?? null; // Its edge counts too.
 }
 
+// The screen corners the toolbar buttons cover, [left, top, right, bottom]
+// (the designers' HUDReserved, DESIGN_PROMPT_3.md).
+export const HUD = [[0, 0, 300, 60], [980, 0, 1280, 60], [0, 670, 380, 720], [780, 660, 1280, 720]];
+
+// Where an exit's name is written: the designers' sign spot, moved aside
+// when Ilo starts on it, and out from under the toolbar.
+export function exitLabelSpot(world, exit) {
+  const toLeft = exit.x <= 0;
+  const toRight = exit.x + exit.width >= world.width;
+  const toTop = exit.y <= 0;
+  let p = exit.sign ? { ...exit.sign } : {
+    x: toLeft ? 70 : toRight ? world.width - 70 : exit.x + exit.width / 2,
+    y: toLeft || toRight ? exit.y + exit.height / 2 + 13 : toTop ? 104 : world.height - 104,
+  };
+  p.y = Math.min(p.y, world.height - 130); // On a phone the toolbar runs along the whole bottom.
+  if (Math.hypot(p.x - world.start.x, p.y - world.start.y) < 90) p.x += p.x <= world.width / 2 ? 130 : -130;
+  const under = HUD.find(([l, t, r, b]) => p.x > l && p.x < r && p.y > t && p.y < b);
+  if (under) p = { x: p.x, y: under[1] === 0 ? under[3] + 14 : under[1] - 14 };
+  return p;
+}
+
 // Where you appear when you arrive through `exit` (in the room it leads to).
 export function arrivalPoint(targetRoom, exit) {
   if (exit.toExit) return { ...targetRoom.exits.find((e) => e.id === exit.toExit).spawn };
