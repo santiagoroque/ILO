@@ -17,7 +17,8 @@ import {
 } from './progress.js';
 import { openShop } from './shop.js';
 import { showError } from './show-error.js';
-import { loadArt, onArtLoaded, paintCanvas, preload, reducedMotion } from './sprites.js';
+import { loadArt, onArtLoaded, paintCanvas, reducedMotion, spriteReady, unload } from './sprites.js';
+import { nearbyRooms, roomFiles } from './room-art.js';
 import { createCritters, isVisible, updateCritters } from './critters.js';
 import { GUIDE_ANIMALS, openFieldGuide } from './field-guide.js';
 import { activeParty, decorateRooms, isPartyRoom } from './parties.js';
@@ -144,8 +145,19 @@ function refreshRoom() {
   dirty = true;
 }
 
+// Turns into pixels this room's pictures and its neighbors', and frees the
+// rest of the rooms' pictures (old school computers have little memory).
+let roomArt = null; // Every room-specific picture, once.
+function loadRoomArt(id) {
+  roomArt ??= [...new Set(Object.values(rooms).flatMap(roomFiles))];
+  const keep = new Set([id, ...nearbyRooms(id, rooms)].flatMap((r) => roomFiles(rooms[r])));
+  unload(roomArt, keep);
+  for (const file of keep) spriteReady(file); // Starts loading it.
+}
+
 function enterRoom(id, point, { announce = true } = {}) {
   roomId = id;
+  loadRoomArt(id);
   refreshRoom();
   avatar.x = point.x;
   avatar.y = point.y;
@@ -1021,7 +1033,6 @@ function frame(now) {
 
 // ---- Start ----
 onArtLoaded(() => { dirty = true; });
-preload('world/');
 const saved = getWorldPosition();
 const startRoom = saved && rooms[saved.room] ? saved.room : worldData.startRoom;
 roomId = startRoom;

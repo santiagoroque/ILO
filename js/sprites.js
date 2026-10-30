@@ -6,8 +6,11 @@
 // false and the caller draws its simple shape version instead, so the game
 // still works if a file is missing or slow.
 
+import { rasterScale } from './room-art.js';
+
 const ROOT = new URL('../assets/', import.meta.url);
-const RES = 2; // Pixels per game pixel when turning a picture into pixels.
+// Pixels per game pixel when turning a picture into pixels: 2 for small
+// pictures, 1 for whole-room layers (js/room-art.js, rasterScale).
 
 let anchors = {};
 const listeners = new Set();
@@ -40,9 +43,10 @@ export const hasArt = (file) => Boolean(anchors[file]);
 export const artSize = (file) => anchors[file] ?? null;
 
 function rasterize(image, w, h) {
+  const res = rasterScale([w, h]);
   const canvas = document.createElement('canvas');
-  canvas.width = Math.ceil(w * RES);
-  canvas.height = Math.ceil(h * RES);
+  canvas.width = Math.ceil(w * res);
+  canvas.height = Math.ceil(h * res);
   canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
   return canvas;
 }
@@ -119,7 +123,7 @@ export function spritePattern(ctx, file) {
   if (!canvas) return null;
   if (!patterns.has(canvas)) {
     const pattern = ctx.createPattern(canvas, 'repeat');
-    if (pattern.setTransform) pattern.setTransform(new DOMMatrix().scale(1 / RES));
+    if (pattern.setTransform) pattern.setTransform(new DOMMatrix().scale(canvas.width / anchors[file][0] > 1.5 ? 0.5 : 1));
     patterns.set(canvas, pattern);
   }
   return patterns.get(canvas);
@@ -144,6 +148,12 @@ export function paintCanvas(canvas, draw) {
 // example 'world/'), before it is needed.
 export function preload(prefix) {
   for (const file of Object.keys(anchors)) if (file.startsWith(prefix)) load(file);
+}
+
+// Frees the pixels of `files` that are not in `keep` (a Set), so a room
+// left behind gives its memory back. They load again when drawn.
+export function unload(files, keep) {
+  for (const file of files) if (!keep.has(file)) cache.delete(file);
 }
 
 // The address of a picture, for <img> tags in menus.
