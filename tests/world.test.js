@@ -7,7 +7,7 @@ import { FURNITURE } from '../js/furniture.js';
 import { placementOk } from '../js/house.js';
 import { hasPetDrawing } from '../js/pet.js';
 import {
-  areaOf, arrivalPoint, buildRoom, canWalk, collides, exitLabelSpot, findPath, HUD, moveWithCollisions, stationNear, withFurniture,
+  areaOf, arrivalPoint, buildRoom, canWalk, collides, exitLabelSpot, exitSignSpot, findPath, HUD, moveWithCollisions, stationNear, withFurniture,
 } from '../js/world-data.js';
 import { stampEarned } from '../js/stamps.js';
 import { mapButtons } from '../js/world-map.js';
@@ -166,6 +166,15 @@ test('every exit label is away from the start spot and the toolbar corners', () 
     assert.ok(!HUD.some(([l, t, r, b]) => p.x > l && p.x < r && p.y > t && p.y < b), `${id} -> ${exit.to} under the toolbar`);
     // On a phone the toolbar runs along the whole bottom: labels stay above it.
     assert.ok(p.y <= world.height - 130, `${id} -> ${exit.to} too low for a phone (${p.y})`);
+  }
+});
+
+test('a side exit\'s sign picture carries its name on the plate', () => {
+  for (const [id, world] of Object.entries(built)) for (const exit of world.exits) {
+    if (exit.x > 0 && exit.x + exit.width < world.width) continue; // Top and bottom exits have an arrow, not a sign.
+    const label = exitLabelSpot(world, exit);
+    const sign = exitSignSpot(world, exit);
+    assert.deepEqual({ x: sign.x, y: sign.y - 11 }, label, `${id} -> ${exit.to}`);
   }
 });
 

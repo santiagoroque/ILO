@@ -316,6 +316,13 @@ export function exitLabelSpot(world, exit) {
   return p;
 }
 
+// Where a side exit's sign picture (world/effects/exit-arrow.svg) stands, so
+// the name is written on its plate: 11 px above the picture's ground point.
+export const exitSignSpot = (world, exit) => {
+  const label = exitLabelSpot(world, exit);
+  return { x: label.x, y: label.y + 11 };
+};
+
 // Where you appear when you arrive through `exit` (in the room it leads to).
 export function arrivalPoint(targetRoom, exit) {
   if (exit.toExit) return { ...targetRoom.exits.find((e) => e.id === exit.toExit).spawn };

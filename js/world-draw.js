@@ -10,7 +10,7 @@ import { drawStamp } from './stamps.js';
 import { drawCritters } from './critter-draw.js';
 import { drawResident, drawResidentBubble, drawTodo } from './resident-draw.js';
 import { drawFlyingKite, drawSled, drawToy, FLAT_TOYS } from './toy-draw.js';
-import { areaOf, exitLabelSpot, STATION_SIZE, stationSize } from './world-data.js';
+import { areaOf, exitLabelSpot, exitSignSpot, STATION_SIZE, stationSize } from './world-data.js';
 
 const OUTLINE = '#2b2d42';
 const FONT = "'Nunito', system-ui, sans-serif";
@@ -1766,7 +1766,8 @@ function drawExit(ctx, world, exit, scene) {
   const ay = toTop ? inset : (!toLeft && !toRight) ? world.height - inset : cy;
   // Side exits use the sign picture: an arrow pointing right over a blank
   // plate for the room name (mirrored for the left side).
-  if ((toLeft || toRight) && drawSprite(ctx, 'world/effects/exit-arrow.svg', ax, ay + 24, { scale: 0.8, flip: toLeft })) {
+  const sign = exitSignSpot(world, exit); // The sign stands where its name is written.
+  if ((toLeft || toRight) && drawSprite(ctx, 'world/effects/exit-arrow.svg', sign.x, sign.y, { scale: 0.8, flip: toLeft })) {
     const spot = exitLabelSpot(world, exit);
     drawExitLabel(ctx, world, scene.exitLabel(exit), spot.x, spot.y);
     return;
