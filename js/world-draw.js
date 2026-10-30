@@ -10,7 +10,7 @@ import { drawStamp } from './stamps.js';
 import { drawCritters } from './critter-draw.js';
 import { drawResident, drawResidentBubble, drawTodo } from './resident-draw.js';
 import { drawFlyingKite, drawSled, drawToy, FLAT_TOYS } from './toy-draw.js';
-import { areaAt, exitLabelSpot, FLAT, OVERHEAD, random, STATION_SIZE, stationSize, WATER, WATER_AREAS } from './world-data.js';
+import { areaOf, exitLabelSpot, STATION_SIZE, stationSize } from './world-data.js';
 
 const OUTLINE = '#2b2d42';
 const FONT = "'Nunito', system-ui, sans-serif";
@@ -26,16 +26,6 @@ const GROUND = {
   sea: { fill: '#73bfc1', mark: '#b7e1d3' }, // The wave strips' water color
   shallows: { fill: '#5fb39a', mark: '#3f8f78' },
 };
-// Path colors per area (assets/tokens.json): fill and edge.
-const PATH = {
-  forest: ['#dec591', '#a98c5c'],
-  savannah: ['#ce9c66', '#ad784c'],
-  arctic: ['#d4e4ea', '#b1cbd6'],
-  plaza: ['#dccdb0', '#b19c77'],
-  sand: ['#e8cf96', '#c9a96a'],
-  jungle: ['#cdb27a', '#9c8350'],
-};
-const BOARDWALK = ['#c99a5e', '#8a6238']; // Wooden planks, also over water.
 
 // Wall and floor colors for each house style (world/items.json, houseStyles).
 const HOUSE_STYLES = {
@@ -124,46 +114,6 @@ function floorPattern(ctx, id, width, top, height) {
   return true;
 }
 
-// Little grass blades, sand strokes and snow sparkles, made once per world.
-const marksCache = new WeakMap();
-function groundMarks(world) {
-  if (!marksCache.has(world)) {
-    const next = random(99);
-    const marks = [];
-    for (let y = 30; y < world.height; y += 70) {
-      for (let x = 30; x < world.width; x += 70) {
-        const mx = x + (next() - 0.5) * 50;
-        const my = y + (next() - 0.5) * 50;
-        marks.push({ x: mx, y: my, type: areaAt(world, mx, my)?.type, r: next() });
-      }
-    }
-    marksCache.set(world, marks);
-  }
-  return marksCache.get(world);
-}
-
-// Rounded area edges; corners on the map border stay sharp.
-function areaPath(ctx, world, area) {
-  ctx.beginPath();
-  if (area.circle) {
-    ctx.arc(area.circle.x, area.circle.y, area.circle.radius, 0, Math.PI * 2);
-    return;
-  }
-  const pts = area.points;
-  const onBorder = ([x, y]) => x <= 0 || y <= 0 || x >= world.width || y >= world.height;
-  const mid = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
-  const first = pts[0];
-  const startPoint = onBorder(first) ? first : mid(pts[pts.length - 1], first);
-  ctx.moveTo(...startPoint);
-  for (let i = 0; i < pts.length; i++) {
-    const p = pts[(i + (onBorder(first) ? 1 : 0)) % pts.length];
-    const nextP = pts[(i + (onBorder(first) ? 2 : 1)) % pts.length];
-    if (onBorder(p)) ctx.lineTo(...p);
-    else ctx.quadraticCurveTo(p[0], p[1], ...mid(p, nextP));
-  }
-  ctx.closePath();
-}
-
 // Draws `draw` `s` times bigger around the ground point (x, y).
 function scaledAt(ctx, x, y, s, draw) {
   if (s === 1) return draw();
@@ -234,72 +184,23 @@ function drawLayeredStation(ctx, world, s, scene) {
 }
 
 export function drawWorld(ctx, world, scene) {
-  const layout = world.layered ? world.layout : null;
+  const layout = world.layout;
   const S = world.actorScale ?? 1; // How big Ilo, the pet, residents and animals are drawn.
   const danceFloor = world.furniture.find((p) => p.tiles);
   scene.danceLit = Boolean(danceFloor && scene.furnitureState?.(danceFloor)?.lit);
-  // Ground
-  if (layout && world.kind !== 'house') {
-    if (!drawSpriteBox(ctx, layout.ground, 0, 0, world.width, world.height)) {
-      ctx.fillStyle = GROUND[layout.surface]?.fill ?? GROUND.plaza.fill;
-      ctx.fillRect(0, 0, world.width, world.height);
-    }
-  } else if (world.kind === 'house' || world.kind === 'indoor') {
-    drawHouseRoom(ctx, world, world.kind === 'house' ? scene.houseStyle : world.interior, world.kind === 'house' ? scene.houseDecor : {});
-  } else {
-    let textured = true;
-    for (const area of world.areas) {
-      const texture = spritePattern(ctx, `world/textures/${area.type}.svg`);
-      textured &&= Boolean(texture);
-      areaPath(ctx, world, area);
-      ctx.fillStyle = texture ?? GROUND[area.type].fill;
-      ctx.fill();
-      if (area.circle) {
-        ctx.lineWidth = 6;
-        ctx.strokeStyle = 'rgba(0,0,0,0.12)';
-        ctx.stroke();
-      }
-    }
-    drawPlazaTiles(ctx, world);
-    for (const area of world.areas) if (WATER_AREAS.includes(area.type)) drawWaves(ctx, world, area, scene.time);
-    if (!textured) {
-      for (const m of groundMarks(world)) {
-        if (m.type && m.type !== 'plaza' && m.type !== 'indoor') drawMark(ctx, m);
-      }
-    }
+  // Ground: the room's picture (the kid's house draws its own style)
+  if (world.kind === 'house') {
+    drawHouseRoom(ctx, world, scene.houseStyle, scene.houseDecor);
+  } else if (!drawSpriteBox(ctx, layout.ground, 0, 0, world.width, world.height)) {
+    ctx.fillStyle = GROUND[layout.surface]?.fill ?? GROUND.plaza.fill;
+    ctx.fillRect(0, 0, world.width, world.height);
   }
 
-  // Paths, in the colors of the area around their first stretch (paths
-  // often start on the room's edge, outside every area)
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-  for (const path of world.paths) {
-    const [a, b] = path.points;
-    const type = areaAt(world, (a[0] + b[0]) / 2, (a[1] + b[1]) / 2)?.type ?? world.areas[0]?.type;
-    const [fill, edge] = path.style === 'boardwalk' ? BOARDWALK : PATH[type] ?? PATH.forest;
-    for (const [width, color] of [[path.width + 6, edge], [path.width, fill]]) {
-      ctx.beginPath();
-      ctx.moveTo(...path.points[0]);
-      path.points.slice(1).forEach((p) => ctx.lineTo(...p));
-      ctx.lineWidth = width;
-      ctx.strokeStyle = color;
-      ctx.stroke();
-    }
-    if (path.style === 'boardwalk') drawPlanks(ctx, path);
-  }
-
-  // Flat things under everything else: water, rugs, exits
-  if (layout) {
-    for (const layer of ['ground-effect', 'ground-overlay', 'floor', 'wall']) {
-      // Animals under the glass deck go below the floor pieces.
-      if (layer === 'floor') for (const c of scene.critters ?? []) if (c.under) scaledAt(ctx, c.x, c.y, S, () => drawCritters(ctx, [c], scene.time));
-      for (const o of world.decorations) if (o.layer === layer) drawObject(ctx, o, scene);
-    }
-  } else {
-    for (const d of world.decorations) {
-      if (WATER.includes(d.type)) drawWater(ctx, d, scene.time);
-      else if (FLAT.includes(d.type)) drawDecoration(ctx, d, scene.time);
-    }
+  // Flat things under everything else: waves, the pier's cap, rugs, wall pictures
+  for (const layer of ['ground-effect', 'ground-overlay', 'floor', 'wall']) {
+    // Animals under the glass deck go below the floor pieces.
+    if (layer === 'floor') for (const c of scene.critters ?? []) if (c.under) scaledAt(ctx, c.x, c.y, S, () => drawCritters(ctx, [c], scene.time));
+    for (const o of world.decorations) if (o.layer === layer) drawObject(ctx, o, scene);
   }
   for (const p of world.furniture) {
     if ((FURNITURE[p.id].flat || FURNITURE[p.id].wall) && p.layer !== 'ceiling') drawPiece(ctx, p, scene);
@@ -310,11 +211,7 @@ export function drawWorld(ctx, world, scene) {
 
   // Things that stand up, back to front, so nearer things overlap farther ones.
   const things = [];
-  for (const d of world.decorations) {
-    if (layout) {
-      if (d.layer === 'stand') things.push({ y: d.sortY ?? d.y, draw: () => drawObject(ctx, d, scene) });
-    } else if (!WATER.includes(d.type) && !FLAT.includes(d.type) && !OVERHEAD.includes(d.type)) things.push({ y: d.y, draw: () => drawDecoration(ctx, d, scene.time) });
-  }
+  for (const d of world.decorations) if (d.layer === 'stand') things.push({ y: d.sortY ?? d.y, draw: () => drawObject(ctx, d, scene) });
   for (const s of world.stations) {
     if (s.art) things.push({ y: s.y, draw: () => drawLayeredStation(ctx, world, s, scene) });
     else things.push({ y: s.y + stationSize(s).height / 2, draw: () => drawStation(ctx, s, scene) });
@@ -348,10 +245,8 @@ export function drawWorld(ctx, world, scene) {
   for (const r of scene.residents ?? []) things.push({ y: r.y, draw: () => scaledAt(ctx, r.x, r.y, r.scale ?? 1, () => drawResident(ctx, r, scene.time)) });
   things.sort((p, q) => p.y - q.y).forEach((thing) => thing.draw());
   (scene.critters ?? []).filter((c) => c.flying).forEach(drawCritter);
-  if (layout?.foreground) drawSpriteBox(ctx, layout.foreground, 0, 0, world.width, world.height);
-  for (const d of world.decorations) {
-    if (layout ? d.layer === 'overhead' : OVERHEAD.includes(d.type)) layout ? drawObject(ctx, d, scene) : drawDecoration(ctx, d, scene.time);
-  }
+  if (layout.foreground) drawSpriteBox(ctx, layout.foreground, 0, 0, world.width, world.height);
+  for (const d of world.decorations) if (d.layer === 'overhead') drawObject(ctx, d, scene);
   for (const p of world.furniture) if (p.layer === 'ceiling') drawPiece(ctx, p, scene);
   if (scene.ride?.type === 'kite') drawFlyingKite(ctx, a, scene.time, S);
 
@@ -474,7 +369,7 @@ function drawEvening(ctx, world, scene) {
   const dark = scene.darkness;
   ctx.fillStyle = `rgba(28, 30, 78, ${0.42 * dark})`;
   ctx.fillRect(0, 0, world.width, world.height);
-  if (world.areas[0]?.type === 'arctic' && dark > 0.5) {
+  if (areaOf(world) === 'arctic' && dark > 0.5) {
     // Northern lights near the top of the room
     const k = (dark - 0.5) * 2;
     const frame = reducedMotion ? 1 : frameAt(scene.time, 1, 3);
@@ -508,172 +403,6 @@ function drawEvening(ctx, world, scene) {
     else glow(ctx, s.x, s.y + STATION_SIZE.height / 2 - 26, 50, dark); // Light from the door
   }
   drawCritters(ctx, (scene.critters ?? []).filter((c) => c.type === 'firefly'), scene.time);
-}
-
-function drawMark(ctx, m) {
-  const g = GROUND[m.type];
-  ctx.strokeStyle = g.mark;
-  ctx.fillStyle = g.mark;
-  ctx.lineWidth = 2;
-  if (m.type === 'forest') {
-    ctx.beginPath();
-    ctx.moveTo(m.x - 4, m.y);
-    ctx.lineTo(m.x - 2, m.y - 7);
-    ctx.moveTo(m.x, m.y);
-    ctx.lineTo(m.x + 1, m.y - 9);
-    ctx.moveTo(m.x + 4, m.y);
-    ctx.lineTo(m.x + 5, m.y - 6);
-    ctx.stroke();
-  } else if (m.type === 'savannah') {
-    ctx.beginPath();
-    ctx.moveTo(m.x - 6, m.y);
-    ctx.quadraticCurveTo(m.x, m.y - 3, m.x + 6, m.y);
-    ctx.stroke();
-  } else if (m.type === 'arctic') {
-    ctx.beginPath();
-    ctx.ellipse(m.x, m.y, 8 + m.r * 8, 3, 0, 0, Math.PI * 2);
-    ctx.fill();
-  } else if (m.type === 'sand') {
-    ctx.beginPath();
-    ctx.arc(m.x, m.y, 1.8, 0, Math.PI * 2);
-    ctx.arc(m.x + 7, m.y + 3, 1.2, 0, Math.PI * 2);
-    ctx.fill();
-  } else if (m.type === 'jungle') {
-    ctx.beginPath();
-    ctx.ellipse(m.x - 4, m.y - 3, 6, 2.5, -0.6, 0, Math.PI * 2);
-    ctx.ellipse(m.x + 4, m.y - 3, 6, 2.5, 0.6, 0, Math.PI * 2);
-    ctx.fill();
-  }
-}
-
-function drawPlazaTiles(ctx, world) {
-  const plaza = world.areas.find((a) => a.type === 'plaza' && a.circle);
-  if (!plaza) return;
-  const { x, y, radius } = plaza.circle;
-  ctx.strokeStyle = GROUND.plaza.mark;
-  ctx.lineWidth = 3;
-  for (let r = 60; r < radius; r += 60) {
-    ctx.beginPath();
-    ctx.arc(x, y, r, 0, Math.PI * 2);
-    ctx.stroke();
-  }
-}
-
-// The sea and the shallows: soft moving ripples, and on the sea a foam line
-// that slides along the shore. Edges on the room's border are clipped away.
-function drawWaves(ctx, world, area, time) {
-  const t = reducedMotion ? 0 : time;
-  ctx.save();
-  areaPath(ctx, world, area);
-  ctx.clip();
-  ctx.strokeStyle = 'rgba(255,255,255,0.35)';
-  ctx.lineWidth = 2;
-  for (let y = 20; y < world.height; y += 46) {
-    for (let x = ((y / 46) % 2) * 60; x < world.width + 80; x += 120) {
-      const wx = x + ((t * 14) % 120) - 60;
-      ctx.beginPath();
-      ctx.arc(wx, y + Math.sin(t * 1.5 + x) * 2, 12, Math.PI * 1.15, Math.PI * 1.85);
-      ctx.stroke();
-    }
-  }
-  ctx.restore();
-  if (area.type !== 'sea') return;
-  if (drawShoreStrips(ctx, world, area, t)) return;
-  ctx.save();
-  ctx.beginPath();
-  ctx.rect(6, 6, world.width - 12, world.height - 12);
-  ctx.clip();
-  areaPath(ctx, world, area);
-  ctx.strokeStyle = 'rgba(255,255,255,0.85)';
-  ctx.lineWidth = 8 + Math.sin(t * 1.6) * 3;
-  ctx.setLineDash([22, 12]);
-  ctx.lineDashOffset = -t * 12;
-  ctx.stroke();
-  ctx.restore();
-}
-
-// Where the sea's top edge is at `x` (the shore), or null.
-function shoreY(area, x) {
-  let best = null;
-  const pts = area.points;
-  for (let i = 0; i < pts.length; i++) {
-    const [ax, ay] = pts[i];
-    const [bx, by] = pts[(i + 1) % pts.length];
-    if (ax === bx || x < Math.min(ax, bx) || x > Math.max(ax, bx)) continue;
-    const y = ay + ((by - ay) * (x - ax)) / (bx - ax);
-    if (best === null || y < best) best = y;
-  }
-  return best;
-}
-
-// The designers' wave strips (world/water/sea-edge-<n>.svg, 256 x 160, tiling
-// sideways) along a shore that runs across the room. A shore that turns
-// steeply (Coral lookout) keeps the drawn foam line. Returns true if drawn.
-const STRIP = 256;
-function drawShoreStrips(ctx, world, area, time) {
-  if (!area.points || !hasArt('world/water/sea-edge-1.svg')) return false;
-  const ys = [];
-  for (let x = 0; x < world.width; x += STRIP) ys.push(shoreY(area, x + STRIP / 2));
-  if (ys.some((y, i) => y === null || (i && Math.abs(y - ys[i - 1]) > 60))) return false;
-  const frame = reducedMotion ? 1 : frameAt(time, 4, 4);
-  // One straight row (steps between strips would show): the strips' water
-  // starts 47 px below their top, at the highest point of the shore.
-  const shore = Math.min(...ys);
-  for (let i = 0; i < ys.length; i++) drawSprite(ctx, `world/water/sea-edge-${frame}.svg`, i * STRIP + STRIP / 2, shore - 47 + 160);
-  return true;
-}
-
-// Planks across a boardwalk path.
-function drawPlanks(ctx, path) {
-  ctx.strokeStyle = 'rgba(90, 60, 30, 0.45)';
-  ctx.lineWidth = 2;
-  ctx.lineCap = 'butt';
-  for (let i = 1; i < path.points.length; i++) {
-    const [ax, ay] = path.points[i - 1];
-    const [bx, by] = path.points[i];
-    const length = Math.hypot(bx - ax, by - ay) || 1;
-    const [ux, uy] = [(bx - ax) / length, (by - ay) / length];
-    const [nx, ny] = [-uy * (path.width / 2 - 2), ux * (path.width / 2 - 2)];
-    for (let k = 8; k < length; k += 14) {
-      const [px, py] = [ax + ux * k, ay + uy * k];
-      ctx.beginPath();
-      ctx.moveTo(px + nx, py + ny);
-      ctx.lineTo(px - nx, py - ny);
-      ctx.stroke();
-    }
-  }
-  ctx.lineCap = 'round';
-}
-
-function drawWater(ctx, d, time = 0) {
-  // The picture's water is 115 wide at scale 1, drawn around its center.
-  const scale = (d.radius + 8) / 125;
-  const frame = reducedMotion ? 0 : frameAt(time, 2, 3); // A slow shimmer or glint.
-  if (frame && drawSprite(ctx, `world/water/${d.type}-${frame}.svg`, d.x, d.y + 75 * scale, { scale })) return;
-  if (drawSprite(ctx, `world/water/${d.type}.svg`, d.x, d.y + 75 * scale, { scale })) return;
-  const ice = d.type === 'ice-lake';
-  const lagoon = d.type === 'lagoon';
-  ctx.fillStyle = ice ? '#d3ecf7' : lagoon ? '#9fe3df' : '#7cc0e6';
-  ctx.beginPath();
-  ctx.ellipse(d.x, d.y, d.radius + 8, d.radius * 0.72 + 6, 0, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.fillStyle = ice ? '#b5dcef' : lagoon ? '#2fb3b8' : '#3f8fd0';
-  ctx.beginPath();
-  ctx.ellipse(d.x, d.y, d.radius, d.radius * 0.72, 0, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.lineWidth = 3;
-  ctx.strokeStyle = ice ? '#ffffff' : '#a9dcf5';
-  ctx.beginPath();
-  if (ice) {
-    ctx.moveTo(d.x - d.radius * 0.5, d.y - 10);
-    ctx.lineTo(d.x - 10, d.y + 5);
-    ctx.lineTo(d.x + d.radius * 0.4, d.y - 20);
-    ctx.moveTo(d.x - 10, d.y + 5);
-    ctx.lineTo(d.x + 5, d.y + d.radius * 0.4);
-  } else {
-    ctx.ellipse(d.x - d.radius * 0.3, d.y - d.radius * 0.25, d.radius * 0.25, 6, 0, Math.PI, Math.PI * 2);
-  }
-  ctx.stroke();
 }
 
 function shadow(ctx, x, y, w) {

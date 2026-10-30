@@ -3,7 +3,7 @@
 // or cross the room, and most of them run, hide or fly away when Ilo comes
 // close. A room lists its animals under "critters". No drawing code here,
 // so the tests can run it; js/critter-draw.js draws them.
-import { areaAt, collides, inLayoutWater, WATER, WATER_AREAS } from './world-data.js';
+import { collides, inLayoutWater, WATER, WATER_AREAS } from './world-data.js';
 
 // How each animal behaves. Speeds are in pixels per second; `flee` is how
 // close Ilo can come before it reacts.
@@ -82,7 +82,7 @@ const HERD_GAP = 140; // Pixels between animals walking in a line (elephants).
 const MARGIN = 50;
 
 // Wading birds stand in the sea or the shallows, away from boardwalks.
-const inShallowWater = (world, x, y) => (world.layered ? inLayoutWater(world, x, y, WATER_AREAS) : WATER_AREAS.includes(areaAt(world, x, y)?.type)) && collides(world, x, y, 30);
+const inShallowWater = (world, x, y) => inLayoutWater(world, x, y, WATER_AREAS) && collides(world, x, y, 30);
 
 // A random point in one of an animal's home regions ([left, top, right, bottom]).
 function inRegion(regions, rng) {

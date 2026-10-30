@@ -18,7 +18,7 @@ import {
 import { openShop } from './shop.js';
 import { showError } from './show-error.js';
 import { loadArt, onArtLoaded, paintCanvas, preload, reducedMotion, spriteReady, unload } from './sprites.js';
-import { actorPrefixes, nearbyRooms, roomFiles } from './room-art.js';
+import { actorPrefixes, houseFiles, nearbyRooms, roomFiles } from './room-art.js';
 import { chooseQuality, loopsOn } from './quality.js';
 import { createCritters, isVisible, updateCritters } from './critters.js';
 import { GUIDE_ANIMALS, openFieldGuide } from './field-guide.js';
@@ -30,7 +30,7 @@ import { drawStamp, stampEarned } from './stamps.js';
 import { drawEmote, drawWorld } from './world-draw.js';
 import { openWorldMap } from './world-map.js';
 import {
-  arrivalPoint, buildRoom, collides, exitAt, findPath, moveWithCollisions, stationNear, withFurniture,
+  areaOf, arrivalPoint, buildRoom, collides, exitAt, findPath, moveWithCollisions, stationNear, withFurniture,
 } from './world-data.js';
 
 const SPEED = 240; // Pixels per second.
@@ -110,14 +110,9 @@ const splats = [];
 const allLessons = [...new Set(Object.values(rooms).flatMap((r) => r.stations.filter((s) => s.kind === 'lesson').map((s) => s.lesson)))];
 const totalGems = Object.values(rooms).reduce((n, r) => n + (r.collectibles?.length ?? 0), 0);
 
-// Music for each room: indoor, plaza, or the area's ground type.
-const COAST = ['sand', 'jungle', 'sea', 'shallows'];
-function themeOf(room) {
-  if (room.kind !== 'outdoor') return 'indoor';
-  if (room.areas.some((a) => a.type === 'plaza')) return 'plaza';
-  return COAST.includes(room.areas[0].type) ? 'coast' : room.areas[0].type;
-}
-const isArctic = (room) => room.kind === 'outdoor' && room.areas[0].type === 'arctic';
+// Music for each room: indoor, or the room's area (plaza, forest, coast...).
+const themeOf = (room) => (room.kind === 'outdoor' ? areaOf(room) : 'indoor');
+const isArctic = (room) => room.kind === 'outdoor' && areaOf(room) === 'arctic';
 
 // A machine or building shows one star when every lesson in it is solved
 // and two when every changed case is solved too (Phase 10).
@@ -156,6 +151,7 @@ function loadRoomArt(id) {
   unload(roomArt, keep);
   for (const file of keep) spriteReady(file); // Starts loading it.
   for (const prefix of new Set(near.flatMap((r) => actorPrefixes(rooms[r])))) preload(prefix); // Residents, toys, animals (small).
+  if (near.includes('house')) houseFiles(getHouse()).forEach((file) => spriteReady(file));
 }
 
 function enterRoom(id, point, { announce = true } = {}) {

@@ -4,7 +4,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { actorPrefixes, nearbyRooms, rasterScale, roomFiles } from '../js/room-art.js';
+import { actorPrefixes, houseFiles, nearbyRooms, rasterScale, roomFiles } from '../js/room-art.js';
 
 const readJson = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
 const worldData = readJson('../world/world.json');
@@ -39,4 +39,9 @@ test("a room's residents, toys and animals load with it", () => {
   const prefixes = actorPrefixes(rooms['snowy-ridge']);
   for (const p of ['world/residents/snow-guide-', 'world/toys/sled', 'world/critters/snow-hare-']) assert.ok(prefixes.includes(p), p);
   assert.deepEqual(actorPrefixes(rooms.house), []);
+});
+
+test("the kid's house loads its style's wall, floor and window, and what they bought", () => {
+  assert.deepEqual(houseFiles({ style: 'adobe', wallpaper: null, floor: null }), ['world/walls/adobe-wall.svg', 'world/walls/adobe-window.svg', 'world/textures/indoor-adobe.svg']);
+  assert.deepEqual(houseFiles({ style: 'cabin', wallpaper: 'stars', floor: 'talavera' }).slice(3), ['world/walls/wallpaper-stars.svg', 'world/textures/floor-talavera.svg']);
 });

@@ -3,6 +3,7 @@
 // 800 x 500 picture). The picture is assets/map/world-map.svg, with a
 // landmark drawn at each room's spot; shapes are drawn while it loads.
 import { drawSprite, drawSpriteBox, hasArt, paintCanvas } from './sprites.js';
+import { areaOf } from './world-data.js';
 
 const OUTLINE = '#2b2d42';
 const FONT = "'Nunito', system-ui, sans-serif";
@@ -38,7 +39,7 @@ function machineMarkers(nodes, rooms) {
 }
 
 function roomType(room) {
-  return room.areas.find((a) => a.type === 'plaza') ? 'plaza' : room.areas[0].type;
+  return areaOf(room) === 'coast' ? 'sand' : areaOf(room); // The colors below name the coast "sand".
 }
 
 function drawName(ctx, node, pick, r = NODE_RADIUS) {

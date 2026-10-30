@@ -7,7 +7,7 @@ import { FURNITURE } from '../js/furniture.js';
 import { placementOk } from '../js/house.js';
 import { hasPetDrawing } from '../js/pet.js';
 import {
-  arrivalPoint, buildRoom, canWalk, collides, exitLabelSpot, findPath, HUD, moveWithCollisions, stationNear, withFurniture,
+  areaOf, arrivalPoint, buildRoom, canWalk, collides, exitLabelSpot, findPath, HUD, moveWithCollisions, stationNear, withFurniture,
 } from '../js/world-data.js';
 import { stampEarned } from '../js/stamps.js';
 
@@ -166,6 +166,17 @@ test('every exit label is away from the start spot and the toolbar corners', () 
     // On a phone the toolbar runs along the whole bottom: labels stay above it.
     assert.ok(p.y <= world.height - 130, `${id} -> ${exit.to} too low for a phone (${p.y})`);
   }
+});
+
+test('every room is a layered room', () => {
+  for (const [id, room] of Object.entries(rooms)) assert.ok(room.layout, id);
+});
+
+test('each room knows its area from its layout', () => {
+  assert.equal(areaOf(rooms['palm-beach']), 'coast');
+  assert.equal(areaOf(rooms['snowy-ridge']), 'arctic');
+  assert.equal(areaOf(rooms.house), 'indoor');
+  assert.equal(areaOf(rooms.plaza), 'plaza');
 });
 
 test('a station prompt appears only near its door', () => {

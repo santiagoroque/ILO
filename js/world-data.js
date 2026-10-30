@@ -1,6 +1,7 @@
-// Turns a room file (world/rooms/<id>.json) into a playable room: places the
-// scattered decorations, works out what blocks walking (trees, buildings,
-// furniture), and answers "is the avatar at an exit or next to a station?".
+// Turns a room file (world/rooms/<id>.json) into a playable room: reads its
+// layout (docs/DESIGN_PROMPT_3.md), works out what blocks walking (footprints,
+// furniture, residents, toys), and answers "is the avatar at an exit or next
+// to a station?".
 // No drawing code, so the tests and `npm run check` use it too.
 import { FURNITURE } from './furniture.js';
 
@@ -36,8 +37,6 @@ export const WATER = ['pond', 'ice-lake', 'lagoon'];
 export const FLAT = ['shell', 'starfish', 'towel', 'tide-pool', 'stepping-stone', 'glass-deck', 'marigold-petals', 'sugar-skull-tiles'];
 // Decorations strung high above the ground: drawn over everything else.
 export const OVERHEAD = ['papel-picado-string', 'string-lights', 'flower-garland', 'fair-banner', 'party-kites'];
-// Flat pieces too big for the usual spacing: no scattered tree on them.
-const WIDE_FLAT = { 'glass-deck': { r: 170, dy: -90 } };
 // Areas that are water: Ilo cannot walk there, except along a path (a boardwalk).
 export const WATER_AREAS = ['sea', 'shallows'];
 
@@ -62,42 +61,6 @@ function insidePolygon(points, x, y) {
     if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
   }
   return inside;
-}
-
-function insideArea(area, x, y) {
-  if (area.circle) return Math.hypot(x - area.circle.x, y - area.circle.y) <= area.circle.radius;
-  return insidePolygon(area.points, x, y);
-}
-
-// Areas later in the list are drawn on top, so they win.
-export function areaAt(world, x, y) {
-  for (let i = world.areas.length - 1; i >= 0; i--) {
-    if (insideArea(world.areas[i], x, y)) return world.areas[i];
-  }
-  return null;
-}
-
-function distanceToSegment(px, py, [ax, ay], [bx, by]) {
-  const dx = bx - ax;
-  const dy = by - ay;
-  const t = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy || 1)));
-  return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
-}
-
-function nearPath(paths, x, y, margin) {
-  return paths.some((path) => path.points.slice(1).some((point, i) => {
-    return distanceToSegment(x, y, path.points[i], point) < path.width / 2 + margin;
-  }));
-}
-
-function boundsOf(area) {
-  if (area.circle) {
-    const { x, y, radius } = area.circle;
-    return { minX: x - radius, minY: y - radius, maxX: x + radius, maxY: y + radius };
-  }
-  const xs = area.points.map((p) => p[0]);
-  const ys = area.points.map((p) => p[1]);
-  return { minX: Math.min(...xs), minY: Math.min(...ys), maxX: Math.max(...xs), maxY: Math.max(...ys) };
 }
 
 function blockRadius(decoration) {
@@ -171,7 +134,6 @@ function buildLayered(room, size) {
     stationRects: [],
     fixedFurniture: room.furniture ?? [],
     collectibles: room.collectibles ?? [],
-    hasWaterAreas: false,
   };
   world.perches = perchesOf(layout, scale);
   for (const s of stations) if (s.art?.footprint) world.shapes.push(s.art.footprint);
@@ -223,80 +185,16 @@ function collidesLayered(world, x, y, r) {
   return false;
 }
 
+// The room's area, for its music, weather and map color: 'plaza', 'forest',
+// 'savannah', 'arctic', 'coast' or 'indoor' (from its layout's ground).
+export const areaOf = (room) => (room.layout.surface === 'sand' ? 'coast' : room.layout.surface);
+
 // The ground under a point, for friction (js/toys.js): a layered room has one.
-export const surfaceAt = (world, x, y) => world.layout?.surface ?? areaAt(world, x, y)?.type;
+export const surfaceAt = (world) => world.layout.surface;
 
 // Builds a playable room. `size` comes from world/world.json.
 export function buildRoom(room, size) {
-  if (room.layout) return buildLayered(room, size);
-  const stations = room.stations.map((s) => ({ ...s, door: doorOf(s) }));
-  const world = {
-    ...room,
-    width: size.width,
-    height: size.height,
-    minY: room.minY ?? 0,
-    start: room.spawn,
-    stations,
-    decorations: [],
-    solids: [],
-    stationRects: stations.map((s) => {
-      const { width, height } = stationSize(s);
-      return { x1: s.x - width / 2, x2: s.x + width / 2, y1: s.y - height / 2, y2: s.y + height / 2 };
-    }),
-    fixedFurniture: room.furniture ?? [], // Furniture that is part of the room (interiors).
-    collectibles: room.collectibles ?? [],
-    hasWaterAreas: room.areas.some((a) => WATER_AREAS.includes(a.type)),
-  };
-
-  const addDecoration = (decoration) => {
-    world.decorations.push(decoration);
-    const r = blockRadius(decoration);
-    if (r > 0) world.solids.push({ x: decoration.x, y: decoration.y, r });
-  };
-  room.decorations.forEach((d) => addDecoration({ ...d }));
-  // Residents stand still, so they block walking like a small tree; so do the bigger toys.
-  for (const r of room.residents ?? []) world.solids.push({ x: r.x, y: r.y, r: RESIDENT_RADIUS });
-  for (const toy of room.toys ?? []) if (TOY_BLOCKING[toy.type]) world.solids.push({ x: toy.x, y: toy.y - 10, r: TOY_BLOCKING[toy.type] });
-
-  // Is this a good spot for a scattered decoration? Keep paths, doors,
-  // exits, arrival spots and other objects clear so kids never get stuck.
-  const keepClear = [room.spawn, ...room.exits.map((e) => e.spawn),
-    ...(room.critters ?? []).filter((c) => c.x !== undefined), ...(room.residents ?? []), ...(room.toys ?? []), // Burrows, ice holes, residents, toys
-    ...(room.toys ?? []).filter((t) => t.type === 'sled-hill') // and the sled's run down the hill.
-      .flatMap((t) => [1, 2, 3, 4, 5].map((k) => ({ x: t.x + 0.6 * 80 * k, y: t.y + 0.8 * 80 * k })))];
-  const clearSpot = (x, y, r, areaId) => {
-    if (areaAt(world, x, y)?.id !== areaId) return false;
-    if (nearPath(room.paths, x, y, r + 25)) return false;
-    if (keepClear.some((p) => Math.hypot(x - p.x, y - p.y) < 110)) return false;
-    if (room.exits.some((e) => inRect(e, x, y, r + 70))) return false;
-    for (const s of stations) {
-      const { width, height } = stationSize(s);
-      if (Math.abs(x - s.x) < width / 2 + r + 50 && y > s.y - height / 2 - r - 50 && y < s.door.y + r + 60) return false;
-    }
-    if (world.collectibles.some((c) => Math.hypot(x - c.x, y - c.y) < r + 40)) return false;
-    return world.solids.every((solid) => Math.hypot(x - solid.x, y - solid.y) > solid.r + r + 12)
-      && world.decorations.every((d) => {
-        const wide = WIDE_FLAT[d.type]; // Big flat pieces keep their whole floor clear.
-        return wide ? Math.hypot(x - d.x, y - (d.y + wide.dy)) > wide.r : Math.hypot(x - d.x, y - d.y) > 34;
-      });
-  };
-
-  for (const group of room.scatter) {
-    const area = room.areas.find((a) => a.id === group.area);
-    if (!area) continue;
-    const box = boundsOf(area);
-    const next = random(group.seed);
-    let placed = 0;
-    for (let tries = 0; placed < group.count && tries < group.count * 40; tries++) {
-      const x = box.minX + 50 + next() * (box.maxX - box.minX - 100);
-      const y = box.minY + 50 + next() * (box.maxY - box.minY - 100);
-      const s = 0.85 + next() * 0.35;
-      if (!clearSpot(x, y, (BLOCKING[group.type] ?? 0) * s, area.id)) continue;
-      addDecoration({ type: group.type, x: Math.round(x), y: Math.round(y), size: Number(s.toFixed(2)) });
-      placed++;
-    }
-  }
-  return withFurniture(world, []);
+  return buildLayered(room, size);
 }
 
 // The footprint of a piece of furniture standing at (x, y) (bottom center),
@@ -320,16 +218,7 @@ export function withFurniture(world, placed) {
 
 // Would an avatar standing at x, y overlap something solid?
 export function collides(world, x, y, r = AVATAR_RADIUS) {
-  if (world.layered) return collidesLayered(world, x, y, r);
-  if (x < r || y < Math.max(r, world.minY + r) || x > world.width - r || y > world.height - r) return true;
-  if (world.hasWaterAreas && WATER_AREAS.includes(areaAt(world, x, y)?.type) && !nearPath(world.paths, x, y, -4)) return true; // Ilo may lean over a boardwalk's edge a little.
-  for (const solid of world.solids) {
-    if (Math.hypot(x - solid.x, y - solid.y) < solid.r + r) return true;
-  }
-  for (const rect of world.rects) {
-    if (x > rect.x1 - r && x < rect.x2 + r && y > rect.y1 - r && y < rect.y2 + r) return true;
-  }
-  return false;
+  return collidesLayered(world, x, y, r);
 }
 
 // Moves from (x, y) toward (x + dx, y + dy). If blocked, slides instead of

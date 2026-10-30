@@ -37,6 +37,15 @@ export function actorPrefixes(room) {
   return [...new Set(prefixes)];
 }
 
+// The kid's house is drawn in the style they live in, with what they
+// bought (js/world-draw.js, drawHouseRoom): those pictures, from the save.
+export function houseFiles({ style, wallpaper, floor }) {
+  const files = [`world/walls/${style}-wall.svg`, `world/walls/${style}-window.svg`, `world/textures/indoor-${style}.svg`];
+  if (wallpaper) files.push(`world/walls/wallpaper-${wallpaper}.svg`);
+  if (floor) files.push(`world/textures/floor-${floor}.svg`);
+  return files;
+}
+
 // The rooms one step away: through an exit or a door.
 export function nearbyRooms(roomId, rooms) {
   const room = rooms[roomId];

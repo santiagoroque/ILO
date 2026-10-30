@@ -9,12 +9,10 @@
     "kind",
     "name",
     "spawn",
-    "areas",
-    "paths",
     "stations",
     "exits",
     "decorations",
-    "scatter"
+    "layout"
   ],
   "additionalProperties": false,
   "properties": {

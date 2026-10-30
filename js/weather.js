@@ -4,6 +4,7 @@
 // falling things: snow in the Arctic, leaves in the Forest, a tropical
 // drizzle at the Waterfall cove on some days, and petals during parties.
 // No drawing code here; js/world-draw.js draws it.
+import { areaOf } from './world-data.js';
 
 // How dark it is, from 0 (day) to 1 (night), for an hour of the day (0-24).
 export function darkness(hour) {
@@ -19,7 +20,7 @@ export const isEvening = (dark) => dark >= 0.5;
 export function weatherFor(room, { day = 0, party = null } = {}) {
   if (room.kind !== 'outdoor') return null;
   if (party?.weather) return party.weather;
-  const type = room.areas[0]?.type;
+  const type = areaOf(room);
   if (type === 'arctic') return 'snow';
   if (type === 'forest' && room.id !== 'plaza') return 'leaves';
   if (room.id === 'waterfall-cove' && day % 4 === 0) return 'rain';
