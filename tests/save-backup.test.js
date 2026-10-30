@@ -30,3 +30,16 @@ test('a file that is not an ILO backup changes nothing', () => {
 test('a backup from a newer ILO is refused', () => {
   assert.equal(progress.importSave(JSON.stringify({ app: 'ilo', version: 99, data: {} })), 'too-new');
 });
+
+test('a hand-edited backup with the wrong kinds of values changes nothing', () => {
+  store.set('ilo.v1', JSON.stringify({ version: 4, coins: 7 }));
+  const wrap = (data) => JSON.stringify({ app: 'ilo', version: 4, data });
+  for (const bad of [{ version: 3, welcomed: true, houses: 5 }, { house: { placed: 5 } }, { coins: 'mucho' }, { stamps: 'explorer' }, { look: [] }]) {
+    assert.equal(progress.importSave(wrap(bad)), 'not-ilo', JSON.stringify(bad));
+  }
+  assert.equal(progress.getCoins(), 7);
+});
+
+test('a backup whose own data says it is newer is refused', () => {
+  assert.equal(progress.importSave(JSON.stringify({ app: 'ilo', version: 4, data: { version: 9 } })), 'too-new');
+});

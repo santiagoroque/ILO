@@ -54,7 +54,24 @@ export function exportSave() {
   return JSON.stringify({ app: 'ilo', version: VERSION, saved: new Date().toISOString(), data: read() });
 }
 
-// Loads a backup. Returns 'ok', 'not-ilo' (not an ILO backup) or 'too-new'
+// What each part of a save must be, so a hand-edited backup cannot break
+// the game: a number, a list or a group of named values.
+const isGroup = (v) => typeof v === 'object' && v !== null && !Array.isArray(v);
+const SAVE_KINDS = {
+  number: ['version', 'coins', 'goals', 'housesBought', 'petCelebratedAt', 'said', 'snowballHits', 'danced'],
+  list: ['gems', 'houses', 'parties', 'spotted', 'stamps', 'talked', 'toysUsed', 'visited'],
+  group: ['explain', 'fair', 'journal', 'path', 'warmups', 'house', 'look', 'pets', 'position'],
+};
+function saveLooksRight(data) {
+  const ok = (key, test) => !(key in data) || test(data[key]);
+  return SAVE_KINDS.number.every((k) => ok(k, Number.isFinite))
+    && SAVE_KINDS.list.every((k) => ok(k, Array.isArray))
+    && SAVE_KINDS.group.every((k) => ok(k, isGroup))
+    && (!isGroup(data.house) || !('placed' in data.house) || Array.isArray(data.house.placed));
+}
+
+// Loads a backup. Returns 'ok', 'not-ilo' (not an ILO backup, or one that
+// was changed by hand into something the game cannot use) or 'too-new'
 // (made by a newer ILO). Only 'ok' changes anything.
 export function importSave(text) {
   let file;
@@ -63,9 +80,16 @@ export function importSave(text) {
   } catch {
     return 'not-ilo';
   }
-  if (file?.app !== 'ilo' || !Number.isInteger(file.version) || typeof file.data !== 'object' || file.data === null || Array.isArray(file.data)) return 'not-ilo';
-  if (file.version > VERSION) return 'too-new';
-  write(upgrade({ ...file.data, version: file.data.version ?? file.version }));
+  if (file?.app !== 'ilo' || !Number.isInteger(file.version) || !isGroup(file.data)) return 'not-ilo';
+  if (!saveLooksRight(file.data)) return 'not-ilo';
+  if (Math.max(file.version, file.data.version ?? 0) > VERSION) return 'too-new';
+  let data;
+  try {
+    data = upgrade({ ...file.data, version: file.data.version ?? file.version });
+  } catch {
+    return 'not-ilo';
+  }
+  write(data);
   return 'ok';
 }
 
