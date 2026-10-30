@@ -1,0 +1,24 @@
+{
+  "revision": "test",
+  "rooms": {
+    "mini": {
+      "area": "forest",
+      "ground": "world/rooms-v3/mini/ground.svg",
+      "foreground": null,
+      "avatarScale": 1.5,
+      "start": [640, 560],
+      "walk": [[[40, 280], [1240, 280], [1240, 700], [40, 700]], [[1100, 450], [1280, 450], [1280, 650], [1100, 650]]],
+      "blocked": [],
+      "water": {},
+      "objects": [
+        { "id": "shop", "asset": "world/buildings/shop.svg", "x": 400, "y": 400, "scale": 1.2, "role": "building", "station": "shop", "door": [400, 420], "footprint": [350, 370, 450, 400] },
+        { "id": "tree-0", "asset": "world/decorations/tree.svg", "x": 100, "y": 300, "scale": 2, "role": "decoration", "footprint": { "x": 100, "y": 297, "rx": 50, "ry": 18 } }
+      ],
+      "exits": [{ "to": "plaza", "edge": "right", "rect": [1240, 470, 1280, 630], "arrive": [1170, 510], "sign": [1140, 470] }],
+      "residentData": [{ "id": "ranger", "point": [640, 530], "scale": 1.5 }],
+      "toyData": {},
+      "critterData": {},
+      "spots": { "gems": [[150, 640]], "perches": [], "party": {} }
+    }
+  }
+}

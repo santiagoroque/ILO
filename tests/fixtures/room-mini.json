@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "mini",
+  "kind": "outdoor",
+  "name": { "es": "Cuarto de prueba", "en": "Test room" },
+  "spawn": { "x": 640, "y": 540 },
+  "areas": [{ "id": "ground", "type": "forest", "points": [[0, 0], [1280, 0], [1280, 720], [0, 720]] }],
+  "paths": [],
+  "stations": [{ "id": "shop", "kind": "shop", "style": "shop", "x": 300, "y": 300, "name": { "es": "Tienda", "en": "Shop" }, "description": { "es": "Compra cosas.", "en": "Buy things." } }],
+  "exits": [{ "id": "east", "x": 1240, "y": 300, "width": 40, "height": 180, "spawn": { "x": 1180, "y": 390 }, "to": "plaza", "toExit": "west" }],
+  "decorations": [],
+  "scatter": [],
+  "residents": [{ "id": "ranger", "x": 900, "y": 500 }],
+  "collectibles": [{ "id": "gem-mini-1", "x": 200, "y": 600 }]
+}
