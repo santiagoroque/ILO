@@ -152,5 +152,17 @@ Status values: todo / in_progress / done. Milestones (M1 to M5) are defined in P
 | H01 | Put ILO on GitHub | done | 2026-10-29: private repository github.com/santiagoroque/ILO, published with GitHub Desktop. `.gitignore` keeps out sources/ (SEP books), node_modules/ and dist/ |
 | H02 | Tidy the project folder | done | 2026-10-29: the documents (PLAN, TASKS, PILOT, ASSETS, DESIGN_PROMPT 1 to 3) moved to docs/; README.md and the five pages stay at the top. References updated; check, tests and site build pass |
 | I00 | Improvement plan: 12 tasks (I01 to I12) | done | 2026-10-30: docs/superpowers/plans/2026-10-30-ilo-improvements.md. Most urgent: I01, room pictures use about 743 MB at start |
+| I01 | Load only the current room's pictures and its neighbors' | done | 2026-10-30: was about 743 MB at start; every room and its neighbors now under 150 MB (test). Residents, toys, animals and the house's wall and floor load with the room |
+| I02 | Lite mode for slow computers | done | 2026-10-30: median frame over 40 ms stops loops and weather and caps drawing at 20 per second; one-way for the session; ?lite=1 / ?lite=0 |
+| I03 | Progress backup file | done | 2026-10-30: lessons.html, Guardar copia / Cargar copia; wrong, hand-edited or newer files refused with a message |
+| I04 | Exit labels and signs at the designers' sign spots | done | 2026-10-30: away from Ilo's start and the toolbar, above the phone toolbar |
+| I05 | Sea turtle under the glass deck | done | 2026-10-30: the deck picture is opaque, so the turtle is hidden; the deck's own art shows one |
+| I06 | Elephants walk as a herd | done | 2026-10-30: 140 px apart. Followers also drink away from the water (minor, open) |
+| I07 | Remove pre-layout room drawing | done | 2026-10-30: about 420 lines; music, weather and map colors use areaOf |
+| I08 | Checks on GitHub for every push | done | 2026-10-30: .github/workflows/check.yml (actions v7, Node 20). Green run needs a push |
+| I09 | Publish with GitHub Pages | in_progress | 2026-10-30: Santiago said yes; code ready (.nojekyll, README). Santiago makes the repository public and turns Pages on (see N5) |
+| I10 | Play offline after the first visit | in_progress | 2026-10-30: sw.js, network-first for code and data. Check on the live site: push, visit the world, open a lesson offline |
+| I11 | The map is the place picker | done | 2026-10-30: 16 places and 6 machines as buttons over the map; the list is gone |
+| I12 | Tests for the room-layout converter | done | 2026-10-30: tools/layout-convert.js; re-running on today's rooms changes nothing |
 | N4 | Plan accounts (teachers, students) | todo | A3. Replace js/progress.js |
 | N5 | Publish on GitHub Pages | in_progress | 2026-10-30: Santiago said yes. Ready in the code (`.nojekyll`, no absolute paths; README "On the web with GitHub Pages"). Santiago makes the repository public and turns Pages on; then check https://santiagoroque.github.io/ILO/ |

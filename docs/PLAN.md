@@ -1022,3 +1022,24 @@ The designers delivered `ilo-room-redesign-v3.zip` and the user said to apply it
   - At phone size (844 x 390): the room fits.
 - **Not checked by playing:** the elephants' pass and the fireflies at night, and riding the sled, seesaw and bounce mushroom at the new size (the toy tests cover their physics).
 
+## Improvements I01 to I12 (2026-10-30)
+
+Plan: `docs/superpowers/plans/2026-10-30-ilo-improvements.md`. Built on the `improvements` branch, then reviewed by a fresh reviewer in two parts (I01 to I08 with I12, then I09 to I11).
+
+**Fixed after the review:**
+- Side-exit signs showed a blank plate.
+- Lite mode switched itself back off.
+- Hand-edited backups could fail with no message or break the world page.
+- "Load a copy" could not be reached with the keyboard.
+- The offline worker could mix old and new code after an update. It is now network-first for pages, code and data.
+- Offline pages with a question part (`?id=`, `?lite=1`) did not open.
+
+**Still open (minor):**
+- Following elephants drink away from the water.
+- Map Tab order follows world.json.
+- Machine buttons are small on a phone.
+- CI uses Node 20, which reached end of life on 2026-04-30.
+- With blocked storage, "Load a copy" still says it worked.
+
+**Decisions:** the deck picture hides the turtle, which can still be spotted (the naturalist stamp needs all 17 animals). The Market street has no falling leaves (its area is plaza). Offline cannot be tried in the app's built-in browser; check it on the live site.
+
