@@ -17,8 +17,8 @@ import {
 } from './progress.js';
 import { openShop } from './shop.js';
 import { showError } from './show-error.js';
-import { loadArt, onArtLoaded, paintCanvas, reducedMotion, spriteReady, unload } from './sprites.js';
-import { nearbyRooms, roomFiles } from './room-art.js';
+import { loadArt, onArtLoaded, paintCanvas, preload, reducedMotion, spriteReady, unload } from './sprites.js';
+import { actorPrefixes, nearbyRooms, roomFiles } from './room-art.js';
 import { chooseQuality, loopsOn } from './quality.js';
 import { createCritters, isVisible, updateCritters } from './critters.js';
 import { GUIDE_ANIMALS, openFieldGuide } from './field-guide.js';
@@ -151,9 +151,11 @@ function refreshRoom() {
 let roomArt = null; // Every room-specific picture, once.
 function loadRoomArt(id) {
   roomArt ??= [...new Set(Object.values(rooms).flatMap(roomFiles))];
-  const keep = new Set([id, ...nearbyRooms(id, rooms)].flatMap((r) => roomFiles(rooms[r])));
+  const near = [id, ...nearbyRooms(id, rooms)];
+  const keep = new Set(near.flatMap((r) => roomFiles(rooms[r])));
   unload(roomArt, keep);
   for (const file of keep) spriteReady(file); // Starts loading it.
+  for (const prefix of new Set(near.flatMap((r) => actorPrefixes(rooms[r])))) preload(prefix); // Residents, toys, animals (small).
 }
 
 function enterRoom(id, point, { announce = true } = {}) {

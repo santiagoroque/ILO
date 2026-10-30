@@ -4,7 +4,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { nearbyRooms, rasterScale, roomFiles } from '../js/room-art.js';
+import { actorPrefixes, nearbyRooms, rasterScale, roomFiles } from '../js/room-art.js';
 
 const readJson = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
 const worldData = readJson('../world/world.json');
@@ -33,4 +33,10 @@ test('a room and its neighbors fit in 150 MB of pixels', () => {
     const bytes = [...files].reduce((n, f) => n + (anchors[f] ? anchors[f][0] * anchors[f][1] * 4 * rasterScale(anchors[f]) ** 2 : 0), 0);
     assert.ok(bytes < 150e6, `${id}: ${Math.round(bytes / 1e6)} MB`);
   }
+});
+
+test("a room's residents, toys and animals load with it", () => {
+  const prefixes = actorPrefixes(rooms['snowy-ridge']);
+  for (const p of ['world/residents/snow-guide-', 'world/toys/sled', 'world/critters/snow-hare-']) assert.ok(prefixes.includes(p), p);
+  assert.deepEqual(actorPrefixes(rooms.house), []);
 });

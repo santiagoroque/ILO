@@ -19,6 +19,24 @@ export function roomFiles(room) {
   return [...new Set(files)];
 }
 
+// Toys whose pictures start with another name (js/toy-draw.js), and the holes
+// of animals that live in one (same as HOLES in js/critters.js, which this
+// file cannot import without a loop through js/sprites.js).
+const TOY_ART = { 'sled-hill': 'sled', 'marimba-stones': 'marimba-stone', 'magnet-rock': 'magnet' };
+const HOLE_ART = { meerkat: 'burrow', seal: 'ice-hole' };
+
+// The start of the picture names of a room's residents, toys and animals
+// (world/residents/<id>-<anim>-<n>.svg and so on), to load them with the room.
+export function actorPrefixes(room) {
+  const prefixes = [
+    ...(room.residents ?? []).map((r) => `world/residents/${r.id}-`),
+    ...(room.toys ?? []).map((t) => `world/toys/${TOY_ART[t.type] ?? t.type}`),
+    ...(room.critters ?? []).map((c) => `world/critters/${c.type}-`),
+    ...(room.critters ?? []).filter((c) => HOLE_ART[c.type]).map((c) => `world/critters/${HOLE_ART[c.type]}`),
+  ];
+  return [...new Set(prefixes)];
+}
+
 // The rooms one step away: through an exit or a door.
 export function nearbyRooms(roomId, rooms) {
   const room = rooms[roomId];
