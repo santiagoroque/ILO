@@ -604,6 +604,10 @@
               "maxItems": 4
             },
             "minItems": 1
+          },
+          "under": {
+            "type": "boolean",
+            "description": "Swims under a walkable surface (the glass deck): drawn below the floor."
           }
         }
       }

@@ -171,7 +171,8 @@
       "type": "sea-turtle",
       "x": 650,
       "y": 490,
-      "radius": 253
+      "radius": 253,
+      "under": true
     },
     {
       "type": "crab",

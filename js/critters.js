@@ -126,6 +126,7 @@ export function createCritters(world, rng = Math.random) {
     for (let n = 0; n < (entry.count ?? 1); n++, index++) {
       const c = { type: entry.type, kind: def.kind, facing: rng() < 0.5 ? -1 : 1, variant: index % 3, timer: between(rng, 0.5, 4), progress: null, flying: false, z: 0 };
       if (entry.regions) c.regions = entry.regions;
+      if (entry.under) c.under = true; // Under the glass deck: drawn below the floor.
       if (def.kind === 'flyer') {
         const spot = c.regions ? inRegion(c.regions, rng) : { x: between(rng, MARGIN, world.width - MARGIN), y: between(rng, 120, world.height - MARGIN) };
         Object.assign(c, spot, { anim: def.speed > 20 ? 'fly' : 'glow', flying: true, z: 26 });

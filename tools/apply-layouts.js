@@ -79,7 +79,7 @@ function critterList(data) {
     const kind = CRITTERS[type]?.kind;
     if (!kind) throw new Error(`Unknown animal "${layoutType}"`);
     if (kind === 'popper') for (const p of d.points) out.push({ type, ...point(p) });
-    else if (kind === 'swimmer' || kind === 'jumper') for (const p of d.points) out.push({ type, ...d.waterCircle(p) });
+    else if (kind === 'swimmer' || kind === 'jumper') for (const p of d.points) out.push({ type, ...d.waterCircle(p), ...(d.under ? { under: true } : {}) });
     else if (kind === 'passer') {
       const ys = d.route ? d.route.map((p) => p[1]) : [(d.regions[0][1] + d.regions[0][3]) / 2];
       const entry = { type, count: d.count, y: Math.round(ys.reduce((a, b) => a + b, 0) / ys.length) };
@@ -192,7 +192,8 @@ for (const [id, lay] of Object.entries(delivery.rooms)) {
   if (gems.length !== (room.collectibles ?? []).length) throw new Error(`${id}: ${gems.length} gem spots for ${(room.collectibles ?? []).length} gems`);
   (room.collectibles ?? []).forEach((g, i) => Object.assign(g, point(gems[i])));
 
-  const critterData = Object.fromEntries(Object.entries(lay.critterData).map(([k, d]) => [k, { ...d, waterCircle: (p) => waterCircle(lay.water[d.water], p) }]));
+  // Animals in water Ilo walks on (the glass deck) swim under it.
+  const critterData = Object.fromEntries(Object.entries(lay.critterData).map(([k, d]) => [k, { ...d, under: lay.water[d.water]?.walkable === true, waterCircle: (p) => waterCircle(lay.water[d.water], p) }]));
   if (room.critters) room.critters = critterList(critterData);
 
   room.spawn = point(lay.start);

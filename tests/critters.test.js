@@ -114,3 +114,8 @@ test('toucans and macaws sit on palms and fly to another palm when Ilo comes', (
   assert.equal(bird.state, 'perch');
   assert.ok(Math.hypot(bird.x - start.x, bird.y - start.y) > 250);
 });
+
+test('the sea turtle swims under the glass deck', () => {
+  const turtle = createCritters(built['coral-lookout'], random(3)).find((c) => c.type === 'sea-turtle');
+  assert.equal(turtle.under, true);
+});

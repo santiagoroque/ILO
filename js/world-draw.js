@@ -291,6 +291,8 @@ export function drawWorld(ctx, world, scene) {
   // Flat things under everything else: water, rugs, exits
   if (layout) {
     for (const layer of ['ground-effect', 'ground-overlay', 'floor', 'wall']) {
+      // Animals under the glass deck go below the floor pieces.
+      if (layer === 'floor') for (const c of scene.critters ?? []) if (c.under) scaledAt(ctx, c.x, c.y, S, () => drawCritters(ctx, [c], scene.time));
       for (const o of world.decorations) if (o.layer === layer) drawObject(ctx, o, scene);
     }
   } else {
@@ -342,7 +344,7 @@ export function drawWorld(ctx, world, scene) {
     }) });
   }
   const drawCritter = (c) => scaledAt(ctx, c.x, c.y, S, () => drawCritters(ctx, [c], scene.time));
-  for (const c of scene.critters ?? []) if (!c.flying) things.push({ y: c.y, draw: () => drawCritter(c) });
+  for (const c of scene.critters ?? []) if (!c.flying && !c.under) things.push({ y: c.y, draw: () => drawCritter(c) });
   for (const r of scene.residents ?? []) things.push({ y: r.y, draw: () => scaledAt(ctx, r.x, r.y, r.scale ?? 1, () => drawResident(ctx, r, scene.time)) });
   things.sort((p, q) => p.y - q.y).forEach((thing) => thing.draw());
   (scene.critters ?? []).filter((c) => c.flying).forEach(drawCritter);
