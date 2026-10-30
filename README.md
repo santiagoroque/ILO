@@ -322,6 +322,8 @@ Writing lessons with the existing blocks only takes JSON. A **new kind of block*
 | `npm run apply-layouts -- <file>` | Puts the designers' layered room layouts into `world/rooms/*.json` (tools/apply-layouts.js) |
 | `npm test` | Runs the physics (all three models against textbook formulas), lesson, room, path, save, pet, house and stamp tests with Node's built-in test runner |
 
+On GitHub, the same check and tests run on every push (`.github/workflows/check.yml`). A green check next to a commit means they passed; a red cross means something to fix before sharing.
+
 ```
 index.html                The world (home page)
 lesson.html, lessons.html A lesson (a path of steps) / the course path

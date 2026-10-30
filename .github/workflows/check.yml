@@ -1,0 +1,19 @@
+# Runs the lesson and world checker and the tests on every push, the same
+# commands as on your computer (README.md, "Commands"). A green check on
+# GitHub means they passed.
+name: check
+
+on: [push, pull_request]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm test
