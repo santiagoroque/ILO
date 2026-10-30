@@ -3,16 +3,23 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { CACHE_VERSION, cacheName, shouldCache, staleCaches } from '../js/offline.js';
+import { CACHE_VERSION, cacheName, fallbackFor, staleCaches, strategyFor } from '../js/offline.js';
 
 const SITE = 'https://santiagoroque.github.io/ILO/';
 
-test("only the game's own files are cached", () => {
-  assert.equal(shouldCache(`${SITE}assets/world/decorations/tree.svg`, SITE), true);
-  assert.equal(shouldCache(`${SITE}index.html`, SITE), true);
-  assert.equal(shouldCache('https://fonts.googleapis.com/css2', SITE), false);
-  assert.equal(shouldCache(`${SITE}sources/libro.pdf`, SITE), false);
-  assert.equal(shouldCache(`${SITE}index.html?time=night`, SITE), false);
+test('code and data come from the internet first; pictures from the saved copy', () => {
+  for (const file of ['', 'index.html', 'lesson.html?id=friction', 'js/world.js', 'css/style.css', 'world/rooms/plaza.json', 'lessons/gravity.json']) {
+    assert.equal(strategyFor(`${SITE}${file}`, SITE), 'network-first', file);
+  }
+  assert.equal(strategyFor(`${SITE}assets/world/decorations/tree.svg`, SITE), 'cache-first');
+  assert.equal(strategyFor('https://fonts.googleapis.com/css2', SITE), null);
+  assert.equal(strategyFor(`${SITE}sources/libro.pdf`, SITE), null);
+});
+
+test('offline, a page opens from its saved copy whatever its question part', () => {
+  assert.equal(fallbackFor(`${SITE}index.html?lite=1`), `${SITE}index.html`);
+  assert.equal(fallbackFor(`${SITE}lesson.html?id=friction`), `${SITE}lesson.html`);
+  assert.equal(fallbackFor(SITE), `${SITE}index.html`);
 });
 
 test('an update clears the old copy', () => {
