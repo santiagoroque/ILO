@@ -151,5 +151,6 @@ Status values: todo / in_progress / done. Milestones (M1 to M5) are defined in P
 | K09 | World redesign round 2: brief sent to the design team (DESIGN_PROMPT_3.md); integrate their layered rooms when they arrive | done | 2026-10-29: revision 3 (`ilo-room-redesign-v3.zip`, wide camera, Ilo at 1.5) applied to all 23 rooms with `npm run apply-layouts`. The first redesign zip was not applied (the user cancelled). See PLAN.md, "World redesign revision 3: applied" |
 | H01 | Put ILO on GitHub | done | 2026-10-29: private repository github.com/santiagoroque/ILO, published with GitHub Desktop. `.gitignore` keeps out sources/ (SEP books), node_modules/ and dist/ |
 | H02 | Tidy the project folder | done | 2026-10-29: the documents (PLAN, TASKS, PILOT, ASSETS, DESIGN_PROMPT 1 to 3) moved to docs/; README.md and the five pages stay at the top. References updated; check, tests and site build pass |
+| I00 | Improvement plan: 12 tasks (I01 to I12) | done | 2026-10-30: docs/superpowers/plans/2026-10-30-ilo-improvements.md. Most urgent: I01, room pictures use about 743 MB at start |
 | N4 | Plan accounts (teachers, students) | todo | A3. Replace js/progress.js |
 | N5 | Publish on GitHub Pages | todo | A6. Static files, no code changes. Free non-commercial pilot only (report S44) |
