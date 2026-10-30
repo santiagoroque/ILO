@@ -19,6 +19,7 @@ import { openShop } from './shop.js';
 import { showError } from './show-error.js';
 import { loadArt, onArtLoaded, paintCanvas, reducedMotion, spriteReady, unload } from './sprites.js';
 import { nearbyRooms, roomFiles } from './room-art.js';
+import { chooseQuality, loopsOn } from './quality.js';
 import { createCritters, isVisible, updateCritters } from './critters.js';
 import { GUIDE_ANIMALS, openFieldGuide } from './field-guide.js';
 import { activeParty, decorateRooms, isPartyRoom } from './parties.js';
@@ -176,7 +177,7 @@ function enterRoom(id, point, { announce = true } = {}) {
   ride = null;
   furnitureStates.clear();
   const partyHere = isPartyRoom(party, roomId) ? party : null;
-  weather = reducedMotion ? [] : createWeather(weatherFor(world, { day: dayOfYear(), party: partyHere }), size);
+  weather = reducedMotion || quality === 'lite' ? [] : createWeather(weatherFor(world, { day: dayOfYear(), party: partyHere }), size);
   if (partyHere) joinParty();
   setTheme(themeOf(world));
   recordVisit(roomId);
@@ -905,6 +906,28 @@ function nextToast() {
 
 // ---- Game loop ----
 let last = performance.now();
+// Lite mode (js/quality.js): measured from real frame times; ?lite=1 or ?lite=0 decides it.
+const LITE_FLAG = { 1: 'lite', 0: 'full' }[new URLSearchParams(location.search).get('lite')] ?? null;
+let quality = chooseQuality([], { forced: LITE_FLAG });
+const frameTimes = [];
+let lastDraw = 0;
+let liteTold = false; // The lite-mode message shows once.
+function measure(ms) {
+  if (document.hidden || ms > 250) return; // A paused or hidden tab is not a slow computer.
+  frameTimes.push(ms);
+  if (frameTimes.length > 60) frameTimes.shift();
+}
+setInterval(() => {
+  const next = chooseQuality(frameTimes, { forced: LITE_FLAG, reducedMotion });
+  if (next === quality) return;
+  quality = next;
+  if (quality === 'lite') {
+    weather = [];
+    if (!liteTold) showToast(t('world.liteOn'));
+    liteTold = true;
+  }
+  dirty = true;
+}, 5000);
 
 function update(dt) {
   let dx = 0;
@@ -982,12 +1005,16 @@ function update(dt) {
 }
 
 function frame(now) {
+  measure(now - last);
   const dt = Math.min((now - last) / 1000, 0.1);
   last = now;
   time += dt;
   update(dt);
   // Exits glow gently, so redraw a few times a second even when idle.
-  if (dirty || target || Math.floor(time * 6) !== Math.floor((time - dt) * 6)) {
+  // In lite mode, at most 20 times a second.
+  const due = quality !== 'lite' || now - lastDraw >= 50;
+  if (due && (dirty || target || Math.floor(time * 6) !== Math.floor((time - dt) * 6))) {
+    lastDraw = now;
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.fillStyle = '#1d2340';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -1024,6 +1051,7 @@ function frame(now) {
       darkness: dark,
       evening: isEvening(dark),
       exitLabel: (exit) => pick(rooms[exit.to].name),
+      loops: loopsOn(quality, reducedMotion),
     });
     ctx.restore();
     dirty = false;

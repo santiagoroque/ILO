@@ -181,7 +181,7 @@ function scaledAt(ctx, x, y, s, draw) {
 function drawObject(ctx, o, scene) {
   if (o.party) return scaledAt(ctx, o.x, o.y, o.scale, () => drawDecoration(ctx, o, scene.time));
   const still = o.type.startsWith('dance-tile') && !scene.danceLit;
-  let file = o.animation && !reducedMotion && !still ? o.animation[frameAt(scene.time, 3, o.animation.length) - 1] : o.asset;
+  let file = o.animation && (scene.loops ?? !reducedMotion) && !still ? o.animation[frameAt(scene.time, 3, o.animation.length) - 1] : o.asset;
   if (o.type === 'target' && o.hitUntil > scene.time) file = `world/decorations/target-hit-${frameAt(scene.time, 8, 2)}.svg`;
   const draw = () => drawSprite(ctx, file, o.x, o.y, { scale: o.scale }) || drawSprite(ctx, o.asset, o.x, o.y, { scale: o.scale });
   if (o.verticalScale) {
@@ -202,7 +202,7 @@ function drawPiece(ctx, p, scene, extra = {}) {
   const s = p.scale ?? 1;
   if (p.art) {
     const busy = state.on || state.playing > 0;
-    const loop = p.animation && !reducedMotion && (FURNITURE[p.id].anim || busy) ? p.animation[frameAt(scene.time, busy ? 8 : 3, p.animation.length) - 1] : null;
+    const loop = p.animation && (scene.loops ?? !reducedMotion) && (FURNITURE[p.id].anim || busy) ? p.animation[frameAt(scene.time, busy ? 8 : 3, p.animation.length) - 1] : null;
     if ((loop && drawSprite(ctx, loop, p.x, p.y, { scale: s })) || drawSprite(ctx, p.art, p.x, p.y, { scale: s })) {
       // The museum's wall: the kid's stamps in its frames.
       (p.frames ?? []).forEach(([l, t, r, b], i) => {
@@ -226,7 +226,7 @@ function drawLayeredStation(ctx, world, s, scene) {
   const files = [];
   if (near) files.push(states.highlight ?? base.replace(/\.svg$/, '-highlight.svg'));
   if (scene.evening && world.kind === 'outdoor') files.push(states.night);
-  if (art.animation && !reducedMotion && !house) files.push(art.animation[frameAt(scene.time, 3, art.animation.length) - 1]);
+  if (art.animation && (scene.loops ?? !reducedMotion) && !house) files.push(art.animation[frameAt(scene.time, 3, art.animation.length) - 1]);
   files.push(base);
   for (const file of files) if (file && drawSprite(ctx, file, s.x, s.y, { scale: art.scale })) return;
   const { height } = stationSize(s);

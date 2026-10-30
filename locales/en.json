@@ -346,6 +346,7 @@
   "toyHelp.kite": "Fly the kite. Press Use again to put it away.",
   "world.use": "Use",
   "world.goal": "Goal!",
+  "world.liteOn": "Light mode: fewer animations so it runs faster.",
   "shop.tab.houses": "Houses",
   "shop.tab.wallpapers": "Wallpaper",
   "shop.tab.floors": "Floors",
