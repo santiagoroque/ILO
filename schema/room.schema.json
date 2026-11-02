@@ -928,6 +928,69 @@
           }
         }
       }
+    },
+    "extras": {
+      "description": "The room's own additions, kept by tools/apply-layouts.js when a new layout arrives (js/world-data.js, buildLayered).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "add": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "type",
+              "x",
+              "y"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "scale": {
+                "type": "number"
+              },
+              "flip": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "move": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "type",
+              "x",
+              "y"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "index": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "$defs": {

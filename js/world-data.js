@@ -113,13 +113,47 @@ function perchesOf(layout, scale) {
   });
 }
 
+// ---- A room's own extras (room.extras), kept apart from the designers' layout ----
+// tools/apply-layouts.js replaces "layout" on each delivery but keeps "extras":
+//   add:  more scenery from world/decorations/<type>.svg, { type, x, y, scale, flip }
+//   move: one of the layout's objects somewhere else, { type, index, x, y }
+// Pictures with a sway loop (world/decorations/<type>-1..3.svg).
+const EXTRA_LOOPS = { tree: 3, acacia: 3, flowers: 3 };
+function extraObject({ type, x, y, scale = 1, flip = false }) {
+  const o = { type, asset: `world/decorations/${type}.svg`, x, y, scale, layer: 'stand', extra: true };
+  if (flip) o.flip = true;
+  if (EXTRA_LOOPS[type]) o.animation = [1, 2, 3].map((n) => `world/decorations/${type}-${n}.svg`);
+  const r = (BLOCKING[type] ?? 0) * scale; // The base, like the designers' footprints.
+  if (r > 0) o.footprint = { ellipse: [x, y - 3, r, Math.round(r * 0.36 * 10) / 10] };
+  return o;
+}
+function movedObjects(objects, moves = []) {
+  const out = objects.map((o) => ({ ...o }));
+  for (const m of moves) {
+    const o = out.filter((x) => x.type === m.type)[m.index ?? 0];
+    if (!o) continue;
+    const dx = m.x - o.x;
+    const dy = m.y - o.y;
+    Object.assign(o, { x: m.x, y: m.y });
+    if (o.footprint?.rect) {
+      const [l, t, r, b] = o.footprint.rect;
+      o.footprint = { rect: [l + dx, t + dy, r + dx, b + dy] };
+    } else if (o.footprint?.ellipse) {
+      const [cx, cy, rx, ry] = o.footprint.ellipse;
+      o.footprint = { ellipse: [cx + dx, cy + dy, rx, ry] };
+    }
+  }
+  return out;
+}
+
 function buildLayered(room, size) {
-  const layout = room.layout;
+  const layout = { ...room.layout, objects: [...movedObjects(room.layout.objects, room.extras?.move), ...(room.extras?.add ?? []).map(extraObject)] };
   const scale = layout.scale ?? 1;
   const stations = room.stations.map((s) => ({ ...s, door: doorOf(s) }));
   const party = layout.party ? placeParty(room.decorations, layout.party) : room.decorations;
   const world = {
     ...room,
+    layout,
     width: size.width,
     height: size.height,
     minY: room.minY ?? 0,

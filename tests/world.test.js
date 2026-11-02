@@ -178,6 +178,22 @@ test('a side exit\'s sign picture carries its name on the plate', () => {
   }
 });
 
+test("a room's own extras add scenery that blocks walking, and move the designers' pieces", () => {
+  const glade = rooms['lever-glade'];
+  const tree = glade.layout.objects.find((o) => o.type === 'tree');
+  const world = buildRoom({
+    ...glade,
+    extras: { add: [{ type: 'rock', x: 300, y: 600, scale: 1.5 }], move: [{ type: 'tree', index: 0, x: tree.x + 40, y: tree.y + 10 }] },
+  }, size);
+  const rock = world.decorations.find((d) => d.type === 'rock');
+  assert.deepEqual({ asset: rock.asset, layer: rock.layer, scale: rock.scale }, { asset: 'world/decorations/rock.svg', layer: 'stand', scale: 1.5 });
+  assert.equal(collides(world, 300, 600), true, 'the rock is solid');
+  const moved = world.decorations.find((d) => d.type === 'tree');
+  assert.deepEqual([moved.x, moved.y], [tree.x + 40, tree.y + 10]);
+  assert.deepEqual(moved.footprint.ellipse.slice(0, 2), [tree.footprint.ellipse[0] + 40, tree.footprint.ellipse[1] + 10], 'its footprint moves with it');
+  assert.equal(glade.layout.objects.find((o) => o.type === 'tree').x, tree.x, 'the room file is untouched');
+});
+
 test('every room is a layered room', () => {
   for (const [id, room] of Object.entries(rooms)) assert.ok(room.layout, id);
 });

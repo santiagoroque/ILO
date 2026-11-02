@@ -133,7 +133,7 @@ function drawObject(ctx, o, scene) {
   const still = o.type.startsWith('dance-tile') && !scene.danceLit;
   let file = o.animation && (scene.loops ?? !reducedMotion) && !still ? o.animation[frameAt(scene.time, 3, o.animation.length) - 1] : o.asset;
   if (o.type === 'target' && o.hitUntil > scene.time) file = `world/decorations/target-hit-${frameAt(scene.time, 8, 2)}.svg`;
-  const draw = () => drawSprite(ctx, file, o.x, o.y, { scale: o.scale }) || drawSprite(ctx, o.asset, o.x, o.y, { scale: o.scale });
+  const draw = () => drawSprite(ctx, file, o.x, o.y, { scale: o.scale, flip: o.flip }) || drawSprite(ctx, o.asset, o.x, o.y, { scale: o.scale, flip: o.flip });
   if (o.verticalScale) {
     ctx.save();
     ctx.translate(0, o.y);

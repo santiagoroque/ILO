@@ -30,6 +30,12 @@ test('the room and layout passed in are not changed', () => {
   assert.equal(JSON.stringify([fixtureRoom, fixtureLayout]), before);
 });
 
+test("a room's own extras survive a new delivery", () => {
+  const extras = { add: [{ type: 'rock', x: 900, y: 600, scale: 1.4 }], move: [] };
+  const { room } = convertRoom({ ...fixtureRoom, extras }, fixtureLayout, anchors, { revision: 'test' });
+  assert.deepEqual(room.extras, extras);
+});
+
 test('a door missing from the layout stops the conversion', () => {
   const lay = { ...fixtureLayout, objects: fixtureLayout.objects.filter((o) => !o.station) };
   assert.throws(() => convertRoom(fixtureRoom, lay, anchors, { revision: 'test' }), /missing from the layout/);
