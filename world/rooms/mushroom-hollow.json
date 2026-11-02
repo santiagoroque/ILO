@@ -924,5 +924,142 @@
         ]
       }
     ]
+  },
+  "extras": {
+    "add": [
+      {
+        "type": "mushroom",
+        "x": 531,
+        "y": 306,
+        "scale": 1.62
+      },
+      {
+        "type": "rock",
+        "x": 443,
+        "y": 311,
+        "scale": 1.41,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 737,
+        "y": 332,
+        "scale": 1.53,
+        "flip": true
+      },
+      {
+        "type": "bush",
+        "x": 1002,
+        "y": 337,
+        "scale": 1.47,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 717,
+        "y": 356,
+        "scale": 1.61
+      },
+      {
+        "type": "flowers",
+        "x": 649,
+        "y": 404,
+        "scale": 1.37,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 1119,
+        "y": 421,
+        "scale": 1.41,
+        "flip": true
+      },
+      {
+        "type": "mushroom",
+        "x": 608,
+        "y": 423,
+        "scale": 1.83,
+        "flip": true
+      },
+      {
+        "type": "mushroom",
+        "x": 117,
+        "y": 440,
+        "scale": 1.57,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 759,
+        "y": 457,
+        "scale": 1.61
+      },
+      {
+        "type": "grass",
+        "x": 600,
+        "y": 463,
+        "scale": 1.53,
+        "flip": true
+      },
+      {
+        "type": "rock",
+        "x": 78,
+        "y": 480,
+        "scale": 1.36
+      },
+      {
+        "type": "mushroom",
+        "x": 1033,
+        "y": 482,
+        "scale": 1.87,
+        "flip": true
+      },
+      {
+        "type": "bush",
+        "x": 1131,
+        "y": 510,
+        "scale": 1.47,
+        "flip": true
+      },
+      {
+        "type": "mushroom",
+        "x": 1190,
+        "y": 526,
+        "scale": 1.81
+      },
+      {
+        "type": "flowers",
+        "x": 760,
+        "y": 553,
+        "scale": 1.45,
+        "flip": true
+      },
+      {
+        "type": "mushroom",
+        "x": 1200,
+        "y": 585,
+        "scale": 1.82
+      },
+      {
+        "type": "flowers",
+        "x": 261,
+        "y": 596,
+        "scale": 1.37,
+        "flip": true
+      },
+      {
+        "type": "mushroom",
+        "x": 389,
+        "y": 607,
+        "scale": 1.82
+      },
+      {
+        "type": "flowers",
+        "x": 320,
+        "y": 607,
+        "scale": 1.45,
+        "flip": true
+      }
+    ]
   }
 }

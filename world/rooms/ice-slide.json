@@ -229,5 +229,74 @@
         }
       }
     ]
+  },
+  "extras": {
+    "add": [
+      {
+        "type": "pine",
+        "x": 237,
+        "y": 283,
+        "scale": 1.78
+      },
+      {
+        "type": "pine",
+        "x": 394,
+        "y": 297,
+        "scale": 1.73
+      },
+      {
+        "type": "rock",
+        "x": 1050,
+        "y": 315,
+        "scale": 1.42,
+        "flip": true
+      },
+      {
+        "type": "rock",
+        "x": 494,
+        "y": 343,
+        "scale": 1.31,
+        "flip": true
+      },
+      {
+        "type": "snowpile",
+        "x": 652,
+        "y": 344,
+        "scale": 1.45
+      },
+      {
+        "type": "snowpile",
+        "x": 557,
+        "y": 375,
+        "scale": 1.47,
+        "flip": true
+      },
+      {
+        "type": "snowpile",
+        "x": 778,
+        "y": 391,
+        "scale": 1.67,
+        "flip": true
+      },
+      {
+        "type": "pine",
+        "x": 439,
+        "y": 399,
+        "scale": 1.8
+      },
+      {
+        "type": "pine",
+        "x": 704,
+        "y": 449,
+        "scale": 1.51
+      },
+      {
+        "type": "snowpile",
+        "x": 676,
+        "y": 577,
+        "scale": 1.9,
+        "flip": true
+      }
+    ]
   }
 }

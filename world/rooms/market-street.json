@@ -510,5 +510,35 @@
       ],
       "tree": null
     }
+  },
+  "extras": {
+    "add": [],
+    "move": [
+      {
+        "type": "balloon-seller",
+        "x": 470,
+        "y": 470
+      },
+      {
+        "type": "market-stall-fruit",
+        "x": 300,
+        "y": 545
+      },
+      {
+        "type": "market-stall-toys",
+        "x": 230,
+        "y": 655
+      },
+      {
+        "type": "paleta-cart",
+        "x": 820,
+        "y": 470
+      },
+      {
+        "type": "market-stall-crafts",
+        "x": 1000,
+        "y": 560
+      }
+    ]
   }
 }

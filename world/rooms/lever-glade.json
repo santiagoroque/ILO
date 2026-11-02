@@ -344,5 +344,100 @@
         ]
       }
     ]
+  },
+  "extras": {
+    "add": [
+      {
+        "type": "mushroom",
+        "x": 382,
+        "y": 335,
+        "scale": 1.55,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 657,
+        "y": 356,
+        "scale": 1.76
+      },
+      {
+        "type": "grass",
+        "x": 666,
+        "y": 398,
+        "scale": 1.5,
+        "flip": true
+      },
+      {
+        "type": "bush",
+        "x": 737,
+        "y": 418,
+        "scale": 1.44,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 204,
+        "y": 450,
+        "scale": 1.76
+      },
+      {
+        "type": "grass",
+        "x": 709,
+        "y": 456,
+        "scale": 1.4
+      },
+      {
+        "type": "bush",
+        "x": 445,
+        "y": 497,
+        "scale": 1.42,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 510,
+        "y": 576,
+        "scale": 1.5
+      },
+      {
+        "type": "mushroom",
+        "x": 304,
+        "y": 624,
+        "scale": 1.53,
+        "flip": true
+      }
+    ],
+    "move": [
+      {
+        "type": "flowers",
+        "index": 0,
+        "x": 140,
+        "y": 420
+      },
+      {
+        "type": "flowers",
+        "index": 1,
+        "x": 235,
+        "y": 368
+      },
+      {
+        "type": "flowers",
+        "index": 2,
+        "x": 300,
+        "y": 478
+      },
+      {
+        "type": "flowers",
+        "index": 3,
+        "x": 520,
+        "y": 352
+      },
+      {
+        "type": "flowers",
+        "index": 4,
+        "x": 585,
+        "y": 505
+      }
+    ]
   }
 }

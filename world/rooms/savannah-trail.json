@@ -304,5 +304,123 @@
         }
       }
     ]
+  },
+  "extras": {
+    "add": [
+      {
+        "type": "rock",
+        "x": 904,
+        "y": 290,
+        "scale": 1.23,
+        "flip": true
+      },
+      {
+        "type": "rock",
+        "x": 833,
+        "y": 292,
+        "scale": 1.39
+      },
+      {
+        "type": "rock",
+        "x": 684,
+        "y": 296,
+        "scale": 1.41,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 600,
+        "y": 308,
+        "scale": 1.65,
+        "flip": true
+      },
+      {
+        "type": "bush",
+        "x": 727,
+        "y": 334,
+        "scale": 1.65,
+        "flip": true
+      },
+      {
+        "type": "bush",
+        "x": 803,
+        "y": 336,
+        "scale": 1.54,
+        "flip": true
+      },
+      {
+        "type": "bush",
+        "x": 908,
+        "y": 348,
+        "scale": 1.49,
+        "flip": true
+      },
+      {
+        "type": "acacia",
+        "x": 561,
+        "y": 383,
+        "scale": 1.91,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 966,
+        "y": 384,
+        "scale": 1.89
+      },
+      {
+        "type": "grass",
+        "x": 694,
+        "y": 404,
+        "scale": 1.52,
+        "flip": true
+      },
+      {
+        "type": "acacia",
+        "x": 813,
+        "y": 415,
+        "scale": 1.87,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 975,
+        "y": 425,
+        "scale": 1.86,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 1023,
+        "y": 427,
+        "scale": 1.53
+      },
+      {
+        "type": "bush",
+        "x": 670,
+        "y": 444,
+        "scale": 1.48
+      },
+      {
+        "type": "grass",
+        "x": 566,
+        "y": 461,
+        "scale": 1.46,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 539,
+        "y": 514,
+        "scale": 1.79
+      },
+      {
+        "type": "grass",
+        "x": 292,
+        "y": 610,
+        "scale": 1.6,
+        "flip": true
+      }
+    ]
   }
 }

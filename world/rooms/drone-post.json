@@ -266,5 +266,105 @@
         }
       }
     ]
+  },
+  "extras": {
+    "add": [
+      {
+        "type": "rock",
+        "x": 1089,
+        "y": 291,
+        "scale": 1.25
+      },
+      {
+        "type": "rock",
+        "x": 960,
+        "y": 300,
+        "scale": 1.41,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 831,
+        "y": 321,
+        "scale": 1.67,
+        "flip": true
+      },
+      {
+        "type": "acacia",
+        "x": 700,
+        "y": 332,
+        "scale": 2.02
+      },
+      {
+        "type": "bush",
+        "x": 1081,
+        "y": 334,
+        "scale": 1.51
+      },
+      {
+        "type": "bush",
+        "x": 523,
+        "y": 334,
+        "scale": 1.4
+      },
+      {
+        "type": "grass",
+        "x": 192,
+        "y": 334,
+        "scale": 1.8,
+        "flip": true
+      },
+      {
+        "type": "rock",
+        "x": 434,
+        "y": 334,
+        "scale": 1.28
+      },
+      {
+        "type": "grass",
+        "x": 599,
+        "y": 370,
+        "scale": 1.4,
+        "flip": true
+      },
+      {
+        "type": "bush",
+        "x": 1168,
+        "y": 422,
+        "scale": 1.57
+      },
+      {
+        "type": "acacia",
+        "x": 557,
+        "y": 446,
+        "scale": 2.01
+      },
+      {
+        "type": "grass",
+        "x": 1203,
+        "y": 507,
+        "scale": 1.44,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 1100,
+        "y": 512,
+        "scale": 1.77
+      },
+      {
+        "type": "grass",
+        "x": 1037,
+        "y": 548,
+        "scale": 1.81
+      },
+      {
+        "type": "grass",
+        "x": 557,
+        "y": 648,
+        "scale": 1.67,
+        "flip": true
+      }
+    ]
   }
 }

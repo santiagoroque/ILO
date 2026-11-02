@@ -879,5 +879,125 @@
         ]
       }
     ]
+  },
+  "extras": {
+    "add": [
+      {
+        "type": "acacia",
+        "x": 168,
+        "y": 296,
+        "scale": 2.05,
+        "flip": true
+      },
+      {
+        "type": "rock",
+        "x": 750,
+        "y": 297,
+        "scale": 1.56,
+        "flip": true
+      },
+      {
+        "type": "rock",
+        "x": 1093,
+        "y": 299,
+        "scale": 1.47,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 416,
+        "y": 315,
+        "scale": 1.82
+      },
+      {
+        "type": "grass",
+        "x": 1112,
+        "y": 363,
+        "scale": 1.6
+      },
+      {
+        "type": "grass",
+        "x": 919,
+        "y": 364,
+        "scale": 1.89
+      },
+      {
+        "type": "grass",
+        "x": 480,
+        "y": 395,
+        "scale": 1.43,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 314,
+        "y": 439,
+        "scale": 1.52,
+        "flip": true
+      },
+      {
+        "type": "bush",
+        "x": 1034,
+        "y": 460,
+        "scale": 1.62,
+        "flip": true
+      },
+      {
+        "type": "grass",
+        "x": 878,
+        "y": 467,
+        "scale": 1.46
+      },
+      {
+        "type": "acacia",
+        "x": 1166,
+        "y": 470,
+        "scale": 1.8
+      },
+      {
+        "type": "grass",
+        "x": 66,
+        "y": 500,
+        "scale": 1.67
+      },
+      {
+        "type": "grass",
+        "x": 294,
+        "y": 523,
+        "scale": 1.44
+      },
+      {
+        "type": "grass",
+        "x": 247,
+        "y": 535,
+        "scale": 1.85
+      },
+      {
+        "type": "bush",
+        "x": 1001,
+        "y": 545,
+        "scale": 1.47,
+        "flip": true
+      },
+      {
+        "type": "rock",
+        "x": 403,
+        "y": 550,
+        "scale": 1.51
+      },
+      {
+        "type": "bush",
+        "x": 307,
+        "y": 595,
+        "scale": 1.47,
+        "flip": true
+      },
+      {
+        "type": "bush",
+        "x": 948,
+        "y": 612,
+        "scale": 1.67
+      }
+    ]
   }
 }
