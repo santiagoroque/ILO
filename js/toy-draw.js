@@ -1,7 +1,7 @@
 // Draws the physics toys from js/toys.js. Pictures are world/toys/<file>.svg
 // (names below and in docs/DESIGN_PROMPT_2.md, Part 12.6); shapes until then.
 import { drawSprite, frameAt, reducedMotion } from './sprites.js';
-import { goalBox, marimbaStones } from './toys.js';
+import { goalBox, marimbaStones, sledHint } from './toys.js';
 
 const OUTLINE = '#2b2d42';
 
@@ -127,7 +127,14 @@ export function drawToy(ctx, toy, time, ride = null) {
       break;
     }
     case 'sled-hill': {
-      if (art('sled-hill', toy.x, toy.y)) break;
+      const waiting = ride?.toy !== toy;
+      const drawn = art('sled-hill', toy.x, toy.y);
+      if (waiting) {
+        drawSledHint(ctx, toy, t);
+        const top = sledHint(toy)?.top;
+        if (top) drawSled(ctx, top.x, top.y - 4, t); // The sled, waiting on the ridge.
+      }
+      if (drawn) break;
       ctx.fillStyle = 'rgba(200, 225, 240, 0.9)';
       ctx.strokeStyle = '#a9cde0';
       ctx.beginPath();
@@ -292,6 +299,42 @@ export function drawFlyingKite(ctx, avatar, time, scale = 1) {
   ctx.strokeStyle = OUTLINE;
   if (!drawSprite(ctx, `world/toys/kite-${frameAt(t, 4, 3)}.svg`, kx, ky + 30)) drawKiteShape(ctx, kx, ky);
   ctx.restore();
+  ctx.restore();
+}
+
+// A dotted arrow down the sled hill until the first ride (js/toys.js, sledHint).
+function drawSledHint(ctx, toy, t) {
+  const hint = sledHint(toy);
+  if (!hint) return;
+  const [top, foot, to] = hint.points;
+  const angle = Math.atan2(to.y - foot.y, to.x - foot.x);
+  ctx.save();
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.setLineDash([2, 16]);
+  ctx.lineDashOffset = -t * 30; // The dots run down the hill.
+  for (const [width, color] of [[9, 'rgba(43,45,66,0.35)'], [6, '#ffffff']]) {
+    ctx.lineWidth = width;
+    ctx.strokeStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(top.x + 18, top.y + 10);
+    ctx.lineTo(foot.x, foot.y);
+    ctx.lineTo(to.x, to.y);
+    ctx.stroke();
+  }
+  ctx.setLineDash([]);
+  ctx.translate(to.x, to.y);
+  ctx.rotate(angle);
+  ctx.fillStyle = '#ffffff';
+  ctx.strokeStyle = OUTLINE;
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.moveTo(14, 0);
+  ctx.lineTo(-10, -11);
+  ctx.lineTo(-10, 11);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
   ctx.restore();
 }
 

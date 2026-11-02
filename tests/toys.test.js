@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { createToys, goalBox, marimbaStones, ridePose, TOYS, updateToys, usePoint, useToy } from '../js/toys.js';
+import { createToys, goalBox, marimbaStones, ridePose, sledHint, TOYS, updateToys, usePoint, useToy } from '../js/toys.js';
 import { buildRoom, canWalk, collides } from '../js/world-data.js';
 
 const readJson = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
@@ -111,4 +111,24 @@ test('every toy can be reached on foot and is a known kind', () => {
       if (TOYS[toy.type].use || toy.type === 'ball') assert.ok(canWalk(world, world.start, spot), `${id}: ${toy.type} unreachable`);
     }
   }
+});
+
+test('the sled starts on the hilltop, slides down the steep side and on across the snow', () => {
+  const world = built['snowy-ridge'];
+  const hill = createToys(world).find((t) => t.type === 'sled-hill');
+  const [top, foot, end] = sledHint(hill).points;
+  assert.ok(top.y < foot.y - 80, 'the top is high on the hill picture');
+  assert.ok(Math.hypot(usePoint(hill).x - foot.x, usePoint(hill).y - foot.y) < 40, 'the kid presses Use at the foot');
+  assert.ok(Math.hypot(end.x - foot.x, end.y - foot.y) > 150, 'the arrow runs on across the snow');
+  const ride = useToy(hill, usePoint(hill), 0);
+  const first = ridePose(ride, world, 0.02, 0.02);
+  assert.ok(Math.hypot(first.x - top.x, first.y - top.y) < 15, 'the ride begins at the top');
+  let pose = first;
+  let passedFoot = false;
+  for (let t = 0.04; t < 20 && !pose.done; t += 0.02) {
+    pose = ridePose(ride, world, 0.02, t);
+    if (Math.hypot(pose.x - foot.x, pose.y - foot.y) < 12) passedFoot = true;
+  }
+  assert.ok(passedFoot, 'it comes down the steep side');
+  assert.equal(sledHint(hill), null, 'the arrow is gone after the first ride');
 });

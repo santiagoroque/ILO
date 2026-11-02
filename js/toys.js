@@ -55,7 +55,7 @@ export function createToys(world) {
 
 // Where the kid stands to use a toy.
 export function usePoint(toy) {
-  if (toy.type === 'sled-hill') return { x: toy.x, y: toy.y };
+  if (toy.type === 'sled-hill') return { x: hillPoint(toy, HILL_FOOT).x + 12, y: hillPoint(toy, HILL_FOOT).y + 18 }; // At the foot of the steep side.
   return { x: toy.x, y: toy.y + ((TOY_BLOCKING[toy.type] ?? 0) + 24) * k(toy) }; // In front of it.
 }
 
@@ -91,7 +91,7 @@ export function useToy(toy, avatar, time, ride = null) {
     case 'bounce-mushroom':
       return { toy, type: 'bounce', start: time };
     case 'sled-hill':
-      return { toy, type: 'sled', start: time, x: toy.x, y: toy.y, speed: 0, done: false, slope: { ...SLOPE, ...toy.slope } };
+      return { toy, type: 'sled', start: time, ...hillPoint(toy, HILL_TOP), phase: 'hill', speed: 0, done: false };
     case 'kite':
       if (ride?.toy === toy) return null; // Use again: put the kite away.
       return { toy, type: 'kite', start: time };
@@ -113,6 +113,18 @@ const SWING_PERIOD = 2.2; // Seconds for one swing there and back.
 const BOUNCE_SECONDS = 0.7;
 const BOUNCES = 8;
 const SLOPE = { dx: 0.6, dy: 0.8, length: 140, accel: 320 };
+// The sled hill's ridge and the foot of its steep side, measured on its
+// picture (world/toys/sled-hill.svg, 200 x 100, ground point at the middle of
+// the bottom), from that ground point. The sled waits on the ridge.
+const HILL_TOP = { x: 57, y: -79 };
+const HILL_FOOT = { x: 98, y: -2 };
+const hillPoint = (toy, p) => ({ x: toy.x + p.x * k(toy), y: toy.y + p.y * k(toy) });
+// Where the sled runs on across the snow: the room's sled lane (toy.slope).
+function runDirection(toy) {
+  const s = { ...SLOPE, ...toy.slope };
+  const n = Math.hypot(s.dx, s.dy);
+  return { dx: s.dx / n, dy: s.dy / n, length: s.length };
+}
 export function ridePose(ride, world, dt, time) {
   const toy = ride.toy;
   const t = time - ride.start;
@@ -135,13 +147,22 @@ export function ridePose(ride, world, dt, time) {
       return { x: toy.x, y: toy.y + 2, z, sit: false, done: false };
     }
     case 'sled': {
-      // Down the slope it speeds up; on the flat snow friction slows it.
-      const slope = ride.slope ?? SLOPE;
-      const travelled = Math.hypot(ride.x - toy.x, ride.y - toy.y);
+      // From the hilltop down the steep side it speeds up...
+      if (ride.phase === 'hill') {
+        const foot = hillPoint(toy, HILL_FOOT);
+        ride.speed += SLOPE.accel * dt;
+        const d = Math.hypot(foot.x - ride.x, foot.y - ride.y);
+        const step = ride.speed * dt;
+        if (step >= d) Object.assign(ride, { ...foot, phase: 'run' });
+        else Object.assign(ride, { x: ride.x + ((foot.x - ride.x) / d) * step, y: ride.y + ((foot.y - ride.y) / d) * step });
+        return { x: ride.x, y: ride.y, z: 0, sit: true, sled: true, done: false };
+      }
+      // ...then on the flat snow friction slows it (the friction lesson's idea).
+      const run = runDirection(toy);
       const friction = GROUND_FRICTION[surfaceAt(world, ride.x, ride.y)] ?? 0.3;
-      ride.speed += (travelled < slope.length ? slope.accel : -friction * G) * dt;
-      const nx = ride.x + slope.dx * Math.max(0, ride.speed) * dt;
-      const ny = ride.y + slope.dy * Math.max(0, ride.speed) * dt;
+      ride.speed -= friction * G * dt;
+      const nx = ride.x + run.dx * Math.max(0, ride.speed) * dt;
+      const ny = ride.y + run.dy * Math.max(0, ride.speed) * dt;
       if (ride.speed <= 0 || collides(world, nx, ny)) return { x: ride.x, y: ride.y, z: 0, sit: false, done: true };
       ride.x = nx;
       ride.y = ny;
@@ -253,6 +274,17 @@ export function updateToys(toys, world, avatar, dt, time, ride = null) {
     }
   }
   return events;
+}
+
+// The dotted arrow on the sled hill: from the sled waiting on the ridge,
+// down the steep side and on across the snow, so kids see what the hill is
+// for. Gone after the first ride.
+export function sledHint(toy) {
+  if (toy.used) return null;
+  const top = hillPoint(toy, HILL_TOP);
+  const foot = hillPoint(toy, HILL_FOOT);
+  const run = runDirection(toy);
+  return { top, points: [top, foot, { x: foot.x + run.dx * run.length * 1.2, y: foot.y + run.dy * run.length * 1.2 }] };
 }
 
 export const marimbaStones = (toy) => MARIMBA_NOTES.map((_, i) => ({ ...(toy.stones?.[i] ?? { x: toy.x + (i - 2) * MARIMBA_GAP, y: toy.y }), pressed: toy.pressed === i }));
