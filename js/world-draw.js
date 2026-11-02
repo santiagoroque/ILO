@@ -240,7 +240,7 @@ export function drawWorld(ctx, world, scene) {
       facing: pet.facing, hop: pet.hop, time: scene.time, scale: S, mood: pet.heartUntil > scene.time ? 'happy' : pet.happy < 30 ? 'sad' : null,
     }) });
   }
-  const drawCritter = (c) => scaledAt(ctx, c.x, c.y, S, () => drawCritters(ctx, [c], scene.time));
+  const drawCritter = (c) => scaledAt(ctx, c.x, c.y, S * (c.size ?? 1), () => drawCritters(ctx, [c], scene.time)); // A calf is smaller.
   for (const c of scene.critters ?? []) if (!c.flying && !c.under) things.push({ y: c.y, draw: () => drawCritter(c) });
   for (const r of scene.residents ?? []) things.push({ y: r.y, draw: () => scaledAt(ctx, r.x, r.y, r.scale ?? 1, () => drawResident(ctx, r, scene.time)) });
   things.sort((p, q) => p.y - q.y).forEach((thing) => thing.draw());

@@ -78,7 +78,10 @@ export function critterArtFile(c, frame) {
 export const HOLES = { meerkat: 'burrow', seal: 'ice-hole' };
 
 const between = (rng, a, b) => a + rng() * (b - a);
-const HERD_GAP = 140; // Pixels between animals walking in a line (elephants).
+// A herd walks in a line behind its leader, each one its own: how far
+// behind (pixels), how big, how far up or down the line, how quick its steps
+// (frames per second). The third is a calf, close to its mother.
+const HERD = [{ gap: 0, size: 1 }, { gap: 165, size: 0.88, dy: -20 }, { gap: 255, size: 0.6, dy: 16, fps: 11 }];
 const MARGIN = 50;
 
 // Wading birds stand in the sea or the shallows, away from boardwalks.
@@ -153,8 +156,11 @@ export function createCritters(world, rng = Math.random) {
         Object.assign(c, { x: -200, y, line: y, stopAt: entry.x ?? null, state: 'away', anim: def.flying ? 'fly' : 'walk', flying: Boolean(def.flying), z: 0 });
         c.timer = between(rng, 3, def.every * 0.6);
         // A herd: the first one leads, the others walk in a line behind it.
-        if (n > 0) Object.assign(c, { leader: critters[critters.length - n], gap: HERD_GAP * n, y: y + (n % 2 ? 18 : -18) });
-        else c.tail = HERD_GAP * ((entry.count ?? 1) - 1);
+        const place = HERD[n] ?? { gap: HERD[HERD.length - 1].gap + 150 * (n - HERD.length + 1), size: 0.9 };
+        if (place.size !== 1) c.size = place.size;
+        if (place.fps) c.fps = place.fps;
+        if (n > 0) Object.assign(c, { leader: critters[critters.length - n], gap: place.gap, y: y + (place.dy ?? 0) });
+        else c.tail = (HERD[(entry.count ?? 1) - 1] ?? HERD[HERD.length - 1]).gap;
       }
       critters.push(c);
     }

@@ -132,3 +132,14 @@ test('elephants come as a herd, one behind another', () => {
   });
   assert.ok(together > 0, 'they were seen together');
 });
+
+test('the elephant herd is not three copies: a calf, unequal gaps, its own pace', () => {
+  const herd = createCritters(built.waterhole, random(5)).filter((c) => c.type === 'elephant');
+  const sizes = herd.map((c) => c.size ?? 1);
+  assert.ok(Math.min(...sizes) < 0.7, 'one is a calf');
+  assert.equal(new Set(sizes).size, 3, 'three sizes');
+  const gaps = herd.slice(1).map((c) => c.gap);
+  assert.notEqual(gaps[1] - gaps[0], gaps[0], 'not evenly spaced');
+  const calf = herd.find((c) => c.size < 0.7);
+  assert.ok((calf.fps ?? 8) > 8, 'the calf takes quicker steps');
+});

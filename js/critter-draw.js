@@ -347,7 +347,7 @@ export function drawCritters(ctx, critters, time) {
     if (c.home) drawHole(ctx, c);
     if (!isVisible(c)) continue;
     const t = reducedMotion ? 0 : time;
-    const frame = critterFrame(c, t);
+    const frame = critterFrame(c, t, c.fps); // A calf takes quicker steps.
     // Flying animals float above their spot; jumping fish handle their own height.
     const lift = c.type === 'jumping-fish' ? 0 : c.z;
     if (drawSprite(ctx, critterArtFile(c, frame), c.x, c.y - lift, { flip: c.facing < 0 })) continue;
