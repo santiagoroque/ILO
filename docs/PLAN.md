@@ -1043,3 +1043,18 @@ Plan: `docs/superpowers/plans/2026-10-30-ilo-improvements.md`. Built on the `imp
 
 **Decisions:** the deck picture hides the turtle, which can still be spotted (the naturalist stamp needs all 17 animals). The Market street has no falling leaves (its area is plaza). Offline cannot be tried in the app's built-in browser; check it on the live site.
 
+## Animal redesign brief (2026-11-02)
+
+The animals look like first drafts next to Ilo. Measured against Ilo's drawing (avatar/ilo-front-idle-1.svg), they have:
+- thinner, uneven outlines;
+- single-dot eyes;
+- no shine, belly tone or ground shadow;
+- greyish fills;
+- some flat geometric bodies (the heron is an oval on two lines).
+
+Two residents read as the wrong animal: Luma looks like a bear (she is a capybara), and Nuk looks like a penguin (a snowy owl). Three pets sold in the shop have no picture at all: the axolotl, the macaw and the armadillo.
+
+`docs/DESIGN_PROMPT_4.md` (also a private page) asks for all 191 files to be redrawn in Ilo's style. It gives Ilo's exact values (outline #2b2d42 at 2.5 / 2 / 1.4-1.7 / 0.9, the eye construction, a 40 % white shine, a lighter belly, a 16 % ground shadow). It keeps every file name, canvas and ground point, so the new art drops in with `import-art --add` and no code change.
+
+Found while checking: the toucan's sitting frames were delivered as `toucan-perch-blink-*`, a name the game never loads (K12).
+
